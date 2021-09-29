@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "whatapplan-55550": {
+      "hosting": {
+        "app": [
+          "whatapplan-55550"
+        ]
+      }
+    }
+  }
+}
