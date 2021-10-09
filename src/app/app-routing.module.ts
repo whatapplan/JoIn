@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: PlanesRecomendadosComponent },
+  { path: 'register', component: RegisterComponent },
+];
 
 @NgModule({
   imports: [
