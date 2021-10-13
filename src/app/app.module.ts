@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 // Firebase
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireModule } from '@angular/fire/compat';
-
+ 
 
 @NgModule({
   declarations: [AppComponent],

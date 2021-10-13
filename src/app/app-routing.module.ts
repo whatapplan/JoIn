@@ -13,7 +13,7 @@ const routes: Routes = [
       import('./modules/plan-creation/plan-creation.module').then(
         (m) => m.PlanCreationPageModule
       ),
-  },
+  }
 ];
 
 @NgModule({
