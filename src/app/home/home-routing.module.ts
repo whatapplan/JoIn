@@ -7,8 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    children:
-    [
+    children: [
       {
         path: 'create-plan',
         loadChildren: () =>
@@ -16,8 +15,15 @@ const routes: Routes = [
             (m) => m.PlanCreationPageModule
           ),
       },
-    ]
-  }
+      {
+        path: 'register',
+        loadChildren: () =>
+          import('../modules/register/register.module').then(
+            (m) => m.RegisterPageModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
