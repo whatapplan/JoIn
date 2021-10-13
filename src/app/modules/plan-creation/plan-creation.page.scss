@@ -1,0 +1,12 @@
+@import '../../../global.scss';
+
+:host::ng-deep{
+    ion-input, ion-textarea, ion-datetime {
+        background-color: rgba(231, 231, 231, 0.1);
+        border-radius: 8px;
+        color: white;
+        --placeholder-color: white;
+        --placeholder-opacity: 1;
+        --placeholder-font-weight: bold;
+    }
+}

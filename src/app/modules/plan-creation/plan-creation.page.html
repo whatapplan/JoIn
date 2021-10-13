@@ -1,0 +1,64 @@
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="p-4">
+    <form class="grid gap-4" action="">
+      <ion-input inputmode="text" placeholder="¿Qué quieres hacer?"></ion-input>
+      <ion-input inputmode="text" placeholder="Dónde"></ion-input>
+      <ion-textarea
+        inputmode="text"
+        placeholder="Describe tu plan"
+      ></ion-textarea>
+      <p>Cuándo</p>
+      <p><small>Desde</small></p>
+      <div class="grid h-10 gap-2 grid-cols-2 gap-4">
+        <div class="grid grid-cols-5">
+          <ion-datetime class="col-span-4"></ion-datetime>
+          <div class="flex items-center justify-center">
+            <ion-icon name="calendar-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="grid h-10 gap-2 grid-cols-5">
+          <ion-datetime
+            display-format="h:mm"
+            picker-format="h:mm"
+            class="col-span-4"
+          ></ion-datetime>
+          <div class="flex items-center justify-center">
+            <ion-icon name="time"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <p><small>Hasta</small></p>
+      <div class="grid h-10 gap-2 grid-cols-2">
+        <div class="grid grid-cols-5">
+          <ion-datetime class="col-span-4"></ion-datetime>
+          <div class="flex items-center justify-center">
+            <ion-icon name="calendar-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="grid h-10 gap-2 grid-cols-5">
+          <ion-datetime
+            display-format="h:mm"
+            picker-format="h:mm"
+            class="col-span-4"
+          ></ion-datetime>
+          <div class="flex items-center justify-center">
+            <ion-icon name="time"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </form>
+    <p>Imágenes</p>
+    <div class="h-22 bg-red-200"></div>
+    <p>Selecciona una categoría</p>
+    <small>Social</small>
+  </div>
+</ion-content>

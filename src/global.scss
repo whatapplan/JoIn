@@ -1,3 +1,6 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -16,7 +19,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +27,27 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// Globals
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100%;
+}
+
+:root {
+  // Aquí deben ir variables globales, de este estilo:
+  // --main: #40da04;
+}
+
+ion-input,
+ion-textarea {
+  --padding-start: 10px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+}
