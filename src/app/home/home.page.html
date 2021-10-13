@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab1" href="">
+      <ion-icon icon-on="barbell-Sharp" icon-off="bug" ></ion-icon>
 
-<ion-content>
+      <ion-label>Planes Recomendados</ion-label>
+    </ion-tab-button>
 
-</ion-content>
+    <ion-tab-button tab="tab2">
+      <ion-icon name="bug"></ion-icon>
+      <ion-label>Buscar Plan</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="create-plan"   >
+      <ion-icon name="flame-outline"></ion-icon>
+      <ion-label>Crear Plan</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab4">
+      <ion-icon name="fast-food-outline"></ion-icon>
+      <ion-label>Tab 3</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
