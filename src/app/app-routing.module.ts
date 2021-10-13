@@ -4,16 +4,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'create-plan',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'create-plan',
-    loadChildren: () =>
-      import('./modules/plan-creation/plan-creation.module').then(
-        (m) => m.PlanCreationPageModule
-      ),
-  }
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  
+
 ];
 
 @NgModule({
