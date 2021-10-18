@@ -22,6 +22,10 @@ const routes: Routes = [
             (m) => m.RegisterPageModule
           ),
       },
+      {
+        path: 'search-plan',
+        loadChildren: () => import('../modules/search-plan/search-plan.module').then( m => m.SearchPlanPageModule)
+      },
     ],
   },
 ];

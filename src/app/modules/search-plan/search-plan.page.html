@@ -1,0 +1,54 @@
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Buscar plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-divider sticky="true">
+    <ion-searchbar #val (ionInput)='handleInput($event)' (search)="searchPlan(val.value)"
+    (ionClear) = "backupFilters()"
+    placeholder="¿unas cervecitas?" showCancelButton="never" animated></ion-searchbar>
+    <ion-icon  class="ion-margin-end" size= 'large' name="calendar-number-outline" (click)="showCalendar()">
+      </ion-icon>
+      <ion-datetime #dateTime style='display:none' displayFormat="YY MM DD" ></ion-datetime>
+    </ion-item-divider>
+
+
+
+    <ion-list class= "scroll-hor">
+        <ion-item-group>
+          <ion-chip *ngFor="let fi of filtersSelected" [ngClass]="[iconSelected]" (click)='unselectFilters(fi)'>
+            <ion-label class="ion-margin">{{fi}}</ion-label>
+          </ion-chip>
+        </ion-item-group> 
+        <ion-item-group>
+        <ion-chip *ngFor="let filter of filters" (click)='selectFilters(filter)' [ngClass]="[iconDefault]">
+          <ion-label  class="ion-margin">{{filter}}</ion-label>
+        </ion-chip>
+      </ion-item-group>
+    </ion-list>  
+
+    <div id="outPopUp" *ngIf="noResults">
+      <ion-label color="dark">
+        No se encontraron resultados
+      </ion-label>
+    </div>
+
+    <ion-list  *ngIf="yesResults">
+      <ion-card *ngFor='let resultado of planesResultado' >
+        <ion-card-header>
+          <ion-card-subtitle>{{resultado.title}}</ion-card-subtitle>
+          <ion-card-title>{{resultado.category}}</ion-card-title>
+          <ion-label>{{resultado.address}}</ion-label>
+        </ion-card-header>
+      </ion-card>
+  </ion-list>
+
+
+
+</ion-content>
