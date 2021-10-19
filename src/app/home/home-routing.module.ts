@@ -17,14 +17,15 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        loadChildren: () =>
-          import('../modules/register/register.module').then(
-            (m) => m.RegisterPageModule
-          ),
+        loadChildren: () =>import('../modules/register/register.module').then((m) => m.RegisterPageModule),
       },
       {
         path: 'search-plan',
         loadChildren: () => import('../modules/search-plan/search-plan.module').then( m => m.SearchPlanPageModule)
+      },
+      {
+        path: 'recommended-plans',
+        loadChildren: () => import('../modules/recommended-plans/recommended-plans.module').then( m => m.RecommendedPlansPageModule)
       },
     ],
   },

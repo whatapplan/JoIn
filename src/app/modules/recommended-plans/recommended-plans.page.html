@@ -1,0 +1,43 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>recommendedPlans</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+
+
+<ion-list>
+
+  <ion-item class="ionItem-Planes">
+
+    <ion-label>Tipo de plan</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option *ngFor="let filter of filters" value="filter">{{filter}}</ion-select-option>
+    </ion-select>
+
+  </ion-item>
+
+</ion-list>
+
+<ion-content class="ionSlider">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <h1>Slide 1</h1>
+      <h1>asdjald</h1>
+      <h1>asdjald</h1>
+      <h1>asdjald</h1>
+      <h1>asdjald</h1>
+
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 2</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
