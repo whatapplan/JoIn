@@ -1,9 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
 
+    <ion-item lines="full">
+      <ion-label position="stacked">Apellido</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked"> Fecha de nacimiento</ion-label>
+      <ion-datetime 
+        displayFormat="DD MMM YYYY"
+        monthShortNames="ENE, FEB, MAR, ABR, MAY, JUN, JUL, AGO, SEP, OCT, NOV, DIC"></ion-datetime>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col text-align="center">
+        <ion-button type="submit" color="primary" position="center">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
