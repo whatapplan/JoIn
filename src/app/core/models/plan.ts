@@ -12,5 +12,5 @@ export class Plan {
     description:string;
     user:string;
     title:string;
-    when:string;
+    date:string;
 }

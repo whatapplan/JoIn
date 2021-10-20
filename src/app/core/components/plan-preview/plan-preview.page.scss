@@ -1,0 +1,13 @@
+.iconosContainer{
+    display: flex;
+    justify-content: center;
+}
+.planInfo{
+    height: 70%;
+    position: relative;
+    bottom: 0;
+    .iconosContainer{
+        display: flex;
+        justify-content: center;
+    }
+}
