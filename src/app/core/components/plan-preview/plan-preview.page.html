@@ -1,0 +1,42 @@
+<div>
+  <div></div>
+
+  <div class="planInfo">
+    <h1>Titulo del Plan</h1>
+    <p>Zona</p>
+    <p><strong>1 KM</strong></p>
+    <div class="interests">
+      <div *ngFor="let interes in intereses">{{interes}}</div>
+    </div>
+
+    <div>
+      <p>Descripción</p>
+    </div>
+
+    <div>
+      <p>Creador:</p>
+      <p>Javi</p>
+    </div>
+
+    <div>
+      <ion-list>
+        <ion-item class="ionItem-Planes">
+          <ion-label>Participantes</ion-label>
+          <ion-select placeholder="Select One">
+            <ion-select-option *ngFor="let filter of filters" value="filter"
+              >{{filter}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="iconosContainer">
+      
+      <div>iconoNo</div>
+      <div>iconoEstr</div>
+      <div>iconoTic</div>
+
+    </div>
+  </div>
+</div>

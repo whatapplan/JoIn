@@ -12,7 +12,7 @@
 
 <ion-list>
 
-  <ion-item class="ionItem-Planes">
+  <ion-item class="ionItem-Plans">
 
     <ion-label>Tipo de plan</ion-label>
     <ion-select placeholder="Select One">
@@ -24,20 +24,17 @@
 </ion-list>
 
 <ion-content class="ionSlider">
-  <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide>
-      <h1>Slide 1</h1>
-      <h1>asdjald</h1>
-      <h1>asdjald</h1>
-      <h1>asdjald</h1>
-      <h1>asdjald</h1>
-
+  <ion-slides  [options]="slideOpts">
+    <ion-slide *ngFor="let recommendedPlan of recommendedPlans">
+      <app-plan-preview [plan]="recommendedPlan">
+        
+      </app-plan-preview>
     </ion-slide>
     <ion-slide>
-      <h1>Slide 2</h1>
+      
     </ion-slide>
     <ion-slide>
-      <h1>Slide 3</h1>
+      
     </ion-slide>
   </ion-slides>
 </ion-content>
