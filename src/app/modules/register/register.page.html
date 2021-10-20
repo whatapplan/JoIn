@@ -9,38 +9,38 @@
 
 <ion-content>
 
-  <form>
-    <ion-item lines="full">
+  <form class="form">
+    <ion-item lines="none">
       <ion-label position="stacked">Nombre</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}"  class="form__intem1_input" type="text" required></ion-input>
     </ion-item>
 
-    <ion-item lines="full">
+    <ion-item lines="none">
       <ion-label position="stacked">Apellido</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input [(ngModel)]="apellidos" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
     </ion-item>
     
-    <ion-item>
+    <ion-item lines="none">
       <ion-label position="stacked"> Fecha de nacimiento</ion-label>
-      <ion-datetime 
+      <ion-datetime [(ngModel)]="fechaNacimiento" [ngModelOptions]="{standalone: true}" class="form__item2_datetime"
         displayFormat="DD MMM YYYY"
         monthShortNames="ENE, FEB, MAR, ABR, MAY, JUN, JUL, AGO, SEP, OCT, NOV, DIC"></ion-datetime>
     </ion-item>
 
-    <ion-item lines="full">
+    <ion-item lines="none">
       <ion-label position="stacked">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
     </ion-item>
 
-    <ion-item lines="full">
+    <ion-item lines="none">
       <ion-label position="stacked">Contraseña</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="password" required></ion-input>
     </ion-item>
     
-    <ion-row position="center" > 
-      <ion-col>
-        <ion-button type="button" color="primary" >Sign Up</ion-button>
-      </ion-col>
-    </ion-row>
   </form>
+  <ion-row  > 
+      <ion-col class="contenedorBoton">
+      <ion-button type="button" color="primary" (click)="regitrarUsuario">Sign Up</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

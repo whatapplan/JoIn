@@ -19,6 +19,15 @@ export class CrudService {
     //return getDocs(query(collection(db, 'planes'), where("category","==",category)))
     return this.ngFirestore.collection('planes').snapshotChanges();
   }
+
+  checkEmail(email: string) {
+    if(this.ngFirestore.collection('usuario').ref.where("email","==",email)) {
+        console.log(this.ngFirestore.collection('usuario').ref.where("email","==",email));
+        return false;
+    }
+  }
 }
+
+
 
 
