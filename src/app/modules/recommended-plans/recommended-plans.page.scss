@@ -1,10 +1,19 @@
 .ionItem-Plans{
     margin-top: 15px;
 }
-
-ion-slides {
-    height: 100%;
+app-plan-preview{
+    height:100%;
     width: 100%;
-    margin-top: 15px;
-    margin-bottom: 15px;
+}
+main{
+    display:flex;
+    justify-content: center;
+    background-color:red;
+}
+ion-slides {
+    height: 87%;
+    width: 95%;
+    position: absolute;
+    bottom:5%;
+    margin-top: 20px;
   }

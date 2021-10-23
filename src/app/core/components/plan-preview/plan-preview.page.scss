@@ -1,13 +1,58 @@
-.iconosContainer{
-    display: flex;
-    justify-content: center;
-}
-.planInfo{
-    height: 70%;
-    position: relative;
-    bottom: 0;
-    .iconosContainer{
-        display: flex;
-        justify-content: center;
+.container{
+    background-image: url(../../../../assets/prueba.jpg);
+    .planInfo{
+        align-items: left;
+        margin-left:10%;
+        height: 50%;
+        width:90%;
+        position: absolute;
+        bottom: 0;
+        
+        
+        .iconosContainer{
+            display: flex;
+            justify-content: center;
+        }
+        .direccionDistancia{
+            display: flex;
+        }
+        .creador{
+        
+            .creadorTexto{
+                margin-top: 17px;
+            }
+        }
+        .iconosContainer{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 0;
+            ion-icon{
+                height:40px;
+                width: 40px;
+                
+            }
+            .x{
+                color: red;
+            }
+            .fav{
+                color:pink;
+            }
+            .tic{
+                color: green;
+            }
+        }
     }
+    
+}
+h1{
+    font-size:23px;
+    margin-bottom:10px;
+}
+p{
+    text-align:left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:14px;
+    color: red;
 }

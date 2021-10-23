@@ -11,6 +11,7 @@ export class RecommendedPlansPage implements OnInit {
   recommendedPlans : Plan[] = [];
 
   constructor(private crudService : CrudService ) { 
+   
     this.crudService.getPlanes().subscribe((res) => {res.map((t)=>{
       let plan = {
         id: t.payload.doc.id,
@@ -22,6 +23,7 @@ export class RecommendedPlansPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
   filters : string[]=["Cervezas","Pasear al perro","Béisbol",
   "Baloncesto","Fútbol","Tenis","Golf","Surf","Arte y exposiciones",

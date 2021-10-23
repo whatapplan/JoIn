@@ -1,10 +1,13 @@
-<div>
-  <div></div>
+<div class="container">
+  
 
   <div class="planInfo">
     <h1>Titulo del Plan</h1>
-    <p>Zona</p>
-    <p><strong>1 KM</strong></p>
+    <div class="direccionDistancia">
+      <p>Zona/Dirección</p> <p><strong>1 KM</strong></p>
+    </div>
+    
+    
     <div class="interests">
       <div *ngFor="let interes in intereses">{{interes}}</div>
     </div>
@@ -13,12 +16,13 @@
       <p>Descripción</p>
     </div>
 
-    <div>
-      <p>Creador:</p>
-      <p>Javi</p>
+    <div class="creador">
+      <p class="creadorTexto">Creador: Javi</p>
     </div>
-
-    <div>
+    <div class="creador">
+      <p class="creadorTexto">Participantes</p>
+    </div>
+    <!-- <div>
       <ion-list>
         <ion-item class="ionItem-Planes">
           <ion-label>Participantes</ion-label>
@@ -29,13 +33,16 @@
           </ion-select>
         </ion-item>
       </ion-list>
-    </div>
+    </div> -->
 
     <div class="iconosContainer">
       
-      <div>iconoNo</div>
-      <div>iconoEstr</div>
-      <div>iconoTic</div>
+      
+      
+      <ion-icon class="x" name="close-circle-outline"></ion-icon>
+      <ion-icon class="fav" name="star"></ion-icon>
+      <ion-icon class="tic" name="checkmark-done-outline"></ion-icon>
+      
 
     </div>
   </div>
