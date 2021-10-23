@@ -4,11 +4,12 @@ import { Injectable } from "@angular/core";
 
     providedIn: 'root' // It will inject this provider at the root level of the application so it can be accessed anywhere.
   })
-export class Usuario{
+export class User{
     $key:string;
-    nombre :string;
-    apellido:string;
-    ciudad:string;
+    name :string;
+    lastName:string;
+    city:string;
     email:string;
-    contraseña:string;
+    password:string;
+    dateBirth: Date;
 }
