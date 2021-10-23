@@ -4,20 +4,21 @@
   <div class="planInfo">
     <h1>Titulo del Plan</h1>
     <div class="direccionDistancia">
-      <p>Zona/Dirección</p> <p><strong>1 KM</strong></p>
+      <p><strong>{{plan.city}}</strong></p>
+      <p>{{plan.address}}</p> 
     </div>
     
     
     <div class="interests">
-      <div *ngFor="let interes in intereses">{{interes}}</div>
+      <p>{{plan.category}}</p>
     </div>
 
     <div>
-      <p>Descripción</p>
+      <p>{{plan.description}}</p>
     </div>
 
     <div class="creador">
-      <p class="creadorTexto">Creador: Javi</p>
+      <p class="creadorTexto">{{plan.user}}</p>
     </div>
     <div class="creador">
       <p class="creadorTexto">Participantes</p>

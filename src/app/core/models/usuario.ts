@@ -12,4 +12,5 @@ export class User{
     email:string;
     password:string;
     dateBirth: Date;
+    favCategories: string[];
 }

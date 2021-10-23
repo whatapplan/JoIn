@@ -9,7 +9,7 @@ import { CrudService } from '../../core/services/crud-service.service';
 })
 export class RecommendedPlansPage implements OnInit {
   recommendedPlans : Plan[] = [];
-
+  plans : Plan[] = [];
   constructor(private crudService : CrudService ) { 
    
     this.crudService.getPlanes().subscribe((res) => {res.map((t)=>{
@@ -18,8 +18,11 @@ export class RecommendedPlansPage implements OnInit {
         ...t.payload.doc.data() as Plan
       }
       let pplan = t.payload.doc.data() as Plan;
-      this.recommendedPlans.push(plan);
+      this.plans.push(plan);
       })});
+
+      // this.filterPlansByCategory();
+      this.recommendedPlans=this.plans; // esto tengo que cambiarlo en un futuro
   }
 
   ngOnInit() {
