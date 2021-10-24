@@ -13,15 +13,15 @@ export class RegisterPage implements OnInit {
   name:string= "";
   lastName:string= "";
   city:string= "";
-  dateBirth: string = new Date().toISOString();
+  dateBirth: string = "";
   
   constructor(private crudService : CrudService) { }
 
   async registrarUsuario(){
-    if(this.checkData() && this.checkAge() ){
+    if(this.checkData() && this.checkAge() && this.emailFormat(this.email) ){
       console.log('campos verificados');
       if(await this.checkEmail(this.email)){
-          console.log(this.email + ' repetido2');
+          console.log('repetido');
       }else{
         this.createUser();
         console.log('usuario creado'); 
@@ -70,10 +70,24 @@ export class RegisterPage implements OnInit {
 
   async checkEmail(email: string) {
     if(await this.crudService.checkEmail(email)){
-      console.log(this.email + ' repetido1');
+      console.log(this.email + ' esta repetido');
       return true;
     }return false;
   }  
+
+  emailFormat(email: string){
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(email)) {
+      console.log('valido');
+      return true;
+    } else {
+      console.log('valido no');
+      return false;
+    }
+  }
+
+
   ngOnInit() {
   }
 

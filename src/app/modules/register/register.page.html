@@ -11,7 +11,7 @@
 
   <form class="form">
     <ion-item lines="none">
-      <ion-label position="stacked" color="secondary">Nombre</ion-label>
+      <ion-label position="stacked" >Nombre</ion-label>
       <ion-input [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form__intem1_input" type="text" required></ion-input>
     </ion-item>
 
@@ -21,9 +21,14 @@
     </ion-item>
     
     <ion-item lines="none">
+      <ion-label position="stacked">Ciudad</ion-label>
+      <ion-input [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
       <ion-label position="stacked"> Fecha de nacimiento</ion-label>
       <ion-datetime [(ngModel)]="dateBirth" [ngModelOptions]="{standalone: true}" class="form__item2_datetime"
-        displayFormat="DDDD, DD MMMM YYYY" 
+        displayFormat="DDDD, DD MMMM YYYY"  placeholder=" "
        ></ion-datetime>
     </ion-item>
 
@@ -35,10 +40,6 @@
     <ion-item lines="none">
       <ion-label position="stacked">Contraseña</ion-label>
       <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="password" required></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label position="stacked">Ciudad</ion-label>
-      <ion-input [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
     </ion-item>
     
   </form>
