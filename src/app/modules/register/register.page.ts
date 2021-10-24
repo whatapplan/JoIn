@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/core/services/crud-service.service';
 import { User} from 'src/app/core/models/usuario';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterPage implements OnInit {
   city:string= "";
   dateBirth: string = "";
   
-  constructor(private crudService : CrudService) { }
+  constructor(private crudService : CrudService, public alertController: AlertController) { }
 
   async registrarUsuario(){
     if(this.checkData() && this.checkAge() && this.emailFormat(this.email) ){
@@ -35,7 +36,10 @@ export class RegisterPage implements OnInit {
       if(this.name.length > 1 && this.lastName.length > 1 && this.password.length > 1 && this.email.length > 1 && this.city.length > 1){
         return true ;
       }
-    } return false ;
+      
+    }
+    this.presentAlert('Debe completar todos los campos'); 
+    return false ;
   }
 
 
@@ -50,6 +54,7 @@ export class RegisterPage implements OnInit {
       return true;
     }
     else{
+      this.presentAlert('Debe ser mayor de 18 años');
         console.log('Menos de edad');
         return false;
     } 
@@ -70,6 +75,7 @@ export class RegisterPage implements OnInit {
 
   async checkEmail(email: string) {
     if(await this.crudService.checkEmail(email)){
+      this.presentAlert('Este correo ya esta en uso: '+ email);
       console.log(this.email + ' esta repetido');
       return true;
     }return false;
@@ -82,11 +88,22 @@ export class RegisterPage implements OnInit {
       console.log('valido');
       return true;
     } else {
+      this.presentAlert('Correo no valido');
       console.log('valido no');
       return false;
     }
   }
 
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      subHeader: 'Error',
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
   ngOnInit() {
   }
