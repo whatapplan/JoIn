@@ -25,6 +25,7 @@ export class RegisterPage implements OnInit {
           console.log('repetido');
       }else{
         this.createUser();
+        this.presentAlert('Usuario creado', 'Confirmacion');
         console.log('usuario creado'); 
       }
     }else {console.log('incompleto');}
@@ -38,7 +39,7 @@ export class RegisterPage implements OnInit {
       }
       
     }
-    this.presentAlert('Debe completar todos los campos'); 
+    this.presentAlert('Debe completar todos los campos', 'Error'); 
     return false ;
   }
 
@@ -54,7 +55,7 @@ export class RegisterPage implements OnInit {
       return true;
     }
     else{
-      this.presentAlert('Debe ser mayor de 18 años');
+      this.presentAlert('Debe ser mayor de 18 años', 'Error');
         console.log('Menos de edad');
         return false;
     } 
@@ -75,7 +76,7 @@ export class RegisterPage implements OnInit {
 
   async checkEmail(email: string) {
     if(await this.crudService.checkEmail(email)){
-      this.presentAlert('Este correo ya esta en uso: '+ email);
+      this.presentAlert('Este correo ya esta en uso: '+ email, 'Error');
       console.log(this.email + ' esta repetido');
       return true;
     }return false;
@@ -88,17 +89,17 @@ export class RegisterPage implements OnInit {
       console.log('valido');
       return true;
     } else {
-      this.presentAlert('Correo no valido');
+      this.presentAlert('Correo no valido', 'Error');
       console.log('valido no');
       return false;
     }
   }
 
-  async presentAlert(message: string) {
+  async presentAlert(message: string, titulo:string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
-      subHeader: 'Error',
+      subHeader: titulo,
       message: message,
       buttons: ['OK']
     });
