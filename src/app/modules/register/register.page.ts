@@ -17,12 +17,11 @@ export class RegisterPage implements OnInit {
   
   constructor(private crudService : CrudService) { }
 
-  registrarUsuario(){
-    this.checkAge();
+  async registrarUsuario(){
     if(this.checkData() && this.checkAge() ){
       console.log('campos verificados');
-      if(!this.checkEmail(this.email)){
-          console.log(this.email + ' repetido');
+      if(await this.checkEmail(this.email)){
+          console.log(this.email + ' repetido2');
       }else{
         this.createUser();
         console.log('usuario creado'); 
@@ -68,14 +67,13 @@ export class RegisterPage implements OnInit {
     this.crudService.uploadUser(newUser);
   }
 
-  checkEmail(email){
-    if(this.crudService.checkEmail(email) == false){
+
+  async checkEmail(email: string) {
+    if(await this.crudService.checkEmail(email)){
+      console.log(this.email + ' repetido1');
       return true;
-    }
-    return false;
-  }
-
-
+    }return false;
+  }  
   ngOnInit() {
   }
 
