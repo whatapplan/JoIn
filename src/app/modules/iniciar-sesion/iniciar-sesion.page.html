@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar-Sesion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="form">
+    <ion-item lines="none">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="password" required></ion-input>
+    </ion-item>
+  </form>
+  <ion-row  > 
+    <ion-col class="contenedorBoton">
+    <ion-button type="button" color="primary" (click)="iniciarSesion()">Iniciar Sesion</ion-button>
+  </ion-col>
+</ion-row>
+</ion-content>

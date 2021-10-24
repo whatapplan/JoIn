@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'plan-view',
     loadChildren: () => import('./modules/plan-view/plan-view.module').then( m => m.PlanViewPageModule)
   },
+  {
+    path: 'iniciar-sesion',
+    loadChildren: () => import('./modules/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
+  },
 
   
   
