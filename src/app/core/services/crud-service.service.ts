@@ -55,6 +55,6 @@ export class CrudService {
      } return true;
   }
   uploadUser(user){
-    this.ngFirestore.collection('usuarios').add(Object.assign({}, user));
+    this.ngFirestore.collection('usuario').add(Object.assign({}, user));
   }
 }
