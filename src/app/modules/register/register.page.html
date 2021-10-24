@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <form class="form">
+  <form class="form" >
     <ion-item lines="none">
       <ion-label position="stacked" >Nombre</ion-label>
       <ion-input [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form__intem1_input" type="text" required></ion-input>
@@ -39,7 +39,7 @@
 
     <ion-item lines="none">
       <ion-label position="stacked">Contraseña</ion-label>
-      <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="password" required></ion-input>
+      <ion-input [(ngModel)]="password" minlength="6" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="password" required></ion-input>
     </ion-item>
     
   </form>
