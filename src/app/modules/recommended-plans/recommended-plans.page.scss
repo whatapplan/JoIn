@@ -1,19 +1,23 @@
-.ionItem-Plans{
-    margin-top: 15px;
-}
-app-plan-preview{
-    height:100%;
+.content{
+    height: 100%;
     width: 100%;
+    background-color: bisque;
+
+    app-plan-preview{
+        height:100%;
+        width: 96%;
+        background-image: url(../../../assets/prueba.jpg);
+        border-radius:8px;
+    }
+    ion-slides {
+        height: 87%;
+        width: 100%;
+        position: fixed;
+        bottom:4%;
+        
+      }
+
+    #background-content{
+        background-color: beige;
+    }
 }
-main{
-    display:flex;
-    justify-content: center;
-    background-color:red;
-}
-ion-slides {
-    height: 87%;
-    width: 95%;
-    position: absolute;
-    bottom:5%;
-    margin-top: 20px;
-  }

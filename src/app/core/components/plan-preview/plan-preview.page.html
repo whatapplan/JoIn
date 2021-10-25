@@ -2,27 +2,38 @@
   
 
   <div class="planInfo">
-    <h1>{{plan.title}}</h1>
-    <div class="direccionDistancia">
-      <p><strong>{{plan.city}}</strong></p>
-      <p>{{plan.address}}</p> 
+
+    <p class="title"><strong>{{plan.title}}</strong></p>
+
+    <div class="ciudadDireccion">
+
+      <p class="city"><strong>{{plan.city}}</strong></p>
+
+      <p class="address"><strong>{{plan.address}}</strong></p> 
+
     </div>
     
     
-    <div class="interests">
-      <p>{{plan.category}}</p>
-    </div>
+    <!-- <div class="interests">
+      <p class="category"><strong>{{plan.category}}</strong></p>
+    </div> -->
 
-    <div>
-      <p>{{plan.description}}</p>
-    </div>
 
-    <div class="creador">
-      <p class="creadorTexto">{{plan.user}}</p>
-    </div>
-    <div class="creador">
-      <p class="creadorTexto">Participantes</p>
-    </div>
+    <!-- <div>
+      <p class="description">{{plan.description}}</p>
+    </div> -->
+
+
+    <!-- <div class="creador">
+      <p class="creatorTest"><strong>{{plan.user}}</strong></p>
+    </div> -->
+
+
+    <!-- <div class="enrolled">
+      <p class="enrolledText"><strong>Participantes</strong></p>
+    </div> -->
+
+
     <!-- <div>
       <ion-list>
         <ion-item class="ionItem-Planes">
@@ -35,16 +46,19 @@
         </ion-item>
       </ion-list>
     </div> -->
-
-    <div class="iconosContainer">
-      
-      
-      
-      <ion-icon class="x" name="close-circle-outline"></ion-icon>
-      <ion-icon class="fav" name="star"></ion-icon>
-      <ion-icon class="tic" name="checkmark-done-outline"></ion-icon>
-      
-
-    </div>
+    
   </div>
+
+  <!-- <div class="infoIconContainer">
+    <ion-icon name="information-circle-outline" class="infoIcon"></ion-icon>
+  </div> -->
+
+  <div class="iconosContainer">
+      
+    <ion-icon class="x" name="close-circle-outline"></ion-icon>
+    <ion-icon class="fav" name="star"></ion-icon>
+    <ion-icon class="tic" name="checkmark-done-outline"></ion-icon>
+    
+  </div>
+
 </div>

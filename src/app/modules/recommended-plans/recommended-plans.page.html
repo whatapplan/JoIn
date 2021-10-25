@@ -24,6 +24,7 @@
 </ion-list> -->
 
 <ion-content class="content">
+
   <ion-slides  [options]="slideOpts">
     <ion-slide *ngFor="let recommendedPlan of recommendedPlans">
       <app-plan-preview [plan]="recommendedPlan">
@@ -37,4 +38,5 @@
       
     </ion-slide>
   </ion-slides>
+  
 </ion-content>
