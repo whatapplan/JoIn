@@ -19,7 +19,7 @@ export class RegisterPage implements OnInit {
   constructor(private crudService : CrudService, public alertController: AlertController) { }
 
   async registrarUsuario(){
-    if(this.checkData() && this.checkAge() && this.emailFormat(this.email) ){
+    if(this.checkData() && this.leterFormat(this.name) && this.leterFormat(this.lastName) && this.leterFormat(this.city) && this.checkAge() && this.emailFormat(this.email) ){
       console.log('campos verificados');
       if(await this.checkEmail(this.email)){
           console.log('repetido');
@@ -91,6 +91,18 @@ export class RegisterPage implements OnInit {
     } else {
       this.presentAlert('Correo no valido', 'Error');
       console.log('valido no');
+      return false;
+    }
+  }
+  leterFormat(cadena: string){
+    let stringRegex = /^[a-zA-ZÀ-ÿ]+$/;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (stringRegex.test(cadena)) {
+      console.log('valida');
+      return true;
+    } else {
+      this.presentAlert('Solo puede introducir letras', 'Error');
+      console.log('valida no');
       return false;
     }
   }

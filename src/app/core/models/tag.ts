@@ -9,5 +9,6 @@ export interface Tag {
 
 export interface TagCategory {
   name: string;
+  // tags: string[];
   tags: Tag[];
 }

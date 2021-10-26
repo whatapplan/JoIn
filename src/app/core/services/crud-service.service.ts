@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Plan } from 'src/app/core/models/plan';
 import { User } from 'src/app/core/models/usuario';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { TagCategory } from '../models/tag';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
-  constructor(private ngFirestore: AngularFirestore, private plan: Plan) {}
+  constructor(private ngFirestore: AngularFirestore) {}
 
   uploadPlan(plan) {
     return this.ngFirestore.collection('planes').add(Object.assign({}, plan));
@@ -18,9 +19,21 @@ export class CrudService {
     return this.ngFirestore.collection('plans').add(plan);
   }
 
+  uploadCategory(tag: TagCategory) {
+    this.ngFirestore.collection('tagCategory').add(Object.assign({}, tag));
+  }
+
   getPlanes() {
-    //return getDocs(query(collection(db, 'planes'), where("category","==",category)))
     return this.ngFirestore.collection('planes').snapshotChanges();
+
+    // return this.ngFirestore.collection('planes', (ref) =>{
+    //   return ref.where('city','==','Madrid').
+    //   where('category', '==', 'Golf');
+    // }).snapshotChanges();
+  }
+
+  getTagCategories() {
+    return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
 
   getRecommendedPlans(categories: string[]) {
@@ -59,5 +72,28 @@ export class CrudService {
   }
   uploadUser(user) {
     this.ngFirestore.collection('usuario').add(Object.assign({}, user));
+  }
+
+  async checkUser(email: string, password: string) {
+    const usuarios: User[] = [];
+    const usuariosRef = collection(this.ngFirestore.firestore, 'usuario');
+    const q = query(
+      usuariosRef,
+      where('email', '==', email),
+      where('password', '==', password)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let usuario = {
+        id: doc.id,
+        ...(doc.data() as User),
+      };
+      usuarios.push(usuario);
+      console.log(doc.id, ' => ', doc.data());
+    });
+    if (usuarios.length > 0) {
+      return true;
+    } else return false;
   }
 }

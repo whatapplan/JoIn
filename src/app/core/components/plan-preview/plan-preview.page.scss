@@ -1,58 +1,134 @@
 .container{
-    background-image: url(../../../../assets/prueba.jpg);
+    
+    height: 100%;
     .planInfo{
+
         align-items: left;
-        margin-left:10%;
-        height: 50%;
+        margin-left:5%;
+        height: 40%;
         width:90%;
-        position: absolute;
-        bottom: 0;
+        margin-top: 85%;
         
-        
-        .iconosContainer{
-            display: flex;
-            justify-content: center;
+        .title{
+
+            width: 80%;
+            text-align:left;
+            font-family: nexa, sans-serif;
+            color: white;
+            font-size: 21px;
+            margin-bottom: 10px;
+
         }
-        .direccionDistancia{
+        
+        .ciudadDireccion{
+
+            .city{
+
+                font-size: 17px;
+                text-align:left;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                color:white;
+
+            }
+            .address{
+
+                width:60%;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                text-align:left;
+                color: white;
+                font-size: 14px;
+
+            }
+        }
+
+        .interests{
+
+            .category{
+
+                color: white;
+                font-size: 14px;
+                text-align:left;
+
+            }
+
+        }
+
+        .creador{
+
+            color: white;
+            text-align:left;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            
+            .creatorText{
+
+                color: white;
+                font-size: 14px;
+                text-align:left;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            
+            }
+
+        }
+
+        .enrolled{
+
+            .enrolledText{
+                color: -webkit-linear-gradient(#eee, pink, red);
+                font-size: 11px;
+                
+                text-align:left;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+
+        }
+
+        .infoIcon{
+            align-self: right;
+            margin-right: 4%;
+        }
+
+    }
+
+    .infoIconContainer{
+
+        .infoIcon{
+            align-self: right;
+            margin-right: 4%;
+        }
+
+    }
+    
+
+    .iconosContainer{
+
+        width: 100%;
+        
+        display: flex;
+        justify-content: space-around;
+        z-index: 10;
+
+        ion-icon{
+
+            height:40px;
+            width: 40px;
             
         }
-        .creador{
-        
-            .creadorTexto{
-                margin-top: 17px;
-            }
+        .x{
+
+            color: red;
+
         }
-        .iconosContainer{
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            position: absolute;
-            bottom: 0;
-            ion-icon{
-                height:40px;
-                width: 40px;
-                
-            }
-            .x{
-                color: red;
-            }
-            .fav{
-                color:pink;
-            }
-            .tic{
-                color: green;
-            }
+        .fav{
+
+            color:pink;
+
+        }
+        .tic{
+
+            color: lime;
+
         }
     }
     
 }
-h1{
-    font-size:23px;
-    margin-bottom:10px;
-}
-p{
-    text-align:left;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size:14px;
-    color: red;
-}
+

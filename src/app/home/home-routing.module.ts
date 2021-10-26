@@ -27,6 +27,10 @@ const routes: Routes = [
         path: 'recommended-plans',
         loadChildren: () => import('../modules/recommended-plans/recommended-plans.module').then( m => m.RecommendedPlansPageModule)
       },
+      {
+        path: 'iniciar-sesion',
+        loadChildren: () => import('../modules/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
+      },
     ],
   },
 ];

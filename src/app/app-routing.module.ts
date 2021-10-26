@@ -26,6 +26,13 @@ const routes: Routes = [
         (m) => m.PlanViewPageModule
       ),
   },
+  {
+    path: 'iniciar-sesion',
+    loadChildren: () =>
+      import('./modules/iniciar-sesion/iniciar-sesion.module').then(
+        (m) => m.IniciarSesionPageModule
+      ),
+  },
 ];
 
 @NgModule({
