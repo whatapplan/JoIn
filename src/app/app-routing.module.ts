@@ -5,24 +5,27 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },  {
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
+  },
+  {
     path: 'plan-preview',
-    loadChildren: () => import('./core/components/plan-preview/plan-preview.module').then( m => m.PlanPreviewPageModule)
+    loadChildren: () =>
+      import('./core/components/plan-preview/plan-preview.module').then(
+        (m) => m.PlanPreviewPageModule
+      ),
   },
   {
     path: 'plan-view',
-    loadChildren: () => import('./modules/plan-view/plan-view.module').then( m => m.PlanViewPageModule)
+    loadChildren: () =>
+      import('./modules/plan-view/plan-view.module').then(
+        (m) => m.PlanViewPageModule
+      ),
   },
-
-  
-  
-
- 
 ];
 
 @NgModule({

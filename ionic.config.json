@@ -1,7 +1,8 @@
 {
   "name": "whatapplan",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

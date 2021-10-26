@@ -9,56 +9,163 @@
 
 <ion-content>
   <div class="p-4">
-    <form class="grid gap-4" action="">
-      <ion-input inputmode="text" placeholder="¿Qué quieres hacer?"></ion-input>
-      <ion-input inputmode="text" placeholder="Dónde"></ion-input>
-      <ion-textarea
+    <form (ngSubmit)="sendForm()" [formGroup]="planForm" class="grid gap-4">
+      <ion-input
+        formControlName="title"
         inputmode="text"
-        placeholder="Describe tu plan"
+        placeholder="¿Qué quieres hacer?*"
+      ></ion-input>
+      <ion-searchbar placeholder="Dónde*" (ionInput)="searchLocation($event)">
+      </ion-searchbar>
+
+      <ion-chip
+        *ngIf="selectedLocation"
+        class="mr-2 mb-2 px-3 leading-8"
+      >
+        {{selectedLocation.rawAddress}}
+        <ion-icon
+          class="ml-3"
+          color="default"
+          (click)="selectedLocation = null;"
+          name="close-circle"
+        ></ion-icon>
+      </ion-chip>
+      <ion-chip
+      class="ml-3"
+      color="warning"
+      *ngIf="locationError"
+      >
+      No hay coincidencias para esta búsqueda
+      </ion-chip>
+      <ion-list *ngIf="locationOptions?.length">
+        <ion-item
+          (click)="selectLocation(loc)"
+          *ngFor="let loc of locationOptions"
+        >
+          {{loc.rawAddress}}
+        </ion-item>
+      </ion-list>
+      <ion-textarea
+        formControlName="description"
+        inputmode="text"
+        placeholder="Describe tu plan*"
       ></ion-textarea>
-      <p>Cuándo</p>
-      <p><small>Desde</small></p>
-      <div class="grid h-10 gap-2 grid-cols-2 gap-4">
-        <div class="grid grid-cols-5">
-          <ion-datetime class="col-span-4"></ion-datetime>
-          <div class="flex items-center justify-center">
-            <ion-icon name="calendar-outline"></ion-icon>
-          </div>
-        </div>
-        <div class="grid h-10 gap-2 grid-cols-5">
-          <ion-datetime
-            display-format="h:mm"
-            picker-format="h:mm"
-            class="col-span-4"
-          ></ion-datetime>
-          <div class="flex items-center justify-center">
-            <ion-icon name="time"></ion-icon>
-          </div>
-        </div>
-      </div>
-      <p><small>Hasta</small></p>
+      <p class="font-bold">Cuándo*</p>
       <div class="grid h-10 gap-2 grid-cols-2">
         <div class="grid grid-cols-5">
-          <ion-datetime class="col-span-4"></ion-datetime>
+          <ion-datetime
+            [min]="currentDate"
+            formControlName="when"
+            display-format="D:MMM:HH:mm"
+            picker-format="D:MMM:HH:mm"
+            class="col-span-4"
+            minuteValues="0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55"
+          ></ion-datetime>
           <div class="flex items-center justify-center">
             <ion-icon name="calendar-outline"></ion-icon>
           </div>
         </div>
-        <div class="grid h-10 gap-2 grid-cols-5">
-          <ion-datetime
-            display-format="h:mm"
-            picker-format="h:mm"
-            class="col-span-4"
-          ></ion-datetime>
-          <div class="flex items-center justify-center">
-            <ion-icon name="time"></ion-icon>
+      </div>
+      <p class="font-bold">Imágenes*</p>
+      <section id="image-carrousel" class="snap-container">
+        <div *ngFor="let image of images" class="image">
+          <img [src]="image.url" />
+          <ion-icon
+            (click)="deleteImage(image.url)"
+            class="delete-button"
+            name="close-circle-outline"
+          ></ion-icon>
+        </div>
+        <div class="flex items-center justify-center w-min">
+          <label
+            id="image-upload-label"
+            class="p-6 border-2 border-white rounded-lg cursor-pointer"
+            for="image-upload"
+          >
+            <ion-icon name="add-outline" class="from-white"></ion-icon>
+          </label>
+          <input
+            name=""
+            type="file"
+            class="hidden invisible"
+            multiple
+            id="image-upload"
+            accept="image/*"
+            (change)="selectFile($event)"
+          />
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </section>
+
+      <p class="font-bold">Selecciona una categoría*</p>
+      <div class="flex flex-wrap">
+        <ion-chip
+          class="mr-2 mb-2 px-3 whitespace-nowrap"
+          *ngFor="let tag of selectedTags"
+        >
+          {{tag.name}}
+          <ion-icon
+            class="ml-3"
+            color="default"
+            (click)="removeTag(tag)"
+            name="close-circle"
+          ></ion-icon>
+        </ion-chip>
+      </div>
+      <ion-button (click)="openTagsModal()" size="small" color="light">
+        Añadir categoría
+      </ion-button>
+      <p class="font-bold">Personas*</p>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <small>Mínimo</small>
+          <div>
+            <div class="grid grid-cols-1-3-1">
+              <div (click)="setPeople('remove')" class="icon-wrapper">
+                <ion-icon name="remove-outline"></ion-icon>
+              </div>
+              <ion-input
+                formControlName="minPeople"
+                min="2"
+                type="number"
+              ></ion-input>
+              <div (click)="setPeople('add')" class="icon-wrapper">
+                <ion-icon name="add-outline"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div [ngClass]="[maxPeopleAllowed ? 'opacity-100' : 'opacity-20']">
+          <div class="flex justify-between">
+            <small>Máximo</small>
+            <ion-toggle
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="maxPeopleAllowed"
+            ></ion-toggle>
+          </div>
+
+          <div class="grid grid-cols-1-3-1">
+            <div (click)="setPeople('remove', 'max')" class="icon-wrapper">
+              <ion-icon name="remove-outline"></ion-icon>
+            </div>
+            <ion-input
+              formControlName="maxPeople"
+              min="2"
+              type="number"
+            ></ion-input>
+            <div (click)="setPeople('add', 'max')" class="icon-wrapper">
+              <ion-icon name="add-outline"></ion-icon>
+            </div>
           </div>
         </div>
       </div>
+      <div class="p-2 flex justify-end">
+        <button type="submit">
+          <ion-button color="success" shape="round" expand="full">
+            Crear
+          </ion-button>
+        </button>
+      </div>
     </form>
-    <p>Imágenes</p>
-    <div class="h-22 bg-red-200"></div>
-    <p>Selecciona una categoría</p>
-    <small>Social</small>
   </div>
 </ion-content>

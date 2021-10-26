@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-searchbar
+      (ionInput)="search($event)"
+      animated
+      placeholder="Buscar tag"
+    ></ion-searchbar>
+    <ion-icon
+      class="p-3 mr-2 cp"
+      (click)="closeModal()"
+      slot="end"
+      name="close"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let cat of filteredTagsCategories">
+      <ion-item-divider>
+        <ion-label class="pl-4">
+          {{ cat.name }}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item
+        [ngClass]="[matchingTags.includes(tag) ? 'searchCoincidence' : '']"
+        (click)="toggleTag(tag)"
+        *ngFor="let tag of cat.tags"
+      >
+        <ion-label>{{ tag.name }}</ion-label>
+        <ion-ripple-effect></ion-ripple-effect>
+        <ion-icon
+          *ngIf="isSelected(tag)"
+          color="primary"
+          slot="end"
+          name="checkmark-outline"
+        ></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

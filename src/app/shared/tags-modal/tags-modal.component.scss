@@ -1,0 +1,7 @@
+@import '../../../global.scss';
+
+:host::ng-deep {
+    .searchCoincidence {
+        --ion-background-color:hsl(0, 0%, 50%) !important;
+    }
+}
