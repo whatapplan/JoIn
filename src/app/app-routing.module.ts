@@ -33,7 +33,12 @@ const routes: Routes = [
         (m) => m.IniciarSesionPageModule
       ),
   },
+  {
+    path: 'pop-over',
+    loadChildren: () => import('./core/components/pop-over/pop-over.module').then( m => m.PopOverPageModule)
+  },
 ];
+  
 
 @NgModule({
   imports: [

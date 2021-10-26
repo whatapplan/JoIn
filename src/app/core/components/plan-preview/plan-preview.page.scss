@@ -87,6 +87,22 @@
             margin-right: 4%;
         }
 
+        .iconoDescripcionContainer{
+
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 15px;
+
+            .iconoDescripcion{
+                color: white;
+                height:26px;
+                width: 26px;
+                
+            }
+
+        }
+        
+
     }
 
     .infoIconContainer{
