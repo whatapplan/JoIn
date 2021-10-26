@@ -1,24 +1,40 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Plan } from 'src/app/core/models/plan';
 import { User } from 'src/app/core/models/usuario';
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { AngularFirestore, QueryFn} from '@angular/fire/compat/firestore';
+import { Tag, TagCategory } from 'src/app/core/models/tag';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
-  constructor(private ngFirestore: AngularFirestore, private plan: Plan) {
-    
+
+  // private itemsRef: AngularFirestoreCollection<Plan>;
+  constructor(private ngFirestore: AngularFirestore, private plan : Plan) {
   }
 
-  uploadPlan(plan: Plan) {
-    this.ngFirestore.collection('planes').add(Object.assign({}, plan));
+  uploadPlan(plan : Plan){
+    this.ngFirestore.collection('planes').add(Object.assign({},plan));
   }
+
+  uploadCategory(tag : TagCategory){
+    this.ngFirestore.collection('tagCategory').add(Object.assign({},tag));
+  }
+
 
   getPlanes() {
-    //return getDocs(query(collection(db, 'planes'), where("category","==",category)))
     return this.ngFirestore.collection('planes').snapshotChanges();
+    
+    // return this.ngFirestore.collection('planes', (ref) =>{
+    //   return ref.where('city','==','Madrid').
+    //   where('category', '==', 'Golf');
+    // }).snapshotChanges();
+
+  }
+
+  getTagCategories(){
+    return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
 
   getRecommendedPlans(categories: string[]){

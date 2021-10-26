@@ -7,31 +7,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-margin-top" >
 
   <ion-item-divider sticky="true">
-    <ion-searchbar #val (ionInput)='handleInput($event)' (search)="searchPlan(val.value)"
-    (ionClear) = "backupFilters()"
+    <ion-searchbar #val (ionInput)='handleInput($event)' (search)="handleFilters()"
+    (ionClear) = "handleFilters()"
     placeholder="¿unas cervecitas?" showCancelButton="never" animated></ion-searchbar>
-    <ion-icon  class="ion-margin-end" size= 'large' name="calendar-number-outline" (click)="showCalendar()">
-      </ion-icon>
-      <ion-datetime #dateTime style='display:none' displayFormat="YY MM DD" ></ion-datetime>
+    <!-- <ion-icon  class="ion-margin-end" size= 'large' name="options-outline" (click)="showCalendar($event)"> -->
+      <!-- </ion-icon> -->
+      <!-- <ion-datetime #dateTime style='display:none' displayFormat="YY MM DD" ></ion-datetime> -->
     </ion-item-divider>
-
-
-
-    <ion-list class= "scroll-hor">
-        <ion-item-group>
-          <ion-chip *ngFor="let fi of filtersSelected" [ngClass]="[iconSelected]" (click)='unselectFilters(fi)'>
-            <ion-label class="ion-margin">{{fi}}</ion-label>
-          </ion-chip>
-        </ion-item-group> 
-        <ion-item-group>
-        <ion-chip *ngFor="let filter of filters" (click)='selectFilters(filter)' [ngClass]="[iconDefault]">
-          <ion-label  class="ion-margin">{{filter}}</ion-label>
-        </ion-chip>
-      </ion-item-group>
-    </ion-list>  
+    <ion-item-group class='scroll-hor'>
+      <ion-item  >
+        <ion-label>Intereses</ion-label>
+        <ion-select #tag placeholder='Todos' multiple="true" (ionChange)='handleFilters()'>
+          <ion-select-option value="Social">Social</ion-select-option>
+          <ion-select-option value="Deportes">Deportes</ion-select-option>
+          <ion-select-option value="Cultura">Cultura</ion-select-option>
+          <ion-select-option value="Música">Música</ion-select-option>
+          <ion-select-option value="Vida en la ciudad">Vida en la ciudad</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item >
+        <ion-label>Día</ion-label>
+        <ion-select #daySelected value='todos' interface="popover" (ionChange)='handleFilters()'>
+          <ion-select-option value="todos">Todos</ion-select-option>
+          <ion-select-option value="hoy">Hoy</ion-select-option>
+          <ion-select-option value="manana">Mañana</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item  >
+        <ion-label>Horas</ion-label>
+        <ion-select #timeSelected value='toeldia' interface="popover" (ionChange)='handleFilters()'>
+          <ion-select-option value="toeldia">Todo el día</ion-select-option>
+          <ion-select-option value="mañana">Mañana (6h - 14h)</ion-select-option>
+          <ion-select-option value="tarde">Tarde (14h - 21h)</ion-select-option>
+          <ion-select-option value="noche">Noche (21h - 6h)</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-item-group>
 
     <div id="outPopUp" *ngIf="noResults">
       <ion-label color="dark">
@@ -39,13 +55,18 @@
       </ion-label>
     </div>
 
+
     <ion-list  *ngIf="yesResults">
       <ion-card *ngFor='let resultado of planesResultado' >
         <ion-card-header>
           <ion-card-subtitle>{{resultado.title}}</ion-card-subtitle>
-          <ion-card-title>{{resultado.category}}</ion-card-title>
-          <ion-label>{{resultado.address}}</ion-label>
+          <ion-card-title>{{resultado.tagCategory.name}}</ion-card-title>
+          <ion-label>{{resultado.time}}</ion-label>
+          <ion-label color='secondary'>{{resultado.city}}</ion-label>
+          <ion-label color='warning'>{{resultado.createdBy}}</ion-label>
+          <ion-label color='primary'>{{resultado.when}}</ion-label>
         </ion-card-header>
+        <br>
       </ion-card>
   </ion-list>
 
