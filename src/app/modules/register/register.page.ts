@@ -95,7 +95,7 @@ export class RegisterPage implements OnInit {
     }
   }
   leterFormat(cadena: string){
-    let stringRegex = /^[a-zA-Z]+$/;
+    let stringRegex = /^[a-zA-ZÀ-ÿ]+$/;
     //Se muestra un texto a modo de ejemplo, luego va a ser un icono
     if (stringRegex.test(cadena)) {
       console.log('valida');
