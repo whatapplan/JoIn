@@ -49,6 +49,7 @@
         formControlName="description"
         inputmode="text"
         placeholder="Describe tu plan*"
+        class="textArea"
       ></ion-textarea>
       <p class="font-bold">Cuándo*</p>
       <div class="grid h-10 gap-2 grid-cols-2">
@@ -128,6 +129,7 @@
                 formControlName="minPeople"
                 min="2"
                 type="number"
+                class="minPeople"
               ></ion-input>
               <div (click)="setPeople('add')" class="icon-wrapper">
                 <ion-icon name="add-outline"></ion-icon>
@@ -152,6 +154,8 @@
               formControlName="maxPeople"
               min="2"
               type="number"
+              class="maxPeople"
+              
             ></ion-input>
             <div (click)="setPeople('add', 'max')" class="icon-wrapper">
               <ion-icon name="add-outline"></ion-icon>

@@ -1,6 +1,7 @@
 .container{
     
     height: 100%;
+    
     .planInfo{
 
         align-items: left;
@@ -73,18 +74,21 @@
         .enrolled{
 
             .enrolledText{
+
                 color: -webkit-linear-gradient(#eee, pink, red);
                 font-size: 11px;
-                
                 text-align:left;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            
             }
 
         }
 
         .infoIcon{
+
             align-self: right;
             margin-right: 4%;
+
         }
 
         .iconoDescripcionContainer{
@@ -118,7 +122,6 @@
     .iconosContainer{
 
         width: 100%;
-        
         display: flex;
         justify-content: space-around;
         z-index: 10;
