@@ -1,34 +1,30 @@
-<ion-header collapse="condense">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Buscar plan</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content class="ion-margin-top" >
 
-  <ion-item-divider sticky="true">
-    <ion-searchbar #val (ionInput)='handleInput($event)' (search)="handleFilters()"
-    (ionClear) = "handleFilters()"
-    placeholder="¿unas cervecitas?" showCancelButton="never" animated></ion-searchbar>
+<ion-content class="content" >
+
+  <div class="navBar">
+    <div class="searchBar__category">
+      <ion-searchbar #val (ionInput)='handleInput($event)' (search)="handleFilters()"
+        (ionClear) = "handleFilters()"
+        placeholder="¿Quedamos?" showCancelButton="never" animated class="searchBar">
+      </ion-searchbar>
+      
+      <ion-select #tag placeholder='Todos' multiple="true" (ionChange)='handleFilters()' class="selectCategory">
+        <ion-select-option value="Social">Social</ion-select-option>
+        <ion-select-option value="Deportes">Deportes</ion-select-option>
+        <ion-select-option value="Cultura">Cultura</ion-select-option>
+        <ion-select-option value="Música">Música</ion-select-option>
+        <ion-select-option value="Vida en la ciudad">Vida en la ciudad</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
     <!-- <ion-icon  class="ion-margin-end" size= 'large' name="options-outline" (click)="showCalendar($event)"> -->
       <!-- </ion-icon> -->
       <!-- <ion-datetime #dateTime style='display:none' displayFormat="YY MM DD" ></ion-datetime> -->
-    </ion-item-divider>
-    <ion-item-group class='scroll-hor'>
-      <ion-item  >
-        <ion-label>Intereses</ion-label>
-        <ion-select #tag placeholder='Todos' multiple="true" (ionChange)='handleFilters()'>
-          <ion-select-option value="Social">Social</ion-select-option>
-          <ion-select-option value="Deportes">Deportes</ion-select-option>
-          <ion-select-option value="Cultura">Cultura</ion-select-option>
-          <ion-select-option value="Música">Música</ion-select-option>
-          <ion-select-option value="Vida en la ciudad">Vida en la ciudad</ion-select-option>
-        </ion-select>
-      </ion-item>
-    
+  <div class="body">
+
+  
+    <ion-item-group class='filtersDateDuration'>
       <ion-item >
         <ion-label>Día</ion-label>
         <ion-select #daySelected value='todos' interface="popover" (ionChange)='handleFilters()'>
@@ -59,8 +55,8 @@
     <ion-list  *ngIf="yesResults">
       <ion-card *ngFor='let resultado of planesResultado' >
         <ion-card-header>
-          <ion-card-subtitle>{{resultado.title}}</ion-card-subtitle>
-          <ion-card-title>{{resultado.tagCategory.name}}</ion-card-title>
+          <ion-card-subtitle class="title">{{resultado.title}}</ion-card-subtitle>
+          <ion-card-title class="category">{{resultado.tagCategory.name}}</ion-card-title>
           <ion-label>{{resultado.time}}</ion-label>
           <ion-label color='secondary'>{{resultado.city}}</ion-label>
           <ion-label color='warning'>{{resultado.createdBy}}</ion-label>
@@ -68,7 +64,8 @@
         </ion-card-header>
         <br>
       </ion-card>
-  </ion-list>
+    </ion-list>
+  </div>
 
 
 

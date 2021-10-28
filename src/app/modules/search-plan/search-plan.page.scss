@@ -1,14 +1,73 @@
-.scroll-hor{
-    display: flex;
-    overflow-y: hidden;
-    height:fit-content;
-    // white-space: nowrap;
+
+  
+.content{
+
+  .navBar{
+    
+    position:sticky;
+    top:0px;
+    z-index: 15;
+    background-color:white;
+
+    .searchBar__category{
+
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+  
+
+      ion-searchbar{
+        --placeholder-font-style: italic;
+      }
+      .searchBar{
+        
+        border-radius: 50%;
+        ion-searchbar{
+      --placeholder-font-style: bold;
+       }
+
+      }
+      .selectCategory{
+        
+        border-radius: 10px;
+        height: 36px;
+        margin-right: 10px;
+        width: 80px;
+
+      }
+      
+    }
+
+  }
+  .filtersDateDuration{
+
+    
+    display:flex;
+
+  }
+  .body{
+
+   
+
+  }
+
+  
+  
+  
 }
 
-.scroll-hor > *{ 
-    // display: inline-block;
-    flex:auto;
-}
+// .scroll-hor{
+//     display: flex;
+//     overflow-y: hidden;
+//     height:fit-content;
+//     // white-space: nowrap;
+// }
+
+// .scroll-hor > *{ 
+//     // display: inline-block;
+//     flex:auto;
+// }
 
 ion-select {
     justify-content: center;
