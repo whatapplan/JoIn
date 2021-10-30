@@ -1,3 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button menu="first" color="primary"></ion-menu-button>
+      </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="end" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Buenas Tardes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item slots="end" >
+        <ion-buttons >
+          <ion-button (click)="Close()">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons> 
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main"></ion-router-outlet>
+
+
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="recommended-plans" href="">
