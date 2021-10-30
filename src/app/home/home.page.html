@@ -8,25 +8,26 @@
 
 <ion-menu side="end" menuId="first" contentId="main">
   <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar color="primary" class="menu-header">
       <ion-title>Buenas Tardes</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-content>
     <ion-list>
+      <ion-item [routerLink]="['/edit-profile']"  >Editar Perfil </ion-item>
+      <ion-item  >Menu Item</ion-item>
       <ion-item>Menu Item</ion-item>
       <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item slots="end" >
-        <ion-buttons >
-          <ion-button (click)="Close()">
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons> 
-      </ion-item>
+      <ion-item> Menu Item</ion-item>
     </ion-list>
-
+    <ion-toolbar class="menu-back-button">
+      <ion-buttons>
+        <ion-button (click)="Close()" >
+          <ion-icon name="arrow-forward-outline" class="buton"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
   </ion-content>
 </ion-menu>
 
