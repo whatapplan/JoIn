@@ -9,6 +9,11 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: '',
+        redirectTo: 'recommended-plans',
+        pathMatch: 'full',
+      },
+      {
         path: 'create-plan',
         loadChildren: () =>
           import('../modules/plan-creation/plan-creation.module').then(
