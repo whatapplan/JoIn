@@ -1,0 +1,73 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Filtros</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="clearSelection()">
+        <ion-icon name='trash'></ion-icon>
+      </ion-button> 
+      <ion-button (click)="dismissModal()">Aceptar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    
+    <!-- <ion-item>
+      <ion-label>
+        Intereses
+      </ion-label>
+      <ion-select #tag placeholder='Todos' multiple="true" (ionChange)='handleCategories($event)'>
+        <ion-select-option value="Social">Social</ion-select-option>
+        <ion-select-option value="Deportes">Deportes</ion-select-option>
+        <ion-select-option value="Cultura">Cultura</ion-select-option>
+        <ion-select-option value="Música">Música</ion-select-option>
+        <ion-select-option value="Vida en la ciudad">Vida en la ciudad</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+    <ion-list-header class='ion-margin'>Intereses</ion-list-header>
+        <ion-segment #interes (ionChange)="interChange($event)" value='Social' scrollable>
+          <ion-segment-button value="Social">
+            <ion-label>Social {{countSocial}}</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Deportes">
+            <ion-label>Deportes {{countDeportes}}</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Cultura">
+            <ion-label>Cultura {{countCultura}}</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Música">
+            <ion-label>Música {{countMusic}}</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Vida">
+            <ion-label>Vida en la ciudad {{countVida}}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <div class='intereses' style='background:#6370ffb8;'>
+          <ion-chip #chips *ngFor='let cat of tagsSelected; index as i' (click)='select(i,cat, $event)'>
+            <ion-label >
+              {{cat}}
+            </ion-label>
+          </ion-chip>
+        </div>
+    <ion-item >
+      <ion-list-header style='display: inherit;'>Día</ion-list-header>
+      <ion-select #daySelected value='todos' interface="popover" (ionChange)='handleDay($event)'>
+        <ion-select-option value="todos">Todos</ion-select-option>
+        <ion-select-option value="Hoy">Hoy</ion-select-option>
+        <ion-select-option value="Mañana">Mañana</ion-select-option>
+        <ion-select-option  #dateText value="la-date"> {{chooseDate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item  >
+      <ion-list-header style='display: inherit;'>Horas</ion-list-header>
+      <ion-select #timeSelected value='toeldia' interface="popover" (ionChange)='handleTime($event)'>
+        <ion-select-option value="toeldia">Todo el día</ion-select-option>
+        <ion-select-option value="Mañana (6h-14h)">Mañana (6h - 14h)</ion-select-option>
+        <ion-select-option value="Tarde (14h-21h)">Tarde (14h - 21h)</ion-select-option>
+        <ion-select-option value="Noche (21-6h)">Noche (21h - 6h)</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- OJOOO PONER min = {{minDate}} -->
+  <ion-datetime #dateTime max='2024'  style='display:none' (ionCancel)='getCancelDate()' (ionChange)='getDate()' displayFormat="D MMM YYYY" ></ion-datetime>
+     
+</ion-content>

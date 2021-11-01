@@ -36,13 +36,17 @@ const routes: Routes = [
   {
     path: 'pop-over',
     loadChildren: () => import('./core/components/pop-over/pop-over.module').then( m => m.PopOverPageModule)
-  },  {
+  },
+  {
     path: 'edit-profile',
     loadChildren: () => import('./modules/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
   {
     path: 'my-plans',
     loadChildren: () => import('./modules/my-plans/my-plans.module').then( m => m.MyPlansPageModule)
+  },
+  {path: 'filters',
+    loadChildren: () => import('./core/components/filters/filters.module').then( m => m.FiltersPageModule)
   },
 
 ];

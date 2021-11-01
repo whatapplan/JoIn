@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { Plan } from 'src/app/core/models/plan';
-import { PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { TagCategory } from 'src/app/core/models/tag';
+import { FiltersPage } from 'src/app/core/components/filters/filters.page';
 @Component({
   selector: 'app-search-plan',
   templateUrl: './search-plan.page.html',
@@ -17,16 +18,18 @@ export class SearchPlanPage implements OnInit {
   yesResults = true;
   content:string = "";
   tags: TagCategory[]= [];
-  tagsSelected : string[] = [];
-  daySelected : string;
-  timeSelected : string;
+  filters = {
+    tags : {
+      indexes:[],
+      values:[],
+      ptag:[]
+    },
+    day : '',
+    time : ''
+  }
 
-  @ViewChild('dateTime') date;
-  @ViewChild('tag') h_tag;
-  @ViewChild('daySelected') h_day;
-  @ViewChild('timeSelected') h_time;
-
-  constructor(private crudService : CrudService, private popoverController : PopoverController) {
+  constructor(private crudService : CrudService
+    ,private modalController : ModalController) {
     this.crudService.getPlanes().subscribe((res) => {res.map((t)=>{
       let plan = {
         id: t.payload.doc.id,
@@ -59,22 +62,36 @@ export class SearchPlanPage implements OnInit {
 
   searchTags(){
     let plans : Plan[] = [];
-    this.h_tag.value.forEach(tag => {
-      let auxxPlanes = this.planes.filter(plan => plan.tagCategory.name == tag);
+    this.filters.tags.values.forEach(tag => {
+      let auxxPlanes = this.planes.filter(plan => plan.tag.name == tag);
       plans = plans.concat(auxxPlanes);
     });
     return plans
   } 
   searchDay(){
-    let selected : string = this.h_day.value.toString();
-    let s_date = new Date();
-    if(selected != 'hoy'){
+    let selected : string = this.filters.day
+    console.log(selected)
+    let s_date : Date
+    if(selected.includes('-')){
+      let selec = selected.split('-')
+      s_date = new Date(+selec[2],+selec[1]-1,+selec[0])
+      s_date.setHours(0,0,0,0)
+    }else if(selected == 'Mañana'){
+      s_date = new Date()
       s_date.setUTCDate(s_date.getUTCDate() + 1);
+      s_date.setHours(0,0,0,0)
+    }else{
+      s_date =new Date()
+      s_date.setHours(0,0,0,0)
     }
-    return this.planes.filter(plan => new Date(plan.when).getDate() == s_date.getDate());
+    return this.planes.filter(plan => {
+      let dplan = new Date(plan.when);
+      dplan.setHours(0,0,0,0);
+      return +dplan == +s_date
+    });
   }
   searchTime(){
-    return this.planes.filter(plan => plan.time == this.h_time.value.toString());
+    return this.planes.filter(plan => plan.time == this.filters.time.toString());
   }
 
   mergeResults(result, count){
@@ -91,41 +108,83 @@ export class SearchPlanPage implements OnInit {
   }
 
   handleFilters(){
-    console.log(this.h_tag.value);
-    console.log(this.h_day.value);
-    console.log(this.h_time.value);
+    this.filtersSelected = []
     let result : Plan[] = [];
     let count = 0;
     if(this.content != ''){
       result = result.concat(this.searchTitle());
       count++;
     }
-    if(this.h_tag.value != undefined && this.h_tag.value.length != 0){
+    if(this.filters.tags != undefined && this.filters.tags.values.length != 0){
+    // if(this.h_tag != undefined && this.h_tag.length != 0){
+      this.filtersSelected.push(...this.filters.tags.values);
       result = result.concat(this.searchTags());
       count++;
     }
-    if(this.h_day.value!='todos'){
+    if(this.filters.day!='' && this.filters.day!='todos'){
+    // if(this.h_day!='' && this.h_day!='todos'){
+      this.filtersSelected.push(this.filters.day);
       result = result.concat(this.searchDay());
       count++;
     }
-    if(this.h_time.value!='toeldia'){
+    if(this.filters.time!='' && this.filters.time!='toeldia'){
+    // if(this.h_time!='' && this.h_time!='toeldia'){
+      this.filtersSelected.push(this.filters.time);
       result = result.concat(this.searchTime());
       count++;
     }
-    if(count == 0)this.planesResultado = this.planes
+    if(count == 0){
+      this.planesResultado = this.planes
+    }
     else this.planesResultado = this.mergeResults(result,count);
     this.manageNoResults();
   }
 
   manageNoResults() {
     if (this.planesResultado.length > 0) {
+      console.log('hay resultados')
       this.noResults = false;
       this.yesResults = true;
     } else {
+      console.log('NOOOOOOO HAY NADA hay resultados')
       this.noResults = true;
       this.yesResults = false;
-    }
+    }  
   }
+  
+  async showFiltering(){
+    const modal = await this.modalController.create({
+      component:FiltersPage,
+      componentProps : {
+        'filters' : this.filters
+      }
+    });
+    modal.onDidDismiss().then((data)=>{
+      console.log(data['data']);
+      this.filters = data.data
+      this.handleFilters()
+    })
+    return await modal.present();
+  }
+
+  removeFilter(filter:string){
+    let index = this.filters.tags.values.indexOf(filter)
+    if(index > -1){
+      this.filters.tags.values.splice(index,1)
+      this.filters.tags.indexes.splice(index,1)
+      this.filters.tags.ptag.splice(index,1)
+    }
+    else if (this.filters.day == filter){
+      this.filters.day = 'todos'
+    }
+    else{
+      this.filters.time = 'toeldia'
+    }
+    this.handleFilters();
+  }
+
+
+  
 
 
 // CODIGO PARA CREAR PLANES EN LA BD Y PODER BUSCAR ALGO

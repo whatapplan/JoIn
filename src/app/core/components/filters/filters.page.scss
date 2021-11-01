@@ -1,0 +1,10 @@
+ion-chip{
+    
+    padding: 6px;
+    width: fit-content;
+    background: cadetblue;
+    white-space: break-spaces;
+}
+ion-chip + ion-chip {
+    margin-left:5px
+}

@@ -2,42 +2,61 @@
   
 .content{
 
+  box-sizing: border-box;
+  display: block;
+
   .navBar{
     
-    position:sticky;
-    top:0px;
-    z-index: 15;
-    background-color:white;
+    position:relative;
+    top:-15px;
+    z-index: 100;
+    background-color: black;
+    
+    
 
-    .searchBar__category{
-
-      margin-top: 15px;
+    .searchBar{
       display: flex;
       justify-content: space-around;
+      margin-top: 15px;
+      margin-right: 10px;
       align-items: center;
-  
-
+      // border-radius: 50%;
       ion-searchbar{
         --placeholder-font-style: italic;
+        --background:#c2c2c2;
       }
-      .searchBar{
-        
-        border-radius: 50%;
-        ion-searchbar{
-      --placeholder-font-style: bold;
-       }
+    }
 
-      }
       .selectCategory{
         
         border-radius: 10px;
         height: 36px;
         margin-right: 10px;
-        width: 80px;
+        width: 97px;
 
       }
-      
+
+    .filterSelected{
+      // height:90px; /* 40px - more place for scrollbar, is hidden under parent box */
+      // padding:5px;
+      white-space:nowrap;
+      overflow-x: scroll;
+      overflow-y: hide;
+    	-webkit-overflow-scrolling:touch;
+      justify-content: space-around;
+
+      .filter{
+        padding: 6px;
+        width: fit-content;
+        background: cadetblue;
+        white-space: break-spaces;
+      }
+      .filter + .filter {
+        margin-left:5px
     }
+
+    }
+      
 
   }
   .filtersDateDuration{
@@ -47,9 +66,8 @@
 
   }
   .body{
-
-   
-
+    position: relative;
+    top:90px;
   }
 
   
@@ -106,11 +124,9 @@ ion-select {
 
 #outPopUp {
     text-align: center;
-    position: absolute;
+    position: relative;
     z-index: 15;
-    top: 50%;
-    left: 50%;
-    right: 50%;
-    margin: -90px;
+    top: 400px;
+    margin:50px;
     background-color: red;
   }
