@@ -96,4 +96,28 @@ export class CrudService {
       return true;
     } else return false;
   }
+
+
+  async getUser(email: string) {
+    const usuarios: User[] = [];
+    const usuariosRef = collection(this.ngFirestore.firestore, 'usuario');
+    const q = query(
+      usuariosRef,
+      where('email', '==', email),
+      
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let usuario = {
+        id: doc.id,
+        ...(doc.data() as User),
+      };
+      usuarios.push(usuario);
+      console.log(doc.id, ' => ', doc.data());
+    });
+    if (usuarios.length > 0) {
+      return usuarios[0];
+    } 
+  }
 }
