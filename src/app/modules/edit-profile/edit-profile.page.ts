@@ -8,13 +8,14 @@ import { User} from 'src/app/core/models/usuario';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-usuario = this.crudService.getUser("juan@gmail.com");
+
 email: string= "";
 password: string= "";
 name:string= "";
 lastName:string="";
 city:string="";
 dateBirth:string= "";
+//usuario: User=this.crudService.getUser("juan@gmail.com");
 
   constructor(private crudService : CrudService, public alertController: AlertController) { }
 
@@ -68,9 +69,8 @@ dateBirth:string= "";
 
   ngOnInit() {
   
-  
-  
 
+  //this.name = this.usuario.name;
 
 
 
