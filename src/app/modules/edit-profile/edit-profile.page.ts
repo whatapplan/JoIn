@@ -8,15 +8,15 @@ import { User} from 'src/app/core/models/usuario';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-
+name: string="";
 email: string= "";
 password: string= "";
-name:string= "";
 lastName:string="";
 city:string="";
-dateBirth:string= "";
+dateBirth:Date= new Date();
 //usuario: User=this.crudService.getUser("juan@gmail.com");
-
+usuarios : User[]=[];
+usuario : User ;
   constructor(private crudService : CrudService, public alertController: AlertController) { }
 
   checkData(){
@@ -67,14 +67,25 @@ dateBirth:string= "";
 
 
 
-  ngOnInit() {
-  
-
-  //this.name = this.usuario.name;
-
-
-
-
+  async ngOnInit() {
+  (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {res.map((t)=>{
+    let user = {
+      id: t.payload.doc.id,
+      ...t.payload.doc.data() as User
+    }
+    this.usuarios.push(user);
+    if(this.usuarios.length > 0){
+      this.usuario = this.usuarios[0];
+      this.name = this.usuario.name;
+      this.lastName = this.usuario.lastName;
+      this.email = this.usuario.email;
+      this.dateBirth = this.usuario.dateBirth;
+      this.city = this.usuario.city;
+      this.password = this.usuario.password;
+    }
+    })});
+    
+    
   }
   actualizarUsuario(){}
 
