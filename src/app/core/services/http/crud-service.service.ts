@@ -78,6 +78,18 @@ export class CrudService {
     this.ngFirestore.collection('usuario').add(Object.assign({}, user));
   }
 
+upgradeUser(user){
+
+this.ngFirestore.collection('usuario').doc('ktVrZYxL1Oik071uO6gT').update({
+
+city : 'Tokyo',
+lastName: 'El mas fiera'
+
+
+})
+
+
+}
   async checkUser(email: string, password: string) {
     const usuarios: User[] = [];
     const usuariosRef = collection(this.ngFirestore.firestore, 'usuario');

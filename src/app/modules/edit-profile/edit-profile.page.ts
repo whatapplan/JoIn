@@ -8,6 +8,7 @@ import { User} from 'src/app/core/models/usuario';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
+  [x: string]: any;
 name: string="";
 email: string= "";
 password: string= "";
@@ -87,6 +88,65 @@ usuario : User ;
     
     
   }
-  actualizarUsuario(){}
 
+  async checkEmail(email: string) {
+    if(await this.crudService.checkEmail(email)){
+      this.presentAlert('Este correo ya esta en uso: '+ email, 'Error');
+      console.log(this.email + ' esta repetido');
+      return true;
+    }return false;
+  }  
+
+
+  async actualizarUsuario(){
+    (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {res.map((t)=>{
+      let user = {
+        id: t.payload.doc.id,
+        ...t.payload.doc.data() as User
+      }
+      this.usuarios.push(user);
+      this.crudService.upgradeUser(user);
+    /*  this.ngFirestore.collection('usuario').doc(user.id).update({
+
+        city : 'Tu Madre',
+        dateBirth : this.usuario.dateBirth,
+        email : this.email,
+        name : 'Ya tu sabe klk',
+        lastName: this.lastName,
+        password : this.password
+
+        
+     });
+
+     /* if(this.usuarios.length>0){
+      if(!this.checkEmail(this.email)){       
+        
+                  
+     
+          
+
+         }
+        }else{
+          if(this.checkData && this.name!=this.usuario.name||this.lastName != this.usuario.lastName||this.email != this.usuario.email||this.city != this.usuario.city || this.password != this.usuario.password){
+            console.log('campos verificados');
+            
+            this.ngFirestore.collection('usuario').doc('ktVrZYxL1Oik071uO6gT').update({
+
+               city : this.city,
+               email : this.email,
+               name : this.name,
+               lastName: this.lastName,
+               password : this.password
+
+
+            });
+            
+
+
+             }else{this.presentAlert('Debe completar los campos' , 'Error ')}
+      
+      }
+        */
+    })});
+  }
 }
