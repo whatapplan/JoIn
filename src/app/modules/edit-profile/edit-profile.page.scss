@@ -1,0 +1,17 @@
+.contenedorBoton{
+    display:flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.form{
+    margin-left: 10%;
+    margin-right: 15%;
+    
+    .form__intem1_input{
+        border-radius: 5px;
+    }
+    .form__item2_datetime{
+        border-style: solid;
+        border-color: black;
+    }
+}
