@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/core/services/crud-service.service';
+import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from 'src/app/core/services/auth.service'; 
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -9,42 +9,40 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./iniciar-sesion.page.scss'],
 })
 export class IniciarSesionPage implements OnInit {
+  email: string = '';
+  password: string = '';
 
-  email: string= "";
-  password: string= "";
+  constructor(
+    private crudService: CrudService,
+    public alertController: AlertController,
+    private auth: AuthService
+  ) {}
 
-  constructor(private crudService : CrudService, public alertController: AlertController, private auth: AuthService) { }
-
-  async iniciarSesion(){
-    if(await this.crudService.checkUser(this.email, this.password)){
-        this.presentAlert('Has iniciado sesion', 'Confirmacion');
+  async iniciarSesion() {
+    if (await this.crudService.checkUser(this.email, this.password)) {
+      this.presentAlert('Has iniciado sesion', 'Confirmacion');
+    } else {
+      this.presentAlert('Usuario o contraseña incorrectos', 'Error');
     }
-    else{this.presentAlert('Usuario o contraseña incorrectos', 'Error');}
-   }
+  }
 
-   
-iniciarSesionFire(){
-  console.log('am logged in');
-  try{
+  iniciarSesionFire() {
+    console.log('am logged in');
+    try {
       this.auth.loginFireauth(this.email, this.password);
-  }catch(err){
+    } catch (err) {}
   }
 
-}
+  ngOnInit() {}
 
-
-  ngOnInit() {
-  }
-
-  async presentAlert(message: string, titulo:string) {
+  async presentAlert(message: string, titulo: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
       subHeader: titulo,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     await alert.present();
   }
-
 }

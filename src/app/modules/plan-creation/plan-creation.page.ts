@@ -17,7 +17,7 @@ import { TagsModalComponent } from 'src/app/shared/tags-modal/tags-modal.compone
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/core/models/tag';
 import { forkJoin, of } from 'rxjs';
-import { CrudService } from 'src/app/core/services/crud-service.service';
+import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { LocationHelperService } from 'src/app/core/services/helpers/location-helper.service';
 import { Location } from 'src/app/core/models/location';
 import { ImageHelperService } from 'src/app/core/services/helpers/image-helper.service';

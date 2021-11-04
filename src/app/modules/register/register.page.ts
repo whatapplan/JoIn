@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/core/services/crud-service.service';
+import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { User} from 'src/app/core/models/usuario';
 import { AlertController } from '@ionic/angular';
 

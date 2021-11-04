@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Plan} from '../../core/models/plan';
-import { CrudService } from '../../core/services/crud-service.service';
+import { CrudService } from '../../core/services/http/crud-service.service';
 
 @Component({
   selector: 'app-recommended-plans',
@@ -12,7 +12,7 @@ export class RecommendedPlansPage implements OnInit {
   plans : Plan[] = [];
   constructor(private crudService : CrudService ) { 
    
-    this.crudService.getPlanes().subscribe((res) => {res.map((t)=>{
+    this.crudService.getPlans().subscribe((res) => {res.map((t)=>{
       let plan = {
         id: t.payload.doc.id,
         ...t.payload.doc.data() as Plan
