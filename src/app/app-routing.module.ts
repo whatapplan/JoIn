@@ -20,13 +20,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'plan-view',
-    loadChildren: () =>
-      import('./modules/plan-view/plan-view.module').then(
-        (m) => m.PlanViewPageModule
-      ),
-  },
-  {
     path: 'iniciar-sesion',
     loadChildren: () =>
       import('./modules/iniciar-sesion/iniciar-sesion.module').then(
@@ -35,22 +28,40 @@ const routes: Routes = [
   },
   {
     path: 'pop-over',
-    loadChildren: () => import('./core/components/pop-over/pop-over.module').then( m => m.PopOverPageModule)
+    loadChildren: () =>
+      import('./core/components/pop-over/pop-over.module').then(
+        (m) => m.PopOverPageModule
+      ),
   },
   {
     path: 'edit-profile',
-    loadChildren: () => import('./modules/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+    loadChildren: () =>
+      import('./modules/edit-profile/edit-profile.module').then(
+        (m) => m.EditProfilePageModule
+      ),
   },
   {
     path: 'my-plans',
-    loadChildren: () => import('./modules/my-plans/my-plans.module').then( m => m.MyPlansPageModule)
+    loadChildren: () =>
+      import('./modules/my-plans/my-plans.module').then(
+        (m) => m.MyPlansPageModule
+      ),
   },
-  {path: 'filters',
-    loadChildren: () => import('./core/components/filters/filters.module').then( m => m.FiltersPageModule)
+  {
+    path: 'filters',
+    loadChildren: () =>
+      import('./core/components/filters/filters.module').then(
+        (m) => m.FiltersPageModule
+      ),
   },
-
+  {
+    path: 'plan',
+    loadChildren: () =>
+      import('./modules/plan-detail/plan-detail.module').then(
+        (m) => m.PlanDetailPageModule
+      ),
+  },
 ];
-  
 
 @NgModule({
   imports: [

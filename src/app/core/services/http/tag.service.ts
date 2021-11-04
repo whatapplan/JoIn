@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { Tag, TagCategory } from '../../models/tag';
-import { stringify } from 'querystring';
+import { map } from 'rxjs/operators';
+import { TagCategory } from '../../models/tag';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +21,7 @@ export class TagService {
             ...cat,
             tags: cat.tags.map((tag) => ({ ...tag, category: cat.name })),
           }))
-        ),
+        )
       ) as Observable<TagCategory[]>;
   }
 }

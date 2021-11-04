@@ -1,24 +1,21 @@
-import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
 import { Injectable } from "@angular/core";
-import { Tag, TagCategory } from "./tag";
+import { Tag } from "./tag";
+import { User } from "./usuario";
+import { Location } from "./location";
 
 @Injectable({
   providedIn: 'root',
 })
 export class Plan {
-    $key:string;
-    id:string;
-    address :string;
-    city:string;
-    description:string;
-    createdBy :string;
-    title:string;
-    date:string;
-    when:string;
-    tag : Tag;
-    tagCategory: TagCategory;
-    category:string;
-    user:string;
-    nParticipant :  number;
-    time:string;
+    id?: string;
+    images: string[];
+    location: Location;
+    minPeople: number;
+    maxPeople?: number;
+    tags: Tag[];
+    title: string;
+    when: string;
+    createdBy: string;
+    time?: string;
+    participants: User[];
 }
