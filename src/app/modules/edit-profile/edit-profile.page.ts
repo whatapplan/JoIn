@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { AlertController } from '@ionic/angular';
 import { User} from 'src/app/core/models/usuario';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
@@ -99,54 +100,19 @@ usuario : User ;
 
 
   async actualizarUsuario(){
-    (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {res.map((t)=>{
-      let user = {
-        id: t.payload.doc.id,
-        ...t.payload.doc.data() as User
-      }
-      this.usuarios.push(user);
-      this.crudService.upgradeUser(user);
-    /*  this.ngFirestore.collection('usuario').doc(user.id).update({
-
-        city : 'Tu Madre',
-        dateBirth : this.usuario.dateBirth,
-        email : this.email,
-        name : 'Ya tu sabe klk',
-        lastName: this.lastName,
-        password : this.password
-
-        
-     });
-
-     /* if(this.usuarios.length>0){
-      if(!this.checkEmail(this.email)){       
-        
-                  
+    this.usuario.name = this.name;
+     this.usuario.lastName =  this.lastName ;
+     this.usuario.email =  this.email ;
+     this.usuario.dateBirth =  this.dateBirth ;
+      this.usuario.city =  this.city ;
+     this.usuario.password =  this.password ;
      
-          
-
-         }
-        }else{
-          if(this.checkData && this.name!=this.usuario.name||this.lastName != this.usuario.lastName||this.email != this.usuario.email||this.city != this.usuario.city || this.password != this.usuario.password){
-            console.log('campos verificados');
-            
-            this.ngFirestore.collection('usuario').doc('ktVrZYxL1Oik071uO6gT').update({
-
-               city : this.city,
-               email : this.email,
-               name : this.name,
-               lastName: this.lastName,
-               password : this.password
-
-
-            });
-            
-
-
-             }else{this.presentAlert('Debe completar los campos' , 'Error ')}
+    this.crudService.upgradeUser(this.usuario);
       
-      }
-        */
-    })});
+    }
+  
+  
+  
+  
   }
-}
+

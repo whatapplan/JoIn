@@ -80,10 +80,14 @@ export class CrudService {
 
 upgradeUser(user){
 
-this.ngFirestore.collection('usuario').doc('ktVrZYxL1Oik071uO6gT').update({
+this.ngFirestore.collection('usuario').doc(user.id).update({
 
-city : 'Tokyo',
-lastName: 'El mas fiera'
+city : user.city,
+lastName: user.lastName,
+name: user.name,
+email: user.email,
+password: user.password
+
 
 
 })
