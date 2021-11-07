@@ -11,33 +11,33 @@ import { CrudService } from '../../core/services/http/crud-service.service';
 export class RecommendedPlansPage implements AfterViewInit {
   recommendedPlans : Plan[] = [];
   plans : Plan[] = [];
-
- 
-
+  planNumber: number = 0;
+  
+  // actualRecommendedPlan: Plan;
+  // firstPlan: Plan = this.plans[0];
   constructor(private crudService : CrudService, private gestureCtrl : GestureController, private platform: Platform) { 
-    // this.crudService.getPlans().subscribe((res) => {res.map((t)=>{
-    //   let plan = {
-    //     id: t.payload.doc.id,
-    //     ...t.payload.doc.data() as Plan
-    //   }
-    //   let pplan = t.payload.doc.data() as Plan;
-    //   this.plans.push(plan);
-    //   })});
-    //    // this.filterPlansByCategory();
-    //   this.recommendedPlans=this.plans;  // esto tengo que cambiarlo en un futuro
-    this.plansf();
+    
   }
-  @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>;
+  
+
+  //Implementa el gesto y recibe los planes Reocmendados
   async ngAfterViewInit(){
+    const planInfo = document.querySelector(".planInfo") as HTMLElement;
+    const planTitle = document.querySelector(".planTitle") as HTMLElement;
+    const planCreator = document.querySelector(".planCreator") as HTMLElement;
+    const planLocation = document.querySelector(".planLocation") as HTMLElement;
+    const planDetail = document.querySelector(".planDetail") as HTMLElement;
+
     this.plans=(await this.crudService.getAllPlans());
     this.recommendedPlans= this.plans;
-    const cardArray = this.cards.toArray();
-    console.log(cardArray.length);
-    this.useSwipe(cardArray);
+    planTitle.innerHTML = this.plans[this.planNumber].title;
+    this.useSwipe(planTitle,planCreator,planLocation,planDetail);
   }
-  useSwipe(cardArray) {
+
+
+  useSwipe(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
     const container = document.querySelector(".container");
-    const caja =  document.querySelector(".caja") as HTMLElement;;
+    const door =  document.querySelector(".door") as HTMLElement;;
     
       // const card = cardArray[i];
       // console.log(card);
@@ -50,18 +50,24 @@ export class RecommendedPlansPage implements AfterViewInit {
         },
         onMove: ev => {
           console.log('ev: ', ev);
-          caja.style.transform = `rotateY(${-ev.deltaX}deg)`;
-          // this.setCardColor(ev.deltaX, card.nativeElement);
+          door.style.transform = `rotateY(${-(ev.deltaX / 6) + 280}deg)`;
         },
         onEnd: ev => {
           if(ev.deltaX > 150 ){
-            caja.style.transform =  `rotateY(${180}deg)`;
-           
+            door.style.transform =  `rotateY(${180}deg)`;
+            this.planNumber = this.planNumber + 1;
+            setTimeout(() =>{
+              this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
+            },1000);
           }else if(ev.deltaX < -150){ 
-           caja.style.transform =  `rotateY(${360}deg)`;
-
+            door.style.transform =  `rotateY(${360}deg)`;
+            this.planNumber = this.planNumber + 1;
+            setTimeout(() =>{
+              this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
+            },1000);
+            
           }else{
-            caja.style.transform = `rotateY(${280}deg)`;
+            door.style.transform = `rotateY(${280}deg)`;
           }
         }
       });
@@ -70,38 +76,10 @@ export class RecommendedPlansPage implements AfterViewInit {
     
   }
 
- async plansf(){
-  this.recommendedPlans=(await this.crudService.getAllPlans());
- }
-
-  filters : string[]=["Cervezas","Pasear al perro","Béisbol",
-  "Baloncesto","Fútbol","Tenis","Golf","Surf","Arte y exposiciones",
-  "Cine","Teatro","Jam Session","Música en directo","Clubbing","Explora la ciudad"];
-  
-  setCardColor(x, element){
-    let color = '';
-    const abs = Math.abs(x);
-    const min = Math.trunc(Math.min(16*16-abs, 16*16));
-    const hexCode = this.decimalToHex(min,2);
-
-    if (x < 0){
-      color = '#FF' + hexCode + hexCode;
-    }else{
-      color = '#' + hexCode + 'FF' + hexCode;
-    }
-    element.style.backgroundColor = color;
-
+  actualizarPlanInfo(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement){
+    planTitle.innerHTML = this.plans[this.planNumber].title;
+    planCreator.innerHTML = this.plans[this.planNumber].createdBy;
+    planLocation.innerHTML = this.plans[this.planNumber].location.toString();
   }
 
-  decimalToHex(d, padding) {
-    let hex = Number(d).toString(16);
-    padding = typeof padding === 'undefined' || padding === null ? (padding = 2) : padding;
-
-    while (hex.length < padding) {
-      hex = '0' + hex;
-    }
-    return hex;
-  }
-  
-  
 }

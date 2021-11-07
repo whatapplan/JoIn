@@ -24,14 +24,14 @@ ion-content {
     width: 100%;
 
 }
-.caja{
+.door{
     display: inline-block;
     width:100%;
     height:100%;
     // margin-top:64px;
     background: White;
     transform: rotateY(280deg);
-    transition: all 2s;
+    transition: all 1s;
     
     transform-origin: right;
     
@@ -41,7 +41,7 @@ ion-content {
     outline: black;
 }
 
-.title{
+.planInfo{
     display: inline-block;
     text-align: center;
     position: absolute; 
