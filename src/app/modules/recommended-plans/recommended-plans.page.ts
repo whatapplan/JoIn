@@ -55,12 +55,22 @@ export class RecommendedPlansPage implements AfterViewInit {
         onEnd: ev => {
           if(ev.deltaX > 150 ){
             door.style.transform =  `rotateY(${180}deg)`;
+
+            setTimeout(() =>{
+              door.style.transform =  `rotateY(${280}deg)`
+            },1000);
+
             this.planNumber = this.planNumber + 1;
             setTimeout(() =>{
               this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
             },1000);
           }else if(ev.deltaX < -150){ 
             door.style.transform =  `rotateY(${360}deg)`;
+
+            setTimeout(() =>{
+              door.style.transform =  `rotateY(${280}deg)`
+            },1000);
+
             this.planNumber = this.planNumber + 1;
             setTimeout(() =>{
               this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
