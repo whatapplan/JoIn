@@ -36,11 +36,13 @@ export class RecommendedPlansPage implements AfterViewInit {
     this.useSwipe(cardArray);
   }
   useSwipe(cardArray) {
-    for(let i=0; i<cardArray.length; i++){
-      const card = cardArray[i];
-      console.log(card);
+    const container = document.querySelector(".container");
+    const caja =  document.querySelector(".caja") as HTMLElement;;
+    
+      // const card = cardArray[i];
+      // console.log(card);
       const gesture: Gesture = this.gestureCtrl.create({
-        el: card.nativeElement,
+        el: container,
         gestureName: 'swipe',
         gesturePriority: 10,
         onStart: ev => {
@@ -48,25 +50,24 @@ export class RecommendedPlansPage implements AfterViewInit {
         },
         onMove: ev => {
           console.log('ev: ', ev);
-          card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
-          this.setCardColor(ev.deltaX, card.nativeElement);
+          caja.style.transform = `rotateY(${-ev.deltaX}deg)`;
+          // this.setCardColor(ev.deltaX, card.nativeElement);
         },
         onEnd: ev => {
           if(ev.deltaX > 150 ){
-            card.nativeElement.style.height = this.platform.height() + 'px';
-            card.nativeElement.style.transform =  `translateX(${+ this.platform.width() * 2}px)`;
+            caja.style.transform =  `rotateY(${180}deg)`;
            
           }else if(ev.deltaX < -150){ 
-            card.nativeElement.style.transform =  `translateX(${- this.platform.width() * 2}px)`;
+           caja.style.transform =  `rotateY(${360}deg)`;
 
           }else{
-            card.nativeElement.style.transform = '';
+            caja.style.transform = `rotateY(${280}deg)`;
           }
         }
       });
       console.log(gesture);
       gesture.enable(true);
-    }
+    
   }
 
  async plansf(){
