@@ -12,4 +12,6 @@ export class User {
   password: string;
   dateBirth: Date;
   favCategories: string[];
+  acceptedPlans: string[];
+  rejectedPlans: string[];
 }

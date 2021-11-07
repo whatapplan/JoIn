@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CrudService {
+ 
   constructor(private ngFirestore: AngularFirestore) {}
 
   uploadPlan(plan) {
@@ -104,12 +105,19 @@ lastName: user.lastName,
 name: user.name,
 email: user.email,
 password: user.password
-
-
-
 })
+}
 
+añadirPlanAUsuario(user) {
+      this.ngFirestore.collection('usuario').doc(user.id).update({
+        acceptedPlans: user.acceptedPlans
+      })
+}
 
+añadirPlanRechazado(user) {
+  this.ngFirestore.collection('usuario').doc(user.id).update({
+    rejectedPlans: user.rejectedPlans
+  })
 }
   async checkUser(email: string, password: string) {
     const usuarios: User[] = [];
