@@ -1,32 +1,42 @@
-.content{
-    height: 100%;
-    width: 100%;
-    background-color: bisque;
+ion-content {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-color:#1FF978;
+    margin: 0 auto;
+    margin-top: 0;
+    margin-left: 0;
+  }
 
-    app-plan-preview{
-        height:100%;
-        width: 96%;
-        background-image: url(../../../assets/prueba.jpg);
-        border-radius:8px;
-    }
-    ion-slides {
-        height: 81%;
-        width: 100%;
-        position: fixed;
-        bottom:4%;
-        
-      }
+.container{
+    margin-top: 10%;
+    background-color: #1FF978;
+    margin: auto;
+    perspective: 700px;
 
-    #background-content{
-        background-color: beige;
-    }
+}
+.caja{
+    display: inline-block;
+    width: 100vw;
+    height: 100vh;
+    background: White;
+    transform: rotateY(280deg);
+    transition: all 5s;
+    transform-origin: right;
+    
+    border-top: 6px gray solid;
+    border-left: 5px gray solid;
+    border-bottom: 5px gray solid;
+    outline: black;
 }
 
-.form-control{
-    height:100%;
-    width: 96%;
-    position: absolute;
+.title{
+    display: inline-block;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    
+}
+
+.caja:hover{
+    transform: rotateY(360deg)
 }
