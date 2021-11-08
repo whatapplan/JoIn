@@ -4,7 +4,7 @@ import { User } from 'src/app/core/models/usuario';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TagCategory } from '../../models/tag';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -33,15 +33,18 @@ export class CrudService {
       .collection('plans')
       .doc(id)
       .get()
-      .pipe(map((data) => data.data()));
+      .pipe(
+        map((data: any) => data.data()),
+        map((plan) => ({ ...plan, createdBy: 'Alicia' }))
+      );
   }
 
   getTagCategories() {
     return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
 
-  async getAllPlans(){
-    const plans: Plan[]= [];
+  async getAllPlans() {
+    const plans: Plan[] = [];
     const plansRef = collection(this.ngFirestore.firestore, 'plans');
     const q = query(plansRef);
     const querySnapshot = await getDocs(q);
@@ -54,7 +57,6 @@ export class CrudService {
       plans.push(plan);
     });
     return plans;
-
   }
 
   getRecommendedPlans(categories: string[]) {
@@ -95,22 +97,15 @@ export class CrudService {
     this.ngFirestore.collection('usuario').add(Object.assign({}, user));
   }
 
-upgradeUser(user){
-
-this.ngFirestore.collection('usuario').doc(user.id).update({
-
-city : user.city,
-lastName: user.lastName,
-name: user.name,
-email: user.email,
-password: user.password
-
-
-
-})
-
-
-}
+  upgradeUser(user) {
+    this.ngFirestore.collection('usuario').doc(user.id).update({
+      city: user.city,
+      lastName: user.lastName,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+    });
+  }
   async checkUser(email: string, password: string) {
     const usuarios: User[] = [];
     const usuariosRef = collection(this.ngFirestore.firestore, 'usuario');
@@ -134,18 +129,18 @@ password: user.password
     } else return false;
   }
 
-
   async getUser(email: string) {
-    
-    return this.ngFirestore.collection('usuario', (ref) =>{
-         return ref.where('email','==',email);
-       }).snapshotChanges();
+    return this.ngFirestore
+      .collection('usuario', (ref) => {
+        return ref.where('email', '==', email);
+      })
+      .snapshotChanges();
     // const usuarios: User[] = [];
     // const usuariosRef = collection(this.ngFirestore.firestore, 'usuario');
     // const q = query(
     //   usuariosRef,
     //   where('email', '==', email),
-      
+
     // );
     // const querySnapshot = await getDocs(q);
     // querySnapshot.forEach((doc) => {
@@ -159,6 +154,6 @@ password: user.password
     // });
     // if (usuarios.length > 0) {
     //   return usuarios;
-   // } 
+    // }
   }
 }

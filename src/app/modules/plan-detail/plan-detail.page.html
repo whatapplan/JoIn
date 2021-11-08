@@ -1,10 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{plan.title}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content> {{plan | json}} </ion-content>
+<ion-content>
+  <div>
+    <ion-slides>
+      <ion-slide *ngFor="let image of plan.images">
+        <img [src]="image" alt="" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="bg-green">
+    <div class="mx-auto pt-11">
+      <p>{{plan.when | date: 'd'}}</p>
+      <p>{{plan.when | date: 'MMM' }}</p>
+      <h3 class="text-center">
+        Join <span class="underline">{{plan.createdBy}}</span>
+      </h3>
+      <h2 class="text-dark text-center mt-8">{{plan.title}}</h2>
+    </div>
+  </div>
+</ion-content>
