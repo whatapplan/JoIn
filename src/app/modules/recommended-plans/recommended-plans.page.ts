@@ -58,8 +58,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     const container = document.querySelector(".container");
     const door =  document.querySelector(".door") as HTMLElement;;
     
-      // const card = cardArray[i];
-      // console.log(card);
+      
       const gesture: Gesture = this.gestureCtrl.create({
         el: container,
         gestureName: 'swipe',
@@ -68,7 +67,6 @@ export class RecommendedPlansPage implements AfterViewInit {
 
         },
         onMove: ev => {
-          console.log('ev: ', ev);
           door.style.transform = `rotateY(${-(ev.deltaX / 10) + 280}deg)`;
         },
         onEnd: ev => {
@@ -105,7 +103,6 @@ export class RecommendedPlansPage implements AfterViewInit {
           }
         }
       });
-      console.log(gesture);
       gesture.enable(true);
     
   }
