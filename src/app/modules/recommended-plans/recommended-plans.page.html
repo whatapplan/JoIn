@@ -16,8 +16,8 @@
 
   <ion-content >
     <div class="container"  >
-      <div class="logo">
-        <ion-icon href="../assets/logo/logo.png"></ion-icon>
+      <div class="logoContainer">
+        <img class="logo"  src="../../../assets/logo/logo.png">
       </div>
       <div class="planInfo"  >
         <p class="planCreatorExample">Únete a Javi</p>
@@ -40,7 +40,7 @@
         </div>
 
           <div class="subCategories"  *ngFor="let tag of plan.tags">
-            <div class="chip-category">
+            <div *ngIf="isFirst" class="chip-category">
               <ion-label >{{tag.category}}</ion-label>
             </div>
             

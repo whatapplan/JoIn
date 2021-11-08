@@ -9,47 +9,56 @@
 
 
 
-ion-content {
-    position: absolute;
-    margin-top: 64px;
-    left: 0px;
+// ion-content {
+//     position: absolute;
+    
+//     left: 0px;
     
     
     
-    // margin: 0 auto;
-    // margin-top: 0;
-    // margin-left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+//     // margin: 0 auto;
+//     // margin-top: 0;
+//     // margin-left: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
 
 .container{
-    position:relative;
-    margin-top: 10%;
     background-color:#9fffb4;
     margin: auto;
     perspective: 700px;
-    height: calc(100% - 64px);
-    margin-top: 64px;
+    height: 100%;
     width: 100%;
-    font-family: Manrophe;
+    font-family: Manrophe Pro;
+    letter-spacing: 2px;
+
+    .logoContainer{
+        position:absolute;
+        top: 10%;
+        left: calc(50% - 32px);
+        .logo{
+            width: 64px;
+            height: 37px;
+        }
+    }
 }
 .door{
+
     display: inline-block;
     width:100%;
-    height:100%;
-    // margin-top:64px;
+    height:calc(100% - 40px);
+    position: relative;
+    top: 40px;
     background: White;
     transform: rotateY(280deg);
     transition: all 1s;
     
     transform-origin: right;
     
-    border-top: 6px gray solid;
-    border-left: 5px gray solid;
-    border-bottom: 5px gray solid;
-    outline: black;
+    // border-top: 6px gray solid;
+    // border-left: 5px gray solid;
+    // border-bottom: 5px gray solid;
 }
 
 .planInfo{
@@ -60,10 +69,7 @@ ion-content {
     top: 25%;
     width: 60%;
 
-    h1{
-        font-size:  35px;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+    
 
     .locationContainer{
         display: flex;

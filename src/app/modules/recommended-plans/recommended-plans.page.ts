@@ -67,7 +67,7 @@ export class RecommendedPlansPage implements AfterViewInit {
 
         },
         onMove: ev => {
-          door.style.transform = `rotateY(${-(ev.deltaX / 10) + 280}deg)`;
+          door.style.transform = `rotateY(${-(ev.deltaX / 3) + 280}deg)`;
         },
         onEnd: ev => {
           if(ev.deltaX > 150 ){
