@@ -40,7 +40,7 @@
         </div>
 
           <div class="subCategories"  *ngFor="let tag of plan.tags">
-            <div *ngIf="isFirst" class="chip-category">
+            <div *ngIf="plan.tags[0]== tag" class="chip-category">
               <ion-label >{{tag.category}}</ion-label>
             </div>
             
