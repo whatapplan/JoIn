@@ -126,7 +126,9 @@ export class RecommendedPlansPage implements AfterViewInit {
   
   añadirmeAPlan(id: string) {
     this.user.acceptedPlans.push(id);
+    this.plan.participants.push(this.user);
     this.crudService.añadirPlanAUsuario(this.user);
+    this.crudService.añadirUsuarioAPlan(this.plan);
   }
 
   rechazarPlan(id: string) {

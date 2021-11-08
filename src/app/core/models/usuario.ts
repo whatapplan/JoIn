@@ -14,4 +14,6 @@ export class User {
   favCategories: string[];
   acceptedPlans: string[];
   rejectedPlans: string[];
+  maxPlanAge: number;
+  minPlanAge: number;
 }
