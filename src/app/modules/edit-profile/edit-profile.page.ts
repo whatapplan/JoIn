@@ -89,6 +89,30 @@ usuario : User ;
     
     
   }
+  leterFormat(cadena: string){
+    let stringRegex = /^[a-zA-ZÀ-ÿ]+$/;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (stringRegex.test(cadena)) {
+      console.log('valida');
+      return true;
+    } else {
+      this.presentAlert('Solo puede introducir letras', 'Error');
+      console.log('valida no');
+      return false;
+    }
+  }
+  emailFormat(email: string){
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(email)) {
+      console.log('valido');
+      return true;
+    } else {
+      this.presentAlert('Correo no valido', 'Error');
+      console.log('valido no');
+      return false;
+    }
+  }
 
   async checkEmail(email: string) {
     if(await this.crudService.checkEmail(email)){
@@ -106,9 +130,15 @@ usuario : User ;
      this.usuario.dateBirth =  this.dateBirth ;
       this.usuario.city =  this.city ;
      this.usuario.password =  this.password ;
+     if(this.checkData() && this.leterFormat(this.usuario.name) && this.leterFormat(this.usuario.lastName) && this.leterFormat(this.usuario.city) && this.emailFormat(this.usuario.email) ){
+        
+        this.crudService.upgradeUser(this.usuario);
+        this.presentAlert('Su usuario ha sido actualizado','');
+     }
+
      
-    this.crudService.upgradeUser(this.usuario);
-      
+  
+   
     }
   
   

@@ -106,6 +106,18 @@ export class CrudService {
       password: user.password,
     });
   }
+
+  añadirPlanAUsuario(user) {
+    this.ngFirestore.collection('usuario').doc(user.id).update({
+      acceptedPlans: user.acceptedPlans,
+    });
+  }
+
+  añadirPlanRechazado(user) {
+    this.ngFirestore.collection('usuario').doc(user.id).update({
+      rejectedPlans: user.rejectedPlans,
+    });
+  }
   async checkUser(email: string, password: string) {
     const usuarios: User[] = [];
     const usuariosRef = collection(this.ngFirestore.firestore, 'usuario');

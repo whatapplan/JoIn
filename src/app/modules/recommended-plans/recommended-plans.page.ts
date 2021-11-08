@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Gesture, GestureController, IonCard, Platform } from '@ionic/angular';
+import { User } from 'src/app/core/models/usuario';
 import {Plan} from '../../core/models/plan';
 import { CrudService } from '../../core/services/http/crud-service.service';
 
@@ -11,33 +12,51 @@ import { CrudService } from '../../core/services/http/crud-service.service';
 export class RecommendedPlansPage implements AfterViewInit {
   recommendedPlans : Plan[] = [];
   plans : Plan[] = [];
+  planNumber: number = 0;
+  plan: Plan= new Plan();
+  user: User;
 
- 
-
+  // actualRecommendedPlan: Plan;
+  // firstPlan: Plan = this.plans[0];
   constructor(private crudService : CrudService, private gestureCtrl : GestureController, private platform: Platform) { 
-    // this.crudService.getPlans().subscribe((res) => {res.map((t)=>{
-    //   let plan = {
-    //     id: t.payload.doc.id,
-    //     ...t.payload.doc.data() as Plan
-    //   }
-    //   let pplan = t.payload.doc.data() as Plan;
-    //   this.plans.push(plan);
-    //   })});
-    //    // this.filterPlansByCategory();
-    //   this.recommendedPlans=this.plans;  // esto tengo que cambiarlo en un futuro
-    this.plansf();
+    
   }
-  @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>;
+  
+
+  //Implementa el gesto y recibe los planes Reocmendados
   async ngAfterViewInit(){
+    this.añadirUser();
+    const planInfo = document.querySelector(".planInfo") as HTMLElement;
+    const planTitle = document.querySelector(".planTitle") as HTMLElement;
+    const planCreator = document.querySelector(".planCreator") as HTMLElement;
+    const planLocation = document.querySelector(".planLocation") as HTMLElement;
+    const planDetail = document.querySelector(".planDetail") as HTMLElement;
+
     this.plans=(await this.crudService.getAllPlans());
     this.recommendedPlans= this.plans;
-    const cardArray = this.cards.toArray();
-    console.log(cardArray.length);
-    this.useSwipe(cardArray);
+    this.setPlan(planTitle,planCreator,planLocation,planDetail);
+    //planTitle.innerHTML = this.plans[this.planNumber].title;
+    this.useSwipe(planTitle,planCreator,planLocation,planDetail);
   }
-  useSwipe(cardArray) {
+  async añadirUser() {
+    let usuarios: User[] = [];
+    (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {res.map((t)=>{
+      let user = {
+        id: t.payload.doc.id,
+        ...t.payload.doc.data() as User
+      }
+      usuarios.push(user);
+      if(usuarios.length > 0){
+        this.user= usuarios[0];
+      }
+    })});
+    
+  }
+
+
+  useSwipe(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
     const container = document.querySelector(".container");
-    const caja =  document.querySelector(".caja") as HTMLElement;;
+    const door =  document.querySelector(".door") as HTMLElement;;
     
       // const card = cardArray[i];
       // console.log(card);
@@ -50,18 +69,39 @@ export class RecommendedPlansPage implements AfterViewInit {
         },
         onMove: ev => {
           console.log('ev: ', ev);
-          caja.style.transform = `rotateY(${-ev.deltaX}deg)`;
-          // this.setCardColor(ev.deltaX, card.nativeElement);
+          door.style.transform = `rotateY(${-(ev.deltaX / 10) + 280}deg)`;
         },
         onEnd: ev => {
           if(ev.deltaX > 150 ){
-            caja.style.transform =  `rotateY(${180}deg)`;
-           
-          }else if(ev.deltaX < -150){ 
-           caja.style.transform =  `rotateY(${360}deg)`;
+            door.style.transform =  `rotateY(${180}deg)`;
+            this.añadirmeAPlan(this.plan.id);
 
+            setTimeout(() =>{
+              door.style.transform =  `rotateY(${280}deg)`;
+              this.setPlan(planTitle,planCreator,planLocation,planDetail);
+            },1000);
+            //this.setPlan(planTitle,planCreator,planLocation,planDetail);
+            // this.planNumber = this.planNumber + 1;
+            // setTimeout(() =>{
+            //   this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
+            // },1000);
+            
+          }else if(ev.deltaX < -150){ 
+            door.style.transform =  `rotateY(${360}deg)`;
+            this.rechazarPlan(this.plan.id);
+
+            setTimeout(() =>{
+              door.style.transform =  `rotateY(${280}deg)`;
+              this.setPlan(planTitle,planCreator,planLocation,planDetail);
+            },1000);
+           //this.setPlan(planTitle,planCreator,planLocation,planDetail);
+            // this.planNumber = this.planNumber + 1;
+            // setTimeout(() =>{
+            //   this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
+            // },1000);
+            
           }else{
-            caja.style.transform = `rotateY(${280}deg)`;
+            door.style.transform = `rotateY(${280}deg)`;
           }
         }
       });
@@ -70,38 +110,31 @@ export class RecommendedPlansPage implements AfterViewInit {
     
   }
 
- async plansf(){
-  this.recommendedPlans=(await this.crudService.getAllPlans());
- }
-
-  filters : string[]=["Cervezas","Pasear al perro","Béisbol",
-  "Baloncesto","Fútbol","Tenis","Golf","Surf","Arte y exposiciones",
-  "Cine","Teatro","Jam Session","Música en directo","Clubbing","Explora la ciudad"];
-  
-  setCardColor(x, element){
-    let color = '';
-    const abs = Math.abs(x);
-    const min = Math.trunc(Math.min(16*16-abs, 16*16));
-    const hexCode = this.decimalToHex(min,2);
-
-    if (x < 0){
-      color = '#FF' + hexCode + hexCode;
-    }else{
-      color = '#' + hexCode + 'FF' + hexCode;
-    }
-    element.style.backgroundColor = color;
-
+  actualizarPlanInfo(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement){
+    planTitle.innerHTML = this.plan.title;
+    planCreator.innerHTML = this.plan.createdBy;
+    planLocation.innerHTML = this.plan.location.city;
+  }
+  setPlan(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
+   if(this.recommendedPlans.length > this.planNumber){
+    this.plan = this.recommendedPlans[this.planNumber];
+    this.actualizarPlanInfo(planTitle,planLocation,planCreator,planDetail);
+    this.planNumber++;
+   } 
   }
 
-  decimalToHex(d, padding) {
-    let hex = Number(d).toString(16);
-    padding = typeof padding === 'undefined' || padding === null ? (padding = 2) : padding;
-
-    while (hex.length < padding) {
-      hex = '0' + hex;
-    }
-    return hex;
+  
+  añadirmeAPlan(id: string) {
+    this.user.acceptedPlans.push(id);
+    this.crudService.añadirPlanAUsuario(this.user);
   }
-  
-  
+
+  rechazarPlan(id: string) {
+    this.user.rejectedPlans.push(id);
+    this.crudService.añadirPlanRechazado(this.user);
+  }
+
+
 }
+
+
