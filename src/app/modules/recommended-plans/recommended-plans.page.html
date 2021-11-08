@@ -50,13 +50,13 @@
 
         
 
-        <div class="subCategories"  *ngFor="let tags of plan.tags">
+        <div class="subCategories"  *ngFor="let tag of plan.tags">
           <div class="chip-category">
-            <ion-label >{{tags.category}}</ion-label>
+            <ion-label >{{tag.category}}</ion-label>
           </div>
           
           <div class="chip-name">
-            <ion-label>{{tags.name}}</ion-label>
+            <ion-label>{{tag.name}}</ion-label>
           </div>
   
           <!-- <ion-chip class="chip-category">
