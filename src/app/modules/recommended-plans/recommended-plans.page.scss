@@ -22,7 +22,7 @@ ion-content {
     height: calc(100% - 64px);
     margin-top: 64px;
     width: 100%;
-
+    font-family: Manrophe;
 }
 .door{
     display: inline-block;
@@ -48,4 +48,8 @@ ion-content {
     left: 30%; 
     top: 30%;
     
+}
+.planTitle{
+    color: #FF4193;
+   
 }
