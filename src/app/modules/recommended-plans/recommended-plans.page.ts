@@ -14,7 +14,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   plans : Plan[] = [];
   planNumber: number = 0;
   plan: Plan= new Plan();
-  user: User;
+  user: User= new User();
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
