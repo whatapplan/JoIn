@@ -17,7 +17,8 @@ export class UiHelper {
   }
 
   async dismissLoading() {
-    if (this.loading) await this.loading.dismiss();
+    const loading = await this.loading;
+    if (loading) await this.loading.dismiss();
   }
 
   async presentToast(message: string, duration = 2000) {

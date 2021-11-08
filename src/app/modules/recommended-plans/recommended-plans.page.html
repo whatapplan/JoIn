@@ -26,19 +26,50 @@
 <ion-content >
   <div class="container"  >
     <div class="planInfo"  >
+      <p class="planCreatorExample">Únete a Javi</p>
       <p class="planCreator"></p>
+
       <h1 class="planTitle"></h1>
-      <h2 class="planLocation"></h2>
+
+      
+      
+      <div class="locationContainer">
+        <ion-icon name="location-outline"></ion-icon>
+        <h4 class="planLocation"></h4>
+      </div>
+
+      <div class="ilustration">
+
+      </div>
+      <div class="dateBadge">
+
+      </div>
       <!-- <h2 class="planCategory">{{plans[planNumber].tags}}</h2> -->
       <!-- <h2 class="planSubCategory">{{plans[planNumber].title}}</h2> -->
-      <div *ngFor="let tags of plan.tags">
-        <ion-chip class="chip-category">
-          <ion-label >{{tags.category}}</ion-label>
-        </ion-chip>
-        <ion-chip class="chip-name" outline="true">
-          <ion-label>{{tags.name}}</ion-label>
-        </ion-chip>
-      </div>
+      
+
+        
+
+        <div class="subCategories"  *ngFor="let tags of plan.tags">
+          <div class="chip-category">
+            <ion-label >{{tags.category}}</ion-label>
+          </div>
+          
+          <div class="chip-name">
+            <ion-label>{{tags.name}}</ion-label>
+          </div>
+  
+          <!-- <ion-chip class="chip-category">
+            <ion-label >{{tags.category}}</ion-label>
+          </ion-chip>
+          <ion-chip class="chip-name" outline="true">
+            <ion-label>{{tags.name}}</ion-label>
+          </ion-chip> -->
+        </div>
+
+      
+      
+
       <div class="planDetail">
         <!-- <ion-icon>INFO</ion-icon> -->
       </div>

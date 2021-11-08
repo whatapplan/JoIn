@@ -11,7 +11,7 @@
 }
 
 ion-tabs{
-
+    
     height: calc(100% - 64px);
     height: 100%;
 }
@@ -19,3 +19,9 @@ ion-toolbar{
     
     height:64px;
 }
+ion-tab-bar, ion-tab-button{
+    background-color: #222623;
+   }
+.mapa-icon{
+    background-color: white;;
+}   
