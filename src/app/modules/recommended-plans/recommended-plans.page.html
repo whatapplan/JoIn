@@ -31,7 +31,14 @@
       <h2 class="planLocation"></h2>
       <!-- <h2 class="planCategory">{{plans[planNumber].tags}}</h2> -->
       <!-- <h2 class="planSubCategory">{{plans[planNumber].title}}</h2> -->
-
+      <div *ngFor="let tags of plan.tags">
+        <ion-chip class="chip-category">
+          <ion-label >{{tags.category}}</ion-label>
+        </ion-chip>
+        <ion-chip class="chip-name" outline="true">
+          <ion-label>{{tags.name}}</ion-label>
+        </ion-chip>
+      </div>
       <div class="planDetail">
         <!-- <ion-icon>INFO</ion-icon> -->
       </div>

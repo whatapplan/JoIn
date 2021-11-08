@@ -13,7 +13,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   recommendedPlans : Plan[] = [];
   plans : Plan[] = [];
   planNumber: number = 0;
-  plan: Plan;
+  plan: Plan= new Plan();
   user: User;
 
   // actualRecommendedPlan: Plan;
