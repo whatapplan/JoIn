@@ -14,6 +14,6 @@ export class PlanResolver implements Resolve<any> {
     this.ui.presentLoading();
     return this.crud
       .getPlanById(id)
-      .pipe(finalize(() => this.ui.dismissLoading()));
+      .pipe(finalize(async () => await this.ui.dismissLoading()));
   }
 }

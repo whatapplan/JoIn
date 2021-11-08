@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "./theme/fonts.scss";
+@import "./theme/palette.scss";
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -39,14 +41,6 @@ body {
   min-height: 100%;
 }
 
-:root {
-  --green: #9fffb4;
-  --pink: #ff4193;
-  --pink-light: #ffcfe2;
-  --gray: #727070;
-  --dark: #222623;
-  --white: #000000;
-}
 
 
 ion-input,
