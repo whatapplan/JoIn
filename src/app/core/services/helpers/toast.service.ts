@@ -27,9 +27,8 @@ export class UiHelper {
       id
     }).then(a => {
       a.present().then(() => {
-        console.log('presented');
         if (!this.isLoading) {
-          a.dismiss().then(() => console.log('abort presenting'));
+          a.dismiss().catch();
         }
       });
     });
@@ -37,6 +36,6 @@ export class UiHelper {
 
   async dismissLoading(id?: string) {
     this.isLoading = false;
-    return await this.loadingController.dismiss(null, null, id).then(() => console.log('dismissed'));
+    return await this.loadingController.dismiss(null, null, id);
   }
 }
