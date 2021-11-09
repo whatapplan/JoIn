@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import { TagsModalComponent } from '../shared/tags-modal/tags-modal.component';
+import { TagsModalComponent } from '../core/components/tags-modal/tags-modal.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],

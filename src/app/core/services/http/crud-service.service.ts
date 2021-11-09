@@ -29,6 +29,7 @@ export class CrudService {
   }
 
   getPlanById(id: string) {
+
     return this.ngFirestore
       .collection('plans')
       .doc(id)

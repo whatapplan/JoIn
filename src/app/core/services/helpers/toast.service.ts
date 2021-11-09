@@ -5,21 +5,13 @@ import { LoadingController, ToastController } from '@ionic/angular';
   providedIn: 'root',
 })
 export class UiHelper {
-  loading;
+
+  isLoading = false;
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController
   ) {}
 
-  async presentLoading(opts?) {
-    this.loading = await this.loadingController.create(opts);
-    await this.loading.present();
-  }
-
-  async dismissLoading() {
-    const loading = await this.loading;
-    if (loading) await this.loading.dismiss();
-  }
 
   async presentToast(message: string, duration = 2000) {
     const toast = await this.toastController.create({
@@ -27,5 +19,24 @@ export class UiHelper {
       duration,
     });
     toast.present();
+  }
+
+  async presentLoading(id?: string) {
+    this.isLoading = true;
+    return await this.loadingController.create({
+      id
+    }).then(a => {
+      a.present().then(() => {
+        console.log('presented');
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort presenting'));
+        }
+      });
+    });
+  }
+
+  async dismissLoading(id?: string) {
+    this.isLoading = false;
+    return await this.loadingController.dismiss(null, null, id).then(() => console.log('dismissed'));
   }
 }

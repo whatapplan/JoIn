@@ -1,1 +1,12 @@
-@import '../../../global.scss';
+@import "../../../global.scss";
+
+:host::ng-deep {
+  --ion-toolbar-background: transparent;
+  ion-back-button {
+    --color: var(--pink) !important;
+  }
+  ion-toolbar {
+    --background-color: transparent !important;
+    --ion-color-base: transparent !important;
+  }
+}

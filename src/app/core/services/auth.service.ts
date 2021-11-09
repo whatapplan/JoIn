@@ -1,24 +1,45 @@
 import { Injectable } from '@angular/core';
-import {Auth} from 'firebase/auth';
-import * as firebase  from '@firebase/app';
-import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { User } from '../models/usuario';
-
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { IUser } from '../models/usuario';
+import { UiHelper } from './helpers/toast.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  usuario : User= new User();
-  constructor(public auth: AngularFireAuth){
-        
+  setLoggedUser(user: IUser) {
+    localStorage.setItem('loggedUser', JSON.stringify(user));
+    this.ui.presentToast('Bienvenido ' + user.name + ' :)');
+  }
+  eraseLoggedUser() {
+    localStorage.removeItem('loggedUser');
+    this.ui.presentToast('Has cerrado sesión');
+  }
+  get loggedUser() {
+    return JSON.parse(localStorage.getItem('loggedUser'));
   }
 
-  loginFireauth(email:string , password:string){
-          this.auth.signInWithEmailAndPassword(email, password).then(response =>{
-            console.log(response)
-            //this.usuario = response.
-          }).catch(error =>{console.log(error)})        
+  constructor(
+    public auth: AngularFireAuth,
+    private ngFirestore: AngularFirestore,
+    private ui: UiHelper
+  ) {}
 
+  loginFireauth(email: string, password: string) {
+    this.auth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  getUsers() {
+    return this.ngFirestore.collection('usuario').valueChanges() as Observable<
+      IUser[]
+    >;
   }
 }

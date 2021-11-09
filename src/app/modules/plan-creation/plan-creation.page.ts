@@ -1,27 +1,19 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { UiHelper } from 'src/app/core/services/helpers/toast.service';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import {
-  catchError,
-  finalize,
-  map,
-  mapTo,
-  switchMap,
-  tap,
-  throttleTime,
-} from 'rxjs/operators';
-import { UUID } from 'angular2-uuid';
-import { TagsModalComponent } from 'src/app/shared/tags-modal/tags-modal.component';
-import { ModalController } from '@ionic/angular';
-import { Tag } from 'src/app/core/models/tag';
-import { forkJoin, of } from 'rxjs';
-import { CrudService } from 'src/app/core/services/http/crud-service.service';
-import { LocationHelperService } from 'src/app/core/services/helpers/location-helper.service';
-import { Location } from 'src/app/core/models/location';
-import { ImageHelperService } from 'src/app/core/services/helpers/image-helper.service';
 import { Router } from '@angular/router';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { ModalController } from '@ionic/angular';
+import { forkJoin, of } from 'rxjs';
+import {
+  catchError, switchMap, throttleTime
+} from 'rxjs/operators';
+import { TagsModalComponent } from 'src/app/core/components/tags-modal/tags-modal.component';
+import { Location } from 'src/app/core/models/location';
+import { Tag } from 'src/app/core/models/tag';
+import { ImageHelperService } from 'src/app/core/services/helpers/image-helper.service';
+import { LocationHelperService } from 'src/app/core/services/helpers/location-helper.service';
+import { UiHelper } from 'src/app/core/services/helpers/toast.service';
+import { CrudService } from 'src/app/core/services/http/crud-service.service';
 
 @Component({
   selector: 'app-plan-creation',
@@ -62,7 +54,7 @@ export class PlanCreationPage {
         "Por favor rellene todos los campos con un '*' correctamente"
       );
     } else {
-      await this.ui.presentLoading();
+      await this.ui.presentLoading('plan-creation');
       const imagesUploadArray$ = this.imagesHelper.getImagesDownloadUrls$(
         this.images.map((img) => img.data)
       );
@@ -79,7 +71,7 @@ export class PlanCreationPage {
           })
         )
         .subscribe(async (res) => {
-          this.ui.dismissLoading();
+          await this.ui.dismissLoading('plan-creation');
           await this.ui
             .presentToast('Anuncio creado satisfactoriamente! :D')
             .then(() => this.router.navigate(['home/recommended-plans']));
@@ -101,7 +93,7 @@ export class PlanCreationPage {
       return;
     }
 
-    await this.ui.presentLoading();
+    await this.ui.presentLoading('images-preview-plan-creation');
 
     Object.values(files).forEach((file: Blob) => {
       var reader = new FileReader();
@@ -114,7 +106,7 @@ export class PlanCreationPage {
         });
       };
     });
-    this.ui.dismissLoading();
+    this.ui.dismissLoading('images-preview-plan-creation');
   }
 
   selectLocation(location: Location) {

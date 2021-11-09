@@ -8,6 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ModalController, ViewWillEnter } from '@ionic/angular';
+import { finalize } from 'rxjs/operators';
 import { Tag, TagCategory } from 'src/app/core/models/tag';
 import { UiHelper } from 'src/app/core/services/helpers/toast.service';
 import { TagService } from 'src/app/core/services/http/tag.service';
@@ -32,9 +33,8 @@ export class TagsModalComponent implements OnInit {
     private crf: ChangeDetectorRef
   ) {}
 
-
   isSelected(tag: Tag) {
-    return this.selectedTags.map(tag=>tag.name).includes(tag.name);
+    return this.selectedTags.map((tag) => tag.name).includes(tag.name);
   }
 
   ionViewWillEnter() {
@@ -75,11 +75,17 @@ export class TagsModalComponent implements OnInit {
 
   async ngOnInit() {
     this.selectedTags = [...this.data];
-    await this.ui.presentLoading();
-    this.tags$.getTagsByCategory().subscribe((data) => {
-      this.tagsCategories$ = data;
-      this.filteredTagsCategories = this.tagsCategories$;
-      this.ui.dismissLoading();
-    });
+    await this.ui.presentLoading('tags-retrieving');
+    this.tags$
+      .getTagsByCategory()
+      .pipe(
+        finalize(async () => {
+          await this.ui.dismissLoading('tags-retrieving');
+        })
+      )
+      .subscribe(async (data) => {
+        this.tagsCategories$ = data;
+        this.filteredTagsCategories = this.tagsCategories$;
+      });
   }
 }

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PlanDetailPage } from './plan-detail.page';
+import { UserSelectionModalComponent } from './user-selection-modal.component';
 
-describe('PlanDetailPage', () => {
-  let component: PlanDetailPage;
-  let fixture: ComponentFixture<PlanDetailPage>;
+describe('UserSelectionModalComponent', () => {
+  let component: UserSelectionModalComponent;
+  let fixture: ComponentFixture<UserSelectionModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanDetailPage ],
+      declarations: [ UserSelectionModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PlanDetailPage);
+    fixture = TestBed.createComponent(UserSelectionModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

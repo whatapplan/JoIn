@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HereMapLocation, HereMapReponse, HereMapResponseViewResult } from '../../models/location';
+import {
+  HereMapLocation,
+  HereMapReponse,
+  HereMapResponseViewResult,
+} from '../../models/location';
 
 declare var H: any;
 
@@ -17,14 +21,14 @@ export class LocationService {
 
   constructor() {
     this.platform = new H.service.Platform({
-      "apiKey": this._appKey
+      apiKey: this._appKey,
     });
     this.geocoder = this.platform.getGeocodingService();
     // this.search = new H.places.Search(this.platform.getPlacesService());
   }
 
   searchByText(query: string): Observable<HereMapResponseViewResult[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       this.geocoder.geocode(
         { searchText: query },
         (result: HereMapReponse) => {
@@ -38,7 +42,7 @@ export class LocationService {
             observer.error('no results found');
           }
         },
-        error => {
+        (error) => {
           observer.error(error);
         }
       );

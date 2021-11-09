@@ -11,9 +11,9 @@ export class PlanResolver implements Resolve<any> {
   constructor(private crud: CrudService, private ui: UiHelper) {}
   resolve(route: ActivatedRouteSnapshot) {
     const id = route.paramMap.get('id');
-    this.ui.presentLoading();
-    return this.crud
-      .getPlanById(id)
-      .pipe(finalize(async () => await this.ui.dismissLoading()));
+    this.ui.presentLoading(id);
+    return this.crud.getPlanById(id).pipe(
+      finalize(() => this.ui.dismissLoading(id))
+    );
   }
 }

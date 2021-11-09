@@ -8,17 +8,38 @@
   <form class="form">
     <ion-item lines="none">
       <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
+      <ion-input
+        [(ngModel)]="email"
+        [ngModelOptions]="{standalone: true}"
+        class="form__intem1_input"
+        type="text"
+        required
+      ></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label position="stacked">Contraseña</ion-label>
-      <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="password" required></ion-input>
+      <ion-input
+        [(ngModel)]="password"
+        [ngModelOptions]="{standalone: true}"
+        class="form__intem1_input"
+        type="password"
+        required
+      ></ion-input>
     </ion-item>
   </form>
-  <ion-row  > 
+  <ion-row>
     <ion-col class="contenedorBoton">
-    <ion-button type="button" color="primary" (click)="iniciarSesionFire()">Iniciar Sesion</ion-button>
-  </ion-col>
-</ion-row>
+      <ion-button type="button" color="primary" (click)="iniciarSesionFire()"
+        >Iniciar Sesion</ion-button
+      >
+    </ion-col>
+  </ion-row>
 </ion-content>
+<ion-footer class="p-4 flex justify-end">
+    <ion-buttons>
+      <ion-button [disabled]="!user" type="button" color="warning" (click)="closeSession()"
+        >Cerrar sesión <ion-icon class="ml-2" name="exit-outline"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+</ion-footer>

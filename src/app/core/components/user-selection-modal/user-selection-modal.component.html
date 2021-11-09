@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="text-center">Selecciona un usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item (click)="selectUser(user)" *ngFor="let user of users">
+        <ion-label
+          >{{ user.name }} {{ user.lastName }}
+          <small class="opacity-70">{{ user.email }}</small></ion-label
+        >
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+  </ion-list>
+</ion-content>

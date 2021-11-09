@@ -1,0 +1,17 @@
+@import "../../../../global.scss";
+
+:host {
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+.tags {
+  display: flex;
+  position: relative;
+  overflow: auto;
+  width: auto;
+}
+.tag {
+  margin-top: 5px;
+  margin-right: 5px;
+  width: min-content;
+}

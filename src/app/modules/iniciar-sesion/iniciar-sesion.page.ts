@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/core/models/usuario';
+import { UiHelper } from 'src/app/core/services/helpers/toast.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -11,12 +14,16 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class IniciarSesionPage implements OnInit {
   email: string = '';
   password: string = '';
-
+  user: IUser;
   constructor(
     private crudService: CrudService,
     public alertController: AlertController,
-    private auth: AuthService
-  ) {}
+    private auth: AuthService,
+    private router: Router,
+    private ui: UiHelper
+  ) {
+    this.user = this.auth.loggedUser;
+  }
 
   async iniciarSesion() {
     if (await this.crudService.checkUser(this.email, this.password)) {
@@ -44,5 +51,14 @@ export class IniciarSesionPage implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  closeSession() {
+    this.auth.eraseLoggedUser();
+    this.ui.presentLoading('reloading')
+    this.router.navigate(['/home']).finally(() => {
+      window.location.reload();
+      this.ui.dismissLoading('reloading');
+    });
   }
 }
