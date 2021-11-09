@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Tag } from './tag';
 
 @Injectable({
   providedIn: 'root', // It will inject this provider at the root level of the application so it can be accessed anywhere.
@@ -11,10 +12,11 @@ export class User implements IUser {
   email: string;
   password: string;
   dateBirth: Date;
-  favCategories: string[];
+  favCategories: Tag[];
   acceptedPlans: string[];
   rejectedPlans: string[];
-  
+  maxPlanAge: number;
+  minPlanAge: number;
 }
 
 export interface IUser {
@@ -25,7 +27,7 @@ export interface IUser {
   email?: string;
   password?: string;
   dateBirth?: Date;
-  favCategories?: string[];
   acceptedPlans?: string[];
+  favCategories?: Tag[];
   rejectedPlans?: string[];
 }

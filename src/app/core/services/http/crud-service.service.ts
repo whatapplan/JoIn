@@ -10,6 +10,7 @@ import { map, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CrudService {
+  
   constructor(private ngFirestore: AngularFirestore) {}
 
   uploadPlan(plan) {
@@ -105,6 +106,13 @@ export class CrudService {
       name: user.name,
       email: user.email,
       password: user.password,
+      favCategories: user.favCategories,
+    });
+  }
+
+  añadirUsuarioAPlan(plan) {
+    this.ngFirestore.collection('plans').doc(plan.id).update({
+      participants: plan.participants
     });
   }
 

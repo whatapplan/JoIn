@@ -14,7 +14,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   plans : Plan[] = [];
   planNumber: number = 0;
   plan: Plan= new Plan();
-  user: User;
+  user: User= new User();
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
@@ -58,8 +58,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     const container = document.querySelector(".container");
     const door =  document.querySelector(".door") as HTMLElement;;
     
-      // const card = cardArray[i];
-      // console.log(card);
+      
       const gesture: Gesture = this.gestureCtrl.create({
         el: container,
         gestureName: 'swipe',
@@ -68,8 +67,7 @@ export class RecommendedPlansPage implements AfterViewInit {
 
         },
         onMove: ev => {
-          console.log('ev: ', ev);
-          door.style.transform = `rotateY(${-(ev.deltaX / 10) + 280}deg)`;
+          door.style.transform = `rotateY(${-(ev.deltaX / 3) + 280}deg)`;
         },
         onEnd: ev => {
           if(ev.deltaX > 150 ){
@@ -105,7 +103,6 @@ export class RecommendedPlansPage implements AfterViewInit {
           }
         }
       });
-      console.log(gesture);
       gesture.enable(true);
     
   }
@@ -126,7 +123,9 @@ export class RecommendedPlansPage implements AfterViewInit {
   
   añadirmeAPlan(id: string) {
     this.user.acceptedPlans.push(id);
+    this.plan.participants.push(this.user);
     this.crudService.añadirPlanAUsuario(this.user);
+    this.crudService.añadirUsuarioAPlan(this.plan);
   }
 
   rechazarPlan(id: string) {

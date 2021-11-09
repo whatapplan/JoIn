@@ -1,7 +1,13 @@
+@import "../../../global.scss";
+
+
+
 .contenedorBoton{
     display:flex;
     justify-content: center;
     margin-top: 15px;
+    
+    
 }
 .form{
     margin-left: 10%;
@@ -14,4 +20,9 @@
     }
     
     
+}
+.elboton:hover{
+
+    background-color: #9fffb4;
+     color: black;
 }

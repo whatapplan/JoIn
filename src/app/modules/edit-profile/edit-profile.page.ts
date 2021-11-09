@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/core/models/usuario';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { ModalController } from '@ionic/angular';
+import { Tag } from 'src/app/core/models/tag';
+import { TagsModalComponent } from 'src/app/core/components/tags-modal/tags-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -20,11 +22,13 @@ export class EditProfilePage implements OnInit {
   //usuario: User=this.crudService.getUser("juan@gmail.com");
   usuarios: User[] = [];
   usuario: User;
+  tagsModal;
+  selectedTags: Tag[] = [];
   constructor(
     private crudService: CrudService,
-    public alertController: AlertController  ) {
-   
-  }
+    public alertController: AlertController,
+    private modalController: ModalController
+  ) {}
 
   checkData() {
     if (
@@ -92,6 +96,7 @@ export class EditProfilePage implements OnInit {
           this.dateBirth = this.usuario.dateBirth;
           this.city = this.usuario.city;
           this.password = this.usuario.password;
+          this.selectedTags = this.usuario.favCategories;
         }
       });
     });
@@ -131,6 +136,25 @@ export class EditProfilePage implements OnInit {
     return false;
   }
 
+  removeTag(tag: Tag) {
+    this.selectedTags = this.selectedTags.filter((item) => item != tag);
+    this.usuario.favCategories = this.usuario.favCategories.filter(
+      (item) => item != tag
+    );
+  }
+
+  async openTagsModal() {
+    let res;
+    const modal = await this.modalController.create({
+      component: TagsModalComponent,
+      componentProps: { data: this.selectedTags },
+    });
+    modal.onWillDismiss().then(({ data }) => {
+      this.selectedTags = data;
+    });
+    await modal.present();
+  }
+
   async actualizarUsuario() {
     this.usuario.name = this.name;
     this.usuario.lastName = this.lastName;
@@ -138,6 +162,18 @@ export class EditProfilePage implements OnInit {
     this.usuario.dateBirth = this.dateBirth;
     this.usuario.city = this.city;
     this.usuario.password = this.password;
+    this.selectedTags.forEach((tag) => {
+      let existe: Boolean = false;
+      for (let i = 0; i < this.usuario.favCategories.length; i++) {
+        if (this.usuario.favCategories[i] == tag) {
+          existe = true;
+        }
+      }
+      if (!existe) {
+        this.usuario.favCategories.push(tag);
+      }
+    });
+
     if (
       this.checkData() &&
       this.leterFormat(this.usuario.name) &&

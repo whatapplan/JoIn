@@ -1,80 +1,37 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>recommendedPlans</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content> -->
-
-
-
-<!-- <ion-list>
-
-  <ion-item class="ionItem-Plans">
-
-    <ion-label>Tipo de plan</ion-label>
-    <ion-select placeholder="Select One">
-      <ion-select-option *ngFor="let filter of filters" value="filter">{{filter}}</ion-select-option>
-    </ion-select>
-
-  </ion-item>
-
-</ion-list> -->
-
-<ion-content fullscreen>
-  <div class="container"  >
-    <div class="planInfo"  >
-      <p class="planCreatorExample">Únete a Javi</p>
-      <p class="planCreator"></p>
-
-      <h1 class="planTitle"></h1>
-
-      
-      
-      <div class="locationContainer">
-        <ion-icon name="location-outline"></ion-icon>
-        <h4 class="planLocation"></h4>
+  <ion-content>
+    <div class="container">
+      <div class="logoContainer">
+        <img class="logo" src="../../../assets/logo/logo.png" />
       </div>
+      <div class="planInfo">
+        <p class="planCreatorExample">Únete a Javi</p>
+        <p class="planCreator"></p>
 
-      <div class="ilustration">
+        <h1 class="planTitle"></h1>
 
-      </div>
-      <div class="dateBadge">
-
-      </div>
-      <!-- <h2 class="planCategory">{{plans[planNumber].tags}}</h2> -->
-      <!-- <h2 class="planSubCategory">{{plans[planNumber].title}}</h2> -->
-      
-
-        
-
-        <div class="subCategories"  *ngFor="let tags of plan.tags">
-          <div class="chip-category">
-            <ion-label >{{plan.tags.category}}</ion-label>
-          </div>
-          
-          <div class="chip-name">
-            <ion-label>{{tags.name}}</ion-label>
-          </div>
-  
-          <!-- <ion-chip class="chip-category">
-            <ion-label >{{tags.category}}</ion-label>
-          </ion-chip>
-          <ion-chip class="chip-name" outline="true">
-            <ion-label>{{tags.name}}</ion-label>
-          </ion-chip> -->
+        <div class="locationContainer">
+          <ion-icon name="location-outline"></ion-icon>
+          <h4 class="planLocation"></h4>
         </div>
 
-      
-      
+        <div class="ilustration"></div>
+        <div class="dateBadge"></div>
 
-      <div class="planDetail">
-        <!-- <ion-icon>INFO</ion-icon> -->
+        <div class="subCategories" *ngFor="let tag of plan.tags">
+          <div *ngIf="plan.tags[0]== tag" class="chip-category">
+            <ion-label>{{tag.category}}</ion-label>
+          </div>
+
+          <div class="chip-name">
+            <ion-label>{{tag.name}}</ion-label>
+          </div>
+        </div>
+
+        <div class="planDetail">
+          <!-- <ion-icon>INFO</ion-icon> -->
+        </div>
       </div>
-
+      <div class="door"></div>
     </div>
-    <div class="door" ></div>
-  </div>
-</ion-content>
+  </ion-content>
+
