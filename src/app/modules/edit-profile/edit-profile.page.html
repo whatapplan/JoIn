@@ -36,6 +36,27 @@
       <ion-input [(ngModel)]="password" minlength="6" [ngModelOptions]="{standalone: true}" class="form__intem1_input" type="text" required></ion-input>
     </ion-item>
     
+    <p class="font-bold">Selecciona una categoría*</p>
+    <div class="flex flex-wrap">
+      <ion-chip
+        class="mr-2 mb-2 px-3 whitespace-nowrap"
+        *ngFor="let tag of selectedTags"
+      >
+        {{tag.name}}
+        <ion-icon
+          class="ml-3"
+          color="default"
+          (click)="removeTag(tag)"
+          name="close-circle"
+        ></ion-icon>
+      </ion-chip>
+    </div>
+    <ion-button (click)="openTagsModal()" size="small" color="light">
+      Añadir categoría
+    </ion-button>
+
+
+
   </form>
   <ion-row  > 
       <ion-col class="contenedorBoton">

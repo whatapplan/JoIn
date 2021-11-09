@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 import { AlertController } from '@ionic/angular';
 import { User} from 'src/app/core/models/usuario';
+import { TagsModalComponent } from 'src/app/shared/tags-modal/tags-modal.component';
+import { ModalController } from '@ionic/angular';
+import { Tag } from 'src/app/core/models/tag';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,7 +22,9 @@ dateBirth:Date= new Date();
 //usuario: User=this.crudService.getUser("juan@gmail.com");
 usuarios : User[]=[];
 usuario : User ;
-  constructor(private crudService : CrudService, public alertController: AlertController) { }
+tagsModal;
+selectedTags: Tag[] = [];
+  constructor(private crudService : CrudService, public alertController: AlertController, private modalController: ModalController,) { }
 
   checkData(){
     if(this.name != null && this.lastName != null && this.password != null && this.email != null && this.dateBirth != null && this.city != null ){
@@ -84,6 +89,7 @@ usuario : User ;
       this.dateBirth = this.usuario.dateBirth;
       this.city = this.usuario.city;
       this.password = this.usuario.password;
+      this.selectedTags = this.usuario.favCategories;
     }
     })});
     
@@ -120,7 +126,25 @@ usuario : User ;
       console.log(this.email + ' esta repetido');
       return true;
     }return false;
-  }  
+  } 
+  
+  removeTag(tag: Tag) {
+    this.selectedTags = this.selectedTags.filter((item) => item != tag);
+    this.usuario.favCategories = this.usuario.favCategories.filter((item) => item != tag);
+  }
+
+
+  async openTagsModal() {
+    let res;
+    const modal = await this.modalController.create({
+      component: TagsModalComponent,
+      componentProps: { data: this.selectedTags },
+    });
+    modal.onWillDismiss().then(({ data }) => {
+      this.selectedTags = data;
+    });
+    await modal.present();
+  }
 
 
   async actualizarUsuario(){
@@ -130,6 +154,20 @@ usuario : User ;
      this.usuario.dateBirth =  this.dateBirth ;
       this.usuario.city =  this.city ;
      this.usuario.password =  this.password ;
+     this.selectedTags.forEach(tag => { 
+       let existe: Boolean = false ;
+      for(let i=0; i<this.usuario.favCategories.length; i++){ 
+       if(this.usuario.favCategories[i] == tag){ 
+        existe = true ; 
+        }
+      }
+      if(!existe){ 
+        this.usuario.favCategories.push(tag); 
+        }
+      });
+     
+     
+     
      if(this.checkData() && this.leterFormat(this.usuario.name) && this.leterFormat(this.usuario.lastName) && this.leterFormat(this.usuario.city) && this.emailFormat(this.usuario.email) ){
         
         this.crudService.upgradeUser(this.usuario);

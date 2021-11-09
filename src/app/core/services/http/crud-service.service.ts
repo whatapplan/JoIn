@@ -105,6 +105,7 @@ export class CrudService {
       name: user.name,
       email: user.email,
       password: user.password,
+      favCategories: user.favCategories,
     });
   }
 
