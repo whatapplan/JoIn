@@ -26,6 +26,7 @@ export class LocationService {
     this.geocoder = this.platform.getGeocodingService();
     // this.search = new H.places.Search(this.platform.getPlacesService());
   }
+  
 
   searchByText(query: string): Observable<HereMapResponseViewResult[]> {
     return new Observable((observer) => {

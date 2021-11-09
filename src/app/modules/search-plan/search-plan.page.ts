@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CrudService } from 'src/app/core/services/http/crud-service.service';
-import { Plan } from 'src/app/core/models/plan';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
-import { TagCategory } from 'src/app/core/models/tag';
 import { FiltersPage } from 'src/app/core/components/filters/filters.page';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Plan } from 'src/app/core/models/plan';
+import { TagCategory } from 'src/app/core/models/tag';
+import { CrudService } from 'src/app/core/services/http/crud-service.service';
 @Component({
   selector: 'app-search-plan',
   templateUrl: './search-plan.page.html',
@@ -32,7 +31,7 @@ export class SearchPlanPage implements OnInit {
   constructor(
     private crudService: CrudService,
     private modalController: ModalController,
-    private router: Router
+    private nav: NavController
   ) {
     this.crudService.getPlans().subscribe((res) => {
       res.map((t) => {
@@ -66,7 +65,7 @@ export class SearchPlanPage implements OnInit {
 
   navToDetail({ id }) {
     const route = `/plan/${id}`;
-    this.router.navigate([route])
+    this.nav.navigateForward(route)
   }
 
   searchTags() {

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Gesture, GestureController, IonCard, Platform } from '@ionic/angular';
+import { AfterViewInit, Component } from '@angular/core';
+import { Gesture, GestureController, Platform } from '@ionic/angular';
 import { User } from 'src/app/core/models/usuario';
-import {Plan} from '../../core/models/plan';
+import { Plan } from '../../core/models/plan';
 import { CrudService } from '../../core/services/http/crud-service.service';
 
 @Component({

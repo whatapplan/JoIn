@@ -1,19 +1,30 @@
 <ion-header class="ion-no-border fixed top-0 left-0">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button icon="caret-back-outline" defaultHref="home" text="Planes"></ion-back-button>
+      <ion-back-button
+        icon="caret-back-outline"
+        defaultHref="home"
+        text="Planes"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content no-padding fullscreen>
   <div>
     <ion-slides>
-      <ion-slide class="w-full h-full relative" *ngFor="let image of plan.images">
-        <img class="object-cover object-center w-full h-full relative" [src]="image" alt="" />
+      <ion-slide
+        class="w-full h-full relative"
+        *ngFor="let image of plan.images"
+      >
+        <img
+          class="object-cover object-center w-full h-full relative"
+          [src]="image"
+          alt=""
+        />
       </ion-slide>
     </ion-slides>
-  </div> 
-  <div class="bg-green">
+  </div>
+  <div class="bg-green h-auto">
     <div class="mx-auto pt-11 relative w-full pl-16 pr-16 pb-8">
       <join-date-tag [date]="plan.when"></join-date-tag>
       <div class="grid gap-8">
@@ -23,7 +34,18 @@
           <join-tag-list [tags]="plan.tags"></join-tag-list>
         </div>
       </div>
-      <div #map style="width: 100%; height: 100%"></div>
     </div>
+    <!-- <div #map class="w-full h-96 z-50 relative"></div> -->
+
+  </div>
+  <div
+    class="map h-96 w-full relative"
+    leaflet
+    *ngIf="center"
+    [leafletOptions]="options"
+    [leafletCenter]="center"
+    (leafletMapReady)="onMapReady($event)">
+
+     <div class="w-full h-full" *ngIf="layer" [leafletLayer]="layer"></div> 
   </div>
 </ion-content>
