@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Gesture, GestureController, Platform } from '@ionic/angular';
 import { User } from 'src/app/core/models/usuario';
 import { Plan } from '../../core/models/plan';
@@ -10,6 +10,8 @@ import { CrudService } from '../../core/services/http/crud-service.service';
   styleUrls: ['./recommended-plans.page.scss'],
 })
 export class RecommendedPlansPage implements AfterViewInit {
+  @ViewChild('door')
+  private door: ElementRef
   recommendedPlans : Plan[] = [];
   plans : Plan[] = [];
   planNumber: number = 0;
@@ -58,7 +60,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     const container = document.querySelector(".container");
     const door =  document.querySelector(".door") as HTMLElement;;
     const planInfo = document.querySelector(".planInfo") as HTMLElement;;
-      
+    let angulo: number = 0; 
       const gesture: Gesture = this.gestureCtrl.create({
         el: container,
         gestureName: 'swipe',
@@ -67,7 +69,12 @@ export class RecommendedPlansPage implements AfterViewInit {
 
         },
         onMove: ev => {
-          door.style.transform = `rotateY(${-(ev.deltaX / 2) + 310}deg)`;
+          angulo=this.getRotationFromRotateY(this.door.nativeElement.style.transform);
+          if(angulo < 360 && angulo > 180){
+          door.style.transform = `rotateY(${-(ev.deltaX / 3) + 310}deg)`;
+         }
+         console.log(this.getRotationFromRotateY(this.door.nativeElement.style.transform));
+          
         },
         onEnd: ev => {
           if(ev.deltaX > 100 ){
@@ -100,12 +107,22 @@ export class RecommendedPlansPage implements AfterViewInit {
             // },1000);
             
           }else{
-            door.style.transform = `rotateY(${280}deg)`;
+            door.style.transform = `rotateY(${310}deg)`;
           }
         }
       });
       gesture.enable(true);
     
+  }
+  
+  getRotationFromRotateY(cadena: string){
+    let regex = /\(([^)]+)\)/;
+    let respuesta = 0;
+    if(cadena != ""){
+    respuesta = parseInt(regex.exec(cadena)[1]);
+    console.log(respuesta);
+    }
+    return respuesta;
   }
 
   actualizarPlanInfo(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement){
@@ -120,7 +137,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     this.planNumber++;
    } 
   }
-
+ 
   
   añadirmeAPlan(id: string) {
     this.user.acceptedPlans.push(id);
@@ -128,12 +145,14 @@ export class RecommendedPlansPage implements AfterViewInit {
     this.crudService.añadirPlanAUsuario(this.user);
     this.crudService.añadirUsuarioAPlan(this.plan);
   }
+  
 
   rechazarPlan(id: string) {
     this.user.rejectedPlans.push(id);
     this.crudService.añadirPlanRechazado(this.user);
   }
 
+  
 
 }
 

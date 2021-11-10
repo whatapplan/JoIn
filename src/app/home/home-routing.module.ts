@@ -33,8 +33,8 @@ const routes: Routes = [
         loadChildren: () => import('../modules/recommended-plans/recommended-plans.module').then( m => m.RecommendedPlansPageModule)
       },
       {
-        path: 'iniciar-sesion',
-        loadChildren: () => import('../modules/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
+        path: 'my-plans',
+        loadChildren: () => import('../modules/my-plans/my-plans.module').then( m => m.MyPlansPageModule)
       },
     ],
   },
