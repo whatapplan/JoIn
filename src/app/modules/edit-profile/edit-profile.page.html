@@ -64,3 +64,10 @@
     </ion-col>
   </ion-row>
 </ion-content>
+<ion-footer class="p-4 flex justify-end">
+  <ion-buttons>
+    <ion-button [disabled]="!user" type="button" color="warning" (click)="closeSession()"
+      >Cerrar sesión <ion-icon class="ml-2" name="exit-outline"></ion-icon
+    ></ion-button>
+  </ion-buttons>
+</ion-footer>

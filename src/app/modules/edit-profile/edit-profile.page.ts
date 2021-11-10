@@ -5,6 +5,9 @@ import { User } from 'src/app/core/models/usuario';
 import { ModalController } from '@ionic/angular';
 import { Tag } from 'src/app/core/models/tag';
 import { TagsModalComponent } from 'src/app/core/components/tags-modal/tags-modal.component';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { UiHelper } from 'src/app/core/services/helpers/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,14 +24,27 @@ export class EditProfilePage implements OnInit {
   dateBirth: Date = new Date();
   //usuario: User=this.crudService.getUser("juan@gmail.com");
   usuarios: User[] = [];
-  usuario: User;
+  user: User;
   tagsModal;
   selectedTags: Tag[] = [];
+  
   constructor(
     private crudService: CrudService,
     public alertController: AlertController,
-    private modalController: ModalController
-  ) {}
+    private auth: AuthService,
+    private modalController: ModalController,
+    private ui: UiHelper,
+    private router: Router
+  ) {
+    this.user = this.auth.loggedUser;
+    this.name = this.user.name;
+    this.lastName = this.user.lastName;
+    this.email = this.user.email;
+    this.dateBirth = this.user.dateBirth;
+    this.city = this.user.city;
+    this.password = this.user.password;
+    this.selectedTags = this.user.favCategories;
+  }
 
   checkData() {
     if (
@@ -81,25 +97,25 @@ export class EditProfilePage implements OnInit {
   }
 
   async ngOnInit() {
-    (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {
-      res.map((t) => {
-        let user = {
-          id: t.payload.doc.id,
-          ...(t.payload.doc.data() as User),
-        };
-        this.usuarios.push(user);
-        if (this.usuarios.length > 0) {
-          this.usuario = this.usuarios[0];
-          this.name = this.usuario.name;
-          this.lastName = this.usuario.lastName;
-          this.email = this.usuario.email;
-          this.dateBirth = this.usuario.dateBirth;
-          this.city = this.usuario.city;
-          this.password = this.usuario.password;
-          this.selectedTags = this.usuario.favCategories;
-        }
-      });
-    });
+    // (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {
+    //   res.map((t) => {
+    //     let user = {
+    //       id: t.payload.doc.id,
+    //       ...(t.payload.doc.data() as User),
+    //     };
+    //     this.usuarios.push(user);
+    //     if (this.usuarios.length > 0) {
+    //       this.usuario = this.usuarios[0];
+    //       this.name = this.usuario.name;
+    //       this.lastName = this.usuario.lastName;
+    //       this.email = this.usuario.email;
+    //       this.dateBirth = this.usuario.dateBirth;
+    //       this.city = this.usuario.city;
+    //       this.password = this.usuario.password;
+    //       this.selectedTags = this.usuario.favCategories;
+    //     }
+    //   });
+    // });
   }
   leterFormat(cadena: string) {
     let stringRegex = /^[a-zA-ZÀ-ÿ]+$/;
@@ -184,5 +200,13 @@ export class EditProfilePage implements OnInit {
       this.crudService.upgradeUser(this.usuario);
       this.presentAlert('Su usuario ha sido actualizado', '');
     }
+  }
+  closeSession() {
+    this.auth.eraseLoggedUser();
+    this.ui.presentLoading('reloading')
+    this.router.navigate(['/home']).finally(() => {
+      window.location.reload();
+      this.ui.dismissLoading('reloading');
+    });
   }
 }

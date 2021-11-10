@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { EditProfilePageRoutingModule } from './edit-profile-routing.module';
 
 import { EditProfilePage } from './edit-profile.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     EditProfilePageRoutingModule
   ],
   declarations: [EditProfilePage]
