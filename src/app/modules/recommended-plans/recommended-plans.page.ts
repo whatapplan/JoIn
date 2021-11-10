@@ -11,7 +11,8 @@ import { CrudService } from '../../core/services/http/crud-service.service';
 })
 export class RecommendedPlansPage implements AfterViewInit {
   @ViewChild('door')
-  private door: ElementRef
+  private door: ElementRef;
+
   recommendedPlans : Plan[] = [];
   plans : Plan[] = [];
   planNumber: number = 0;
@@ -70,7 +71,7 @@ export class RecommendedPlansPage implements AfterViewInit {
         },
         onMove: ev => {
           angulo=this.getRotationFromRotateY(this.door.nativeElement.style.transform);
-          if(angulo < 360 && angulo > 180){
+          if(angulo < 361 && angulo > 179){
           door.style.transform = `rotateY(${-(ev.deltaX / 3) + 310}deg)`;
          }
          console.log(this.getRotationFromRotateY(this.door.nativeElement.style.transform));
