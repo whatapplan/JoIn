@@ -41,6 +41,8 @@ export class CrudService {
       );
   }
 
+
+
   getTagCategories() {
     return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
@@ -59,6 +61,24 @@ export class CrudService {
       plans.push(plan);
     });
     return plans;
+  }
+
+  async getMyPlans(Id :string){
+    let plan2 = new Plan();
+    const plansRef = collection(this.ngFirestore.firestore, 'plans');
+    const q = query(plansRef,where('id' , '==' , Id ));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let plan = {
+        id: doc.id,
+        ...(doc.data() as Plan),
+      };
+      plan2= plan;
+    });
+    return plan2;
+
+
   }
 
   getRecommendedPlans(categories: string[]) {
