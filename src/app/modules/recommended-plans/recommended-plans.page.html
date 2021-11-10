@@ -1,8 +1,9 @@
-  <ion-content>
+  <ion-content >
     <div class="container">
       <div class="logoContainer">
         <img class="logo" src="../../../assets/logo/logo.png" />
       </div>
+      <div class="door"></div>
       <div class="planInfo">
         <p class="planCreatorExample">Únete a Javi</p>
         <p class="planCreator"></p>
@@ -16,7 +17,8 @@
 
         <div class="ilustration"></div>
         <div class="dateBadge"></div>
-
+        <join-tag-list [tags]="plan.tags"></join-tag-list>
+       
         <div class="subCategories" *ngFor="let tag of plan.tags">
           <div *ngIf="plan.tags[0]== tag" class="chip-category">
             <ion-label>{{tag.category}}</ion-label>
@@ -31,7 +33,7 @@
           <!-- <ion-icon>INFO</ion-icon> -->
         </div>
       </div>
-      <div class="door"></div>
+      
     </div>
   </ion-content>
 

@@ -57,7 +57,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   useSwipe(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
     const container = document.querySelector(".container");
     const door =  document.querySelector(".door") as HTMLElement;;
-    
+    const planInfo = document.querySelector(".planInfo") as HTMLElement;;
       
       const gesture: Gesture = this.gestureCtrl.create({
         el: container,
@@ -67,15 +67,15 @@ export class RecommendedPlansPage implements AfterViewInit {
 
         },
         onMove: ev => {
-          door.style.transform = `rotateY(${-(ev.deltaX / 3) + 280}deg)`;
+          door.style.transform = `rotateY(${-(ev.deltaX / 2) + 310}deg)`;
         },
         onEnd: ev => {
-          if(ev.deltaX > 150 ){
+          if(ev.deltaX > 100 ){
             door.style.transform =  `rotateY(${180}deg)`;
             this.añadirmeAPlan(this.plan.id);
 
             setTimeout(() =>{
-              door.style.transform =  `rotateY(${280}deg)`;
+              door.style.transform =  `rotateY(${310}deg)`;
               this.setPlan(planTitle,planCreator,planLocation,planDetail);
             },1000);
             //this.setPlan(planTitle,planCreator,planLocation,planDetail);
@@ -86,10 +86,11 @@ export class RecommendedPlansPage implements AfterViewInit {
             
           }else if(ev.deltaX < -150){ 
             door.style.transform =  `rotateY(${360}deg)`;
+            planInfo.style.transform =`translateZ(${-20}px)`;
             this.rechazarPlan(this.plan.id);
 
             setTimeout(() =>{
-              door.style.transform =  `rotateY(${280}deg)`;
+              door.style.transform =  `rotateY(${310}deg)`;
               this.setPlan(planTitle,planCreator,planLocation,planDetail);
             },1000);
            //this.setPlan(planTitle,planCreator,planLocation,planDetail);

@@ -34,10 +34,11 @@
     width: 100%;
     font-family: Manrophe Pro;
     letter-spacing: 2px;
-
+    overflow:hidden;
+    
     .logoContainer{
         position:absolute;
-        top: 10%;
+        top: 1%;
         left: calc(50% - 32px);
         .logo{
             width: 64px;
@@ -53,8 +54,8 @@
     position: relative;
     top: 40px;
     background: White;
-    transform: rotateY(280deg);
-    transition: all 1s;
+    transform: rotateY(310deg);
+    transition: all 0.5s;
     
     transform-origin: right;
     

@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { RecommendedPlansPageRoutingModule } from './recommended-plans-routing.module';
 
 import { RecommendedPlansPage } from './recommended-plans.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     RecommendedPlansPageRoutingModule,
     PlanPreviewPageModule,
   ],
