@@ -7,19 +7,14 @@
 <ion-content>
   <div>
     <ion-slides [options]="slideOpt">
-    <ion-slide *ngFor="let plan of planes">
-      <ion-card >
-        <ion-item>
-  <ion-icon name="pin" slot="start"></ion-icon>
-  <ion-label>{{plan.title}}</ion-label>
-  
-        </ion-item>
-
-<ion-card-content>
- 
-</ion-card-content>
-      </ion-card>
-    </ion-slide>
+      <ion-slide *ngFor="let plan of plans">
+        <ion-card >
+          <ion-img class="image" src="../../../assets/image3.png"></ion-img>
+          <ion-card-content>
+            {{plan.title}}
+          </ion-card-content>
+       </ion-card>
+      </ion-slide>
     </ion-slides>
   </div>
 </ion-content>

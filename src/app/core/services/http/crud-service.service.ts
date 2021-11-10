@@ -63,21 +63,22 @@ export class CrudService {
     return plans;
   }
 
-  async getMyPlans(Id :string){
-    let plan2 = new Plan();
-    const plansRef = collection(this.ngFirestore.firestore, 'plans');
-    const q = query(plansRef,where('id' , '==' , Id ));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      let plan = {
-        id: doc.id,
-        ...(doc.data() as Plan),
-      };
-      plan2= plan;
-    });
-    return plan2;
+  async getMyPlans(idsPlan: string[]){
+    const planes: Plan[] =[];
 
+    for(let i=0;i<idsPlan.length;i++){
+      if(idsPlan[i] != ""){
+       await this.ngFirestore.collection('plans').doc(idsPlan[i]).get().forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        let plan = {
+          id: doc.id,
+          ...(doc.data() as Plan),
+        };
+        planes.push(plan);
+      });
+      }
+    }
+    return planes;
 
   }
 

@@ -13,21 +13,20 @@ export class MyPlansPage implements OnInit {
   user: User;
   idsPlan: string[] = [];
   planes: Plan[] = [];
+  plans: Plan[] =[];
+ private slideOpt ={
+   slidesPerView:2
+ }
   constructor(private auth: AuthService,private crud: CrudService) { 
-
   this.user = this.auth.loggedUser;
-  this.idsPlan = this.user.acceptedPlans;
   }
 
   async ngOnInit() {
-
- for(let i=0;i<this.idsPlan.length;i++){
-
-  this.planes.push(await this.crud.getMyPlans(this.idsPlan[i]));
-   console.log(this.planes[i]);
-
+    this.idsPlan = this.user.acceptedPlans;
+    this.planes = await this.crud.getMyPlans(this.idsPlan);
+    this.plans = this.planes;
  }
 
-  }
+  
 
 }
