@@ -15,7 +15,7 @@ export class MyPlansPage implements OnInit {
   planes: Plan[] = [];
   plans: Plan[] =[];
  private slideOpt ={
-   slidesPerView:2
+   slidesPerView:1
  }
   constructor(private auth: AuthService,private crud: CrudService) { 
   this.user = this.auth.loggedUser;
