@@ -5,10 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <div>
+  <div  class="div1">
+    
+    <ion-label class="titulo1" position="stacked">Planes aceptados </ion-label> 
+
     <ion-slides [options]="slideOpt">
       <ion-slide *ngFor="let plan of plans">
-        <ion-card >
+        <ion-card class="Latarjet">
           <ion-img class="image" src="../../../assets/image3.png"></ion-img>
           <ion-card-content>
             {{plan.title}}
@@ -16,5 +19,29 @@
        </ion-card>
       </ion-slide>
     </ion-slides>
+  </div>
+
+
+
+  <div>
+
+
+    <ion-label class="titulo2" position="stacked">Planes creados </ion-label> 
+    <ion-slides [options]="slideOpt">
+      <ion-slide *ngFor="let plan of plans">
+        <ion-card class="Latarjet2">
+          <ion-img class="image" src="../../../assets/image3.png"></ion-img>
+          <ion-card-content>
+            {{plan.title}}
+          </ion-card-content>
+       </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+
+
+
+
+
   </div>
 </ion-content>
