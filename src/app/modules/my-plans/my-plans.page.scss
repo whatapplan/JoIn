@@ -1,32 +1,51 @@
+@import "../../../global.scss";
+
 .image{
-    width: 200px;
-    height: 200px;
-  
+    width: 150px;
+    height: 100px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
 }
 .titulo1{
-
+font-size: 120%;
 border-radius: 2px;
-
-color: #9fffb4;
-margin-left: 35%;
+margin-top: 10%;
+color: #ff4193;
+margin-left: 10%;
 margin-bottom:10%;
 }
-.LaTarjet{
 
-margin-top: 10%;
-margin-bottom: 10%;
 
-}
+
 .titulo2{
 
-
+ font-size: 120%;
     color:#ff4193;
  margin-top: 100px;
-    margin-left: 37%;
+    margin-left: 10%;
 }
 .div1{
-margin-top: 5%;
+margin-top: 30%;
 
 margin-bottom: 15%;
 
+}
+.div2{
+    margin-top: 30%;
+
+    margin-bottom: 5%;
+
+
+
+}
+.logoContainer{
+    position:absolute;
+    top: 15%;
+    left: 10%;
+    .logo{
+        margin-top: 30%;
+        width: 60px;
+        height: 32px;
+    }
 }

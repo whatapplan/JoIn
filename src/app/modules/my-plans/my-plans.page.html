@@ -1,7 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>my-plans</ion-title>
-  </ion-toolbar>
+  
+    <div class="logoContainer">
+      <img class="logo" src="../../../assets/logo/logo.png" />
+    </div>
+ 
 </ion-header>
 
 <ion-content>
@@ -11,7 +13,7 @@
 
     <ion-slides [options]="slideOpt">
       <ion-slide *ngFor="let plan of plans">
-        <ion-card class="Latarjet">
+        <ion-card class="Latarjet" >
           <ion-img class="image" src="../../../assets/image3.png"></ion-img>
           <ion-card-content>
             {{plan.title}}
@@ -23,7 +25,7 @@
 
 
 
-  <div>
+  <div class="div2">
 
 
     <ion-label class="titulo2" position="stacked">Planes creados </ion-label> 
