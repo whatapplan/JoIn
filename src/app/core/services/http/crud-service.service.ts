@@ -37,7 +37,7 @@ export class CrudService {
       .get()
       .pipe(
         map((data: any) => data.data()),
-        map((plan) => ({ ...plan, createdBy: 'Alicia' }))
+        map((plan) => ({ ...plan, createdBy: 'Alicia' })),
       );
   }
 

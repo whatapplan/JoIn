@@ -7,16 +7,27 @@ import { TagListComponent } from '../core/components/tag-list/tag-list.component
 import { TagComponent } from '../core/components/tag/tag.component';
 import { DateTagComponent } from '../core/components/date-tag/date-tag.component';
 import { UserSelectionModalComponent } from '../core/components/user-selection-modal/user-selection-modal.component';
+import { MapModalComponent } from '../core/components/map-modal/map-modal.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { CountryPipe } from '../core/pipes/country.pipe';
+import { SafePipe } from '../core/pipes/safe.pipe';
 
 @NgModule({
-  declarations: [TagComponent, TagListComponent, DateTagComponent, UserSelectionModalComponent],
+  declarations: [
+    TagComponent,
+    TagListComponent,
+    DateTagComponent,
+    UserSelectionModalComponent,
+    CountryPipe,
+    MapModalComponent,
+    SafePipe
+  ],
   imports: [
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
     FormsModule,
-    LeafletModule
+    LeafletModule,
   ],
   exports: [
     CommonModule,
@@ -26,7 +37,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     TagComponent,
     TagListComponent,
     DateTagComponent,
-    LeafletModule
+    LeafletModule,
+    CountryPipe,
+    SafePipe
   ],
   providers: [ImagePicker],
 })

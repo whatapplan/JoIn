@@ -7,6 +7,7 @@ import { LoadingController, ToastController } from '@ionic/angular';
 export class UiHelper {
 
   isLoading = false;
+  
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController

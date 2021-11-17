@@ -25,7 +25,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     
   }
   
-
+  ngOnInit() {}
   //Implementa el gesto y recibe los planes Reocmendados
   async ngAfterViewInit(){
     this.añadirUser();
@@ -57,10 +57,12 @@ export class RecommendedPlansPage implements AfterViewInit {
   }
 
 
+
+
   useSwipe(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
     const container = document.querySelector(".container");
-    const door =  document.querySelector(".door") as HTMLElement;;
-    const planInfo = document.querySelector(".planInfo") as HTMLElement;;
+    const door =  document.querySelector(".door") as HTMLElement;
+    const planInfo = document.querySelector(".planInfo") as HTMLElement;
     let angulo: number = 0; 
       const gesture: Gesture = this.gestureCtrl.create({
         el: container,

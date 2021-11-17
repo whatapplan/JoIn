@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Tag } from '../../models/tag';
 
 @Component({
@@ -6,15 +6,18 @@ import { Tag } from '../../models/tag';
   templateUrl: './tag-list.component.html',
   styleUrls: ['./tag-list.component.scss'],
 })
-export class TagListComponent implements OnInit {
+export class TagListComponent implements OnChanges {
   @Input() tags: Tag[];
+  @Input() scrollable = true;
   constructor() {}
 
   tagsByCategory = [];
 
   aux = {};
 
-  ngOnInit() {
+  ngOnChanges({ tags, scrollable }: SimpleChanges) {
+    this.tags = tags?.currentValue;
+    this.scrollable = !!scrollable?.currentValue;
     this.tags?.forEach(({ category, name }) => {
       if (!Object.keys(this.aux).includes(category)) {
         this.aux = { ...this.aux, [category]: [name] };
@@ -27,5 +30,5 @@ export class TagListComponent implements OnInit {
       category,
       tags,
     }));
-  } 
+  }
 }

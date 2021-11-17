@@ -5,6 +5,7 @@ import { Tag } from './tag';
   providedIn: 'root', // It will inject this provider at the root level of the application so it can be accessed anywhere.
 })
 export class User implements IUser {
+  id: string;
   $key: string;
   name: string;
   lastName: string;
@@ -20,6 +21,7 @@ export class User implements IUser {
 }
 
 export interface IUser {
+  id: string,
   $key?: string;
   name: string;
   lastName?: string;

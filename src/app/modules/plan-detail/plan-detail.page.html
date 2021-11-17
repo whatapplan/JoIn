@@ -10,42 +10,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content no-padding fullscreen>
-  <div>
-    <ion-slides>
-      <ion-slide
-        class="w-full h-full relative"
-        *ngFor="let image of plan.images"
-      >
-        <img
-          class="object-cover object-center w-full h-full relative"
-          [src]="image"
-          alt=""
-        />
-      </ion-slide>
-    </ion-slides>
-  </div>
-  <div class="bg-green h-auto">
-    <div class="mx-auto pt-11 relative w-full pl-16 pr-16 pb-8">
-      <join-date-tag [date]="plan.when"></join-date-tag>
-      <div class="grid gap-8">
-        <h3>Join <span class="underline">{{plan.createdBy}}</span></h3>
-        <h2>{{plan.title}}</h2>
-        <div>
-          <join-tag-list [tags]="plan.tags"></join-tag-list>
-        </div>
-      </div>
+  <div class="content-header h-96 p-10 flex flex-col justify-end">
+    <h1>{{plan.title}} a las {{ plan.when | date:'HH:mm' }}h</h1>
+    <div class="user w-16 h-16 bg-red-200 rounded-lg mt-4">
+      
     </div>
-    <!-- <div #map class="w-full h-96 z-50 relative"></div> -->
-
   </div>
+  <join-date-tag [date]="plan.when"></join-date-tag>
   <div
     class="map h-96 w-full relative"
     leaflet
     *ngIf="center"
     [leafletOptions]="options"
     [leafletCenter]="center"
-    (leafletMapReady)="onMapReady($event)">
-
-     <div class="w-full h-full" *ngIf="layer" [leafletLayer]="layer"></div> 
+    (leafletMapReady)="onMapReady($event)"
+  >
+    <div class="w-full h-full" *ngIf="layer" [leafletLayer]="layer"></div>
   </div>
 </ion-content>

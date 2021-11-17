@@ -1,0 +1,22 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon
+      class="p-3 mr-2 cp"
+      (click)="closeModal()"
+      slot="end"
+      name="close"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div
+    class="map h-full w-full relative"
+    leaflet
+    *ngIf="center"
+    [leafletOptions]="options"
+    [leafletCenter]="center"
+    (leafletMapReady)="onMapReady($event)"
+  >
+    <!-- <div class="w-full h-full" [leafletLayer]="layer"></div> -->
+  </div>
+</ion-content>

@@ -73,19 +73,15 @@ export class TagsModalComponent implements OnInit {
     await this.modalController.dismiss(this.selectedTags);
   }
 
-  async ngOnInit() {
-    this.selectedTags = [...this.data];
-    await this.ui.presentLoading('tags-retrieving');
+  ngOnInit() {
+    this.selectedTags = this.data && [...this.data];
+    this.ui.presentLoading('tags-retrieving');
     this.tags$
       .getTagsByCategory()
-      .pipe(
-        finalize(async () => {
-          await this.ui.dismissLoading('tags-retrieving');
-        })
-      )
-      .subscribe(async (data) => {
+      .subscribe((data) => {
         this.tagsCategories$ = data;
         this.filteredTagsCategories = this.tagsCategories$;
+        this.ui.dismissLoading('tags-retrieving')
       });
   }
 }

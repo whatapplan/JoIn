@@ -1,14 +1,14 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire/compat';
+// Firebase
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
-import { HttpClientModule } from '@angular/common/http';
-// Firebase
-import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { AngularFireModule } from '@angular/fire/compat';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
  
 

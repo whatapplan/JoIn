@@ -15,7 +15,7 @@
       <ion-icon name="options" (click)="showFiltering()" size="large">
       </ion-icon>
     </div>
-
+    
     <div class="filterSelected">
       <ion-chip class="filter" *ngFor="let filter of filtersSelected">
         <ion-label> {{filter}} </ion-label>
@@ -23,8 +23,8 @@
       </ion-chip>
     </div>
   </div>
-
   <div class="body">
+    <ion-button (click)="openMap()">Ver en mapa</ion-button>
     <div id="outPopUp" *ngIf="noResults">
       <ion-label color="dark"> No se encontraron resultados </ion-label>
     </div>

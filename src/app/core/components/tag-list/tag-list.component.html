@@ -2,9 +2,9 @@
   <join-tag class="tag" [tagName]="item.category" isCategory="true">{{
     item.category
   }}</join-tag>
-  <div class="tags">
-    <join-tag class="tag" *ngFor="let tag of item.tags" [tagName]="tag">{{
-      tag
+  <div [ngClass]="['tags', scrollable ? 'tags__scrollable' : '']">
+    <join-tag class="tag rounded-sm" *ngFor="let tag of item.tags" [tagName]="tag">{{
+      tag 
     }}</join-tag>
   </div>
 </ng-container>

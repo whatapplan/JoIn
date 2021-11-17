@@ -38,8 +38,16 @@ export class AuthService {
   }
 
   getUsers() {
-    return this.ngFirestore.collection('usuario').valueChanges() as Observable<
-      IUser[]
-    >;
+    return this.ngFirestore
+      .collection('usuario')
+      .snapshotChanges()
+      .pipe(
+        map((res) =>
+          res.map((item: any) => ({
+            id: item.payload.doc.id,
+            ...item.payload.doc.data(),
+          }))
+        )
+      ) as Observable<IUser[]>;
   }
 }

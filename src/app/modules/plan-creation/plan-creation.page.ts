@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ModalController } from '@ionic/angular';
 import { forkJoin, of } from 'rxjs';
-import {
-  catchError, switchMap, throttleTime
-} from 'rxjs/operators';
+import { catchError, switchMap, throttleTime } from 'rxjs/operators';
 import { TagsModalComponent } from 'src/app/core/components/tags-modal/tags-modal.component';
 import { Location } from 'src/app/core/models/location';
 import { Tag } from 'src/app/core/models/tag';
+import { IUser, User } from 'src/app/core/models/usuario';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ImageHelperService } from 'src/app/core/services/helpers/image-helper.service';
 import { LocationHelperService } from 'src/app/core/services/helpers/location-helper.service';
 import { UiHelper } from 'src/app/core/services/helpers/toast.service';
@@ -30,14 +30,9 @@ export class PlanCreationPage {
   locationOptions: Location[];
   selectedLocation: Location;
   locationError: boolean;
-
-  planForm = new FormGroup({
-    title: new FormControl(null, Validators.required),
-    description: new FormControl(null, Validators.required),
-    when: new FormControl(null, Validators.required),
-    minPeople: new FormControl(2, Validators.min(2)),
-    maxPeople: new FormControl(2, Validators.min(2)),
-  });
+  plan;
+  user: IUser;
+  planForm: FormGroup;
 
   constructor(
     private ui: UiHelper,
@@ -45,8 +40,19 @@ export class PlanCreationPage {
     private crud: CrudService,
     private locationHelper: LocationHelperService,
     private imagesHelper: ImageHelperService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private auth: AuthService
+  ) {
+    this.user = this.auth.loggedUser;
+    this.planForm = new FormGroup({
+      title: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      when: new FormControl(null, Validators.required),
+      minPeople: new FormControl(2, Validators.min(2)),
+      maxPeople: new FormControl(2, Validators.min(2)),
+      createdBy: new FormControl(this.user.id),
+    });
+  }
 
   async sendForm() {
     if (this.planForm.invalid || !this.selectedLocation || !this.selectedTags) {
@@ -54,14 +60,19 @@ export class PlanCreationPage {
         "Por favor rellene todos los campos con un '*' correctamente"
       );
     } else {
-      await this.ui.presentLoading('plan-creation');
+      this.ui.presentLoading('plan-creation');
       const imagesUploadArray$ = this.imagesHelper.getImagesDownloadUrls$(
         this.images.map((img) => img.data)
       );
 
-      forkJoin(imagesUploadArray$.map((file) => file.url$))
+      forkJoin(
+        imagesUploadArray$.map((file) =>
+          file.url$.pipe(catchError(() => of({})))
+        )
+      )
         .pipe(
           switchMap((images) => {
+            console.log(this.planForm.getRawValue())
             return this.crud.uploadNewPlan({
               ...this.planForm.getRawValue(),
               images,
@@ -70,12 +81,20 @@ export class PlanCreationPage {
             });
           })
         )
-        .subscribe(async (res) => {
-          await this.ui.dismissLoading('plan-creation');
-          await this.ui
-            .presentToast('Anuncio creado satisfactoriamente! :D')
-            .then(() => this.router.navigate(['home/recommended-plans']));
-        });
+        .subscribe(
+          async () => {
+            this.ui.dismissLoading('plan-creation');
+            await this.ui
+              .presentToast('Anuncio creado satisfactoriamente! :D')
+              .then(() => this.router.navigate(['home/recommended-plans']));
+          },
+          async () => {
+            this.ui.dismissLoading('plan-creation');
+            await this.ui.presentToast(
+              'Ups! Algo ha salido mal al crear el anuncio'
+            );
+          }
+        );
     }
   }
 
@@ -141,7 +160,6 @@ export class PlanCreationPage {
   }
 
   async openTagsModal() {
-    let res;
     const modal = await this.modalController.create({
       component: TagsModalComponent,
       componentProps: { data: this.selectedTags },

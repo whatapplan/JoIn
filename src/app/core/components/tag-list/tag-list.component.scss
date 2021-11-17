@@ -9,6 +9,9 @@
   position: relative;
   overflow: auto;
   width: auto;
+  &__scrollable {
+    flex-wrap: wrap;
+  }
 }
 .tag {
   margin-top: 5px;

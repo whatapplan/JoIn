@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { FiltersPage } from 'src/app/core/components/filters/filters.page';
+import { MapModalComponent } from 'src/app/core/components/map-modal/map-modal.component';
 import { Plan } from 'src/app/core/models/plan';
 import { TagCategory } from 'src/app/core/models/tag';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
@@ -65,7 +66,7 @@ export class SearchPlanPage implements OnInit {
 
   navToDetail({ id }) {
     const route = `/plan/${id}`;
-    this.nav.navigateForward(route)
+    this.nav.navigateForward(route);
   }
 
   searchTags() {
@@ -310,6 +311,24 @@ export class SearchPlanPage implements OnInit {
 
   //   //
   // }
+
+  async openMap() {
+    const present = async (lat, lng) => {
+      const modal = await this.modalController.create({
+        component: MapModalComponent,
+        componentProps: {
+          plans: this.planesResultado,
+          coords: { lat, lng },
+        },
+      });
+      await modal.present();
+    };
+
+    navigator.geolocation.watchPosition(({ coords: { latitude, longitude } }) =>
+      present(latitude, longitude)
+    );
+  }
+
   randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
