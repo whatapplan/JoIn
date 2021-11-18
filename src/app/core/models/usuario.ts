@@ -18,6 +18,7 @@ export class User implements IUser {
   rejectedPlans: string[];
   maxPlanAge: number;
   minPlanAge: number;
+  createdPlans: string[];
 }
 
 export interface IUser {

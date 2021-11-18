@@ -11,6 +11,9 @@ import { CrudService } from 'src/app/core/services/http/crud-service.service';
 })
 export class MyPlansPage implements OnInit {
   user: User;
+  idCreados: string[];
+  planesCreados: Plan[];
+  plansCreados: Plan[];
   idsPlan: string[] = [];
   planes: Plan[] = [];
   plans: Plan[] =[];
@@ -22,9 +25,13 @@ export class MyPlansPage implements OnInit {
   }
 
   async ngOnInit() {
+
     this.idsPlan = this.user.acceptedPlans;
     this.planes = await this.crud.getMyPlans(this.idsPlan);
     this.plans = this.planes;
+    this.idCreados = this.user.createdPlans;
+    this.planesCreados = await this.crud.getMyPlans(this.idCreados);
+    this.plansCreados = this.planesCreados;
  }
 
   
