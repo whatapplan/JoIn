@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        icon="caret-back-outline"
+        defaultHref="home"
+        text="Mis Chats"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #contenedor style="display: flex;">
+  <ng-container *ngIf='chat$ | async as chat'>
+
+    <div class = 'chat'>
+      <ion-list>
+        <ion-list-header>
+          Nombre de plan
+        </ion-list-header>
+        <ion-item *ngFor='let msg of chat.messages; trackBy: trackByCreated' 
+        [ngStyle]="{'direction':isMyMsg(msg.id)}">
+          <ion-avatar slot="start">
+            <img src="../../../assets/logo/logo.png">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{msg.name}}</h2>
+            <h3>{{msg.content}}</h3>
+            <p>{{msg.createdAt | date}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      
+    </div>
+
+  </ng-container>
+</ion-content>
+
+  <ion-item class='form' slot="fixed">
+    <ion-input [(ngModel)]='newMsg' (keydown.enter) = 'submit()' placeholder="escribe un mensaje">
+    </ion-input>
+    <ion-button (click)='submit()'>Enviar</ion-button>  
+  </ion-item>

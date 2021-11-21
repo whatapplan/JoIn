@@ -37,6 +37,7 @@ export class PlanDetailPage implements OnInit {
 
   ngOnInit() {
     this.plan = this._ac.snapshot.data?.plan;
+    console.log(this.plan)
     this.updateCenter(this.plan);
   }
 

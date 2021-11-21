@@ -4,14 +4,20 @@ import { User } from 'src/app/core/models/usuario';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TagCategory } from '../../models/tag';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { combineLatest, Observable, of } from 'rxjs';
+import {arrayUnion} from 'firebase/firestore'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
   
-  constructor(private ngFirestore: AngularFirestore) {}
+  constructor(private ngFirestore: AngularFirestore, 
+    private auth: AuthService, 
+    private router : Router) {}
 
   uploadPlan(plan) {
     return this.ngFirestore.collection('planes').add(Object.assign({}, plan));
@@ -82,6 +88,75 @@ export class CrudService {
     return planes;
 
   }
+
+
+  // CHATS HANDLERS
+
+  get(chatId){
+    return this.ngFirestore
+      .collection<any>('plans')
+      .doc(chatId).collection('chat').doc('0')
+      .snapshotChanges()
+      .pipe(
+        map(doc=>{
+          return {
+            id:doc.payload.id, ...doc.payload.data()
+          };
+        })
+      );
+  }
+  async create(planId){
+    const { id } = await this.auth.loggedUser;
+    const data = {
+      id,
+      idSala : planId,
+      createdAt: Date.now(),
+      count : 0,
+      messages:[]
+    };
+    await this.ngFirestore.collection('plans').doc(planId).collection('chat').doc('0').set(data);
+    return this.router.navigate(['chat',planId]);
+  }
+  async sendMessage(chatId, content){
+    const {id} = await this.auth.loggedUser;
+    const {name} = await this.auth.loggedUser;
+    const data = {
+      id,
+      name,
+      content,
+      createdAt : Date.now()
+    };
+
+    if(id){
+      const ref = this.ngFirestore.collection('plans').doc(chatId).collection('chat').doc('0');
+      return ref.update({messages:arrayUnion(data)})
+    }
+    //  FieldValue.arrayUnion(data)
+  }
+
+  joinUsers(chat$:Observable<any>){
+    let chat;
+    const joinKeys = {};
+    return chat$.pipe(
+      switchMap(c => {
+        chat = c;
+        const uids = Array.from (new Set(c.messages.map(v=> v.id)));
+        const userDocs = uids.map(u =>
+          this.ngFirestore.doc(`usuario/${u}`).valueChanges()
+        );
+        return userDocs.length ? combineLatest(userDocs) : of([]);
+      }),
+      map(arr => {
+        arr.forEach(v => (joinKeys[(<any>v).id] = v));
+        chat.messages = chat.messages.map(v=> {
+          return {...v, user:joinKeys[v.id]};
+        })
+        return chat;
+      }))
+    }
+
+
+  // CHATS HANDLERS
 
   getRecommendedPlans(categories: string[]) {
     // let fetchChats = async user_id => {

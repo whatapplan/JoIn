@@ -11,6 +11,7 @@ import { UiHelper } from './helpers/toast.service';
 })
 export class AuthService {
   setLoggedUser(user: IUser) {
+    this.loginFireauth(user.email,user.password);
     localStorage.setItem('loggedUser', JSON.stringify(user));
     this.ui.presentToast('Bienvenido ' + user.name + ' :)');
   }

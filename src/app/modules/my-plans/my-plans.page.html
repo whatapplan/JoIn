@@ -1,9 +1,26 @@
-<ion-header>
+<!-- <ion-header>
   
+  
+  <ion-toolbar>
+      <div class="logoContainer">
+        <img class="logo" src="../../../assets/logo/logo.png" />
+      </div>
+      <ion-buttons slot="end">
+        <ion-button>Chats</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+ 
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
     <div class="logoContainer">
       <img class="logo" src="../../../assets/logo/logo.png" />
     </div>
- 
+    <ion-buttons slot="end">
+        <ion-icon (click)='goToMyChats()' size='large' name='chatbubble-ellipses'></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

@@ -63,11 +63,21 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'my-chats',
+        loadChildren: () => import('./modules/my-chats/my-chats.module').then( m => m.MyChatsPageModule)
+      },
+      {
+        path: 'chat/:id',
+        loadChildren: () => import('./modules/chat/chat.module').then( m => m.ChatPageModule)
+      },
+      {
         path: '**',
         redirectTo: 'home'
       }
     ],
   },
+
+
 ];
 
 @NgModule({

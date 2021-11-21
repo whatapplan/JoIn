@@ -8,6 +8,7 @@ import { Location } from "./location";
 })
 export class Plan {
     id?: string;
+    description:string;
     images: string[];
     location: Location;
     minPeople: number;

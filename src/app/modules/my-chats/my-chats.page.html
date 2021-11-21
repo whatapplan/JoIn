@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        icon="caret-back-outline"
+        defaultHref="home"
+        text="Mis Planes"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor='let chat of planes'>
+    <ion-item (click)='goToChat(chat.id)'> 
+      <h2>
+        {{chat.title}}
+      </h2>
+      <h2>
+        {{chat.when | date}}
+      </h2>
+    </ion-item>
+  </div>
+  
+</ion-content>
