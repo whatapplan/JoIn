@@ -1,7 +1,8 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit, ViewChild, AfterViewInit,QueryList,ElementRef } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, from} from 'rxjs';
+import {filter} from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 
@@ -20,6 +21,7 @@ export class ChatPage implements OnInit, AfterViewInit {
   newMsg : string;
   chat_key :string;
   user_id:string;
+  msg_days :string[] = []
 
   constructor(public cs :CrudService, private route : ActivatedRoute, private auth : AuthService) {}
 
@@ -30,7 +32,16 @@ export class ChatPage implements OnInit, AfterViewInit {
     const source = this.cs.get(chatId);
     this.chat$ = this.cs.joinUsers(source);
     this.user_id = this.auth.loggedUser.id
-  }
+    this.chat$.subscribe(val =>{
+      let msg = val.messages
+      msg.forEach(el => {
+        let date = new Date(el.createdAt)
+        console.log(date.toDateString())
+      });
+      // let dates = msg.pipe(filter((w:any)=>w.createdAt))
+      console.log(msg)
+    })
+  } 
   
   ngAfterViewInit(): void {
     setTimeout(()=>{this.cont.scrollToBottom()},1000)
