@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Gesture, GestureController, Platform } from '@ionic/angular';
-import { User } from 'src/app/core/models/usuario';
+import { IUser, User } from 'src/app/core/models/usuario';
 import { Plan } from '../../core/models/plan';
 import { CrudService } from '../../core/services/http/crud-service.service';
 
@@ -143,7 +143,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   
   añadirmeAPlan(id: string) {
     this.user.acceptedPlans.push(id);
-    this.plan.participants.push(this.user);
+    this.plan.participants.push(this.user.id);
     this.crudService.añadirPlanAUsuario(this.user);
     this.crudService.añadirUsuarioAPlan(this.plan);
   }

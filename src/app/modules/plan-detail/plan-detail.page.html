@@ -9,7 +9,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content no-padding fullscreen class="bg-white">
+<ion-content class="bg-white">
   <div
     class="content-header h-96 pb-22 p-10 flex flex-col justify-end bg-green-clear"
   >
@@ -52,7 +52,7 @@
           </div>
         </ng-container>
       </div>
-      <div class="ml-5 underline">{{plan.participants?.length - 1}} asistentes más</div>
+      <div class="ml-5 underline">{{plan.participants?.length}} asistentes más</div>
     </div>
     <join-tag-list [tags]="plan.tags"></join-tag-list>
     <p class="text-pink flex"><img class="mr-4" src="../../../../assets/icon/ubi.svg"> <span *ngIf="plan.location.city">{{plan.location.city}},&nbsp;</span> <span *ngIf="plan.location.country"> {{plan.location.country | country: 'es' }}</span></p>
@@ -68,4 +68,8 @@
   >
     <div class="w-full h-full" *ngIf="layer" [leafletLayer]="layer"></div>
   </div>
+  <button class="w-full" (click)="joinPlan()">
+  <h2 class="py-2 flex items-center justify-center ibm-font text-white bg-pink">Unirme</h2>
+  <ion-ripple-effect></ion-ripple-effect>
+  </button>
 </ion-content>
