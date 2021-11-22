@@ -52,7 +52,7 @@
 
     <ion-label class="titulo2" position="stacked">Planes creados </ion-label> 
     <ion-slides [options]="slideOpt" class="Latarjet2">
-      <ion-slide *ngFor="let plan of plans" >
+      <ion-slide *ngFor="let plan of plansCreados" >
         <ion-card (click)="openPlan()">
           <ion-img class="image" src="../../../assets/image3.png"></ion-img>
           <ion-card-content class="tituloPlan">

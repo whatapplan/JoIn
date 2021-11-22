@@ -33,4 +33,5 @@ export interface IUser {
   acceptedPlans?: string[];
   favCategories?: Tag[];
   rejectedPlans?: string[];
+  createdPlans?: string[];
 }
