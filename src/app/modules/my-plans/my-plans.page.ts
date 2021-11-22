@@ -63,6 +63,20 @@ export class MyPlansPage implements OnInit {
     })
    }
  }
+ async openPlan(){
+      if(this.planes.length!=0){
+
+        return this.router.navigate(['plan-detail'],{
+          queryParams:{list:JSON.stringify(this.plans)}});
+
+
+
+}
+
+
+
+
+ }
 
  
 
