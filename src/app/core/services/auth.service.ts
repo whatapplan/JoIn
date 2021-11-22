@@ -44,11 +44,21 @@ export class AuthService {
       .snapshotChanges()
       .pipe(
         map((res) =>
-          res.map((item: any) => ({
-            id: item.payload.doc.id,
-            ...item.payload.doc.data(),
+          res.map((planItem: any) => ({
+            id: planItem.payload.doc.id,
+            ...planItem.payload.doc.data(),
           }))
         )
       ) as Observable<IUser[]>;
+  }
+
+  getUserById(id: string) {
+    return this.ngFirestore
+    .collection('usuario')
+    .doc(id)
+    .get()
+    .pipe(
+      map((data: any) => data.data()),
+    );
   }
 }

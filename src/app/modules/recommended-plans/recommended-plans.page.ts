@@ -108,7 +108,6 @@ export class RecommendedPlansPage implements AfterViewInit {
             // setTimeout(() =>{
             //   this.actualizarPlanInfo(planTitle,planCreator,planLocation,planDetail);
             // },1000);
-            
           }else{
             door.style.transform = `rotateY(${310}deg)`;
           }

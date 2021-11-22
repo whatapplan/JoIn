@@ -8,6 +8,9 @@ export class CountryPipe implements PipeTransform {
   langsMap = {
     'ESP': {
       'es': 'España'
+    },
+    'USA':{
+      'es': 'Estados unidos'
     }
   }
   

@@ -50,7 +50,7 @@ export class PlanDetailPage implements OnInit {
     const greenIcon = icon({
       //add this new icon
       iconUrl:
-        'https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/000000/external-location-ux-and-ui-flatart-icons-flat-flatarticons.png',
+        './../../../assets/icon/ubi.svg',
     });
 
     this.center = latLng(coordinates[0], coordinates[1]);

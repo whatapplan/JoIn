@@ -17,6 +17,7 @@ export class Plan {
     title: string;
     when: string;
     createdBy: string;
+    creationUser: User;
     time?: string;
     participants: User[];
 }

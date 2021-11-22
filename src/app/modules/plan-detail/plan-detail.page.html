@@ -9,13 +9,57 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content no-padding fullscreen>
-  <div class="content-header h-96 p-10 flex flex-col justify-end">
-    <h1><span class="ibm-font">{{firstTitleWord}}<span>{{plan.title}} a las {{ plan.when | date:'HH:mm' }}h</h1>
-  </div>
-  <join-date-tag [date]="plan.when"></join-date-tag>
+<ion-content no-padding fullscreen class="bg-white">
   <div
-    class="map h-96 w-full relative"
+    class="content-header h-96 pb-22 p-10 flex flex-col justify-end bg-green-clear"
+  >
+    <h1 class="mb-6">
+      <span class="ibm-font">{{firstTitleWord | titlecase}} </span
+      >{{plan.title}} a las {{ plan.when | date:'HH:mm' }}h
+    </h1>
+    <div class="flex">
+      <img
+        *ngIf="plan.creationUser?.image"
+        [src]="plan.creationUser?.image"
+        class="w-12 h-12 mr-2 rounded-md"
+      />
+      <div class="text-dark w-8/12">
+        ¡Únete a {{plan.creationUser?.name}} el {{plan.when | date: 'd'}}
+        {{plan.when | date: 'LLLL'}} {{plan.when | date: 'yyyy'}} !
+      </div>
+    </div>
+  </div>
+  <div class="p-4 px-10">
+  <div class="grid gap-8">
+    <p>{{plan.description}}</p>
+    <div class="flex items-center pl-9">
+      <div *ngFor="let participant of plan.participants; index as i">
+        <ng-container *ngLet="participant | userRetrieving | async as user">
+          <div class="-ml-8 first:-ml-0 relative h-10 w-9 rounded-md">
+            <ng-container *ngIf="user">
+              <img
+                class="
+                  h-full
+                  w-full
+                  object-cover object-center
+                  rounded-md
+                  relative
+                "
+                [src]="user.image + '?a' + ('&i').repeat(i)"
+                [alt]="user.name"
+              />
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+      <div class="ml-5 underline">{{plan.participants?.length - 1}} asistentes más</div>
+    </div>
+    <join-tag-list [tags]="plan.tags"></join-tag-list>
+    <p class="text-pink flex"><img class="mr-4" src="../../../../assets/icon/ubi.svg"> <span *ngIf="plan.location.city">{{plan.location.city}},&nbsp;</span> <span *ngIf="plan.location.country"> {{plan.location.country | country: 'es' }}</span></p>
+  </div>
+  </div>
+  <div
+    class="map h-96 mt-2 w-full relative"
     leaflet
     *ngIf="center"
     [leafletOptions]="options"

@@ -72,7 +72,6 @@ export class PlanCreationPage {
       )
         .pipe(
           switchMap((images) => {
-            console.log(this.planForm.getRawValue())
             return this.crud.uploadNewPlan({
               ...this.planForm.getRawValue(),
               images,
