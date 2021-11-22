@@ -1,39 +1,66 @@
   <ion-content >
+
     <div class="container">
+
       <div #door class="door"></div>
+
       <div class="logoContainer">
         <img class="logo" src="../../../assets/logo/logo.png" />
       </div>
-      <div class="planInfo">
-        <p class="planCreatorExample">Únete a Javi</p>
-        <p class="planCreator"></p>
 
+      <div class="planInfo">
+    
         <h1 class="planTitle"></h1>
 
+        <div class="creatorInfo">
+          <img class="planCreatorProfilePic"  src="" alt=""><p class="planCreatorExample">Únete a Javi</p>
+          <p class="planCreator"></p>
+          <div class="date"></div>
+        </div>
+        
         <div class="locationContainer">
           <ion-icon name="location-outline"></ion-icon>
           <h4 class="planLocation"></h4>
         </div>
 
-        <div class="ilustration"></div>
-        <div class="dateBadge"></div>
-        <join-tag-list [tags]="plan.tags"></join-tag-list>
-       
-        <div class="subCategories" *ngFor="let tag of plan.tags">
-          <div *ngIf="plan.tags[0]== tag" class="chip-category">
-            <ion-label>{{tag.category}}</ion-label>
-          </div>
+        <div class="asistants">
+          <p class="assistantsLink">EJEMPLO: 10 asistentes mas</p>
+        </div>
 
-          <div class="chip-name">
+        <!-- <join-tag-list [tags]="plan.tags"></join-tag-list> -->
+       <div class="subCategoriesContainer">
+
+        <div class="subCategories" *ngFor="let tag of plan.tags">
+          <!-- <div *ngIf="plan.tags[0]== tag" class="chip-category">
+            <ion-label>{{tag.category}}</ion-label>
+          </div> -->
+
+          <div class="chip">
             <ion-label>{{tag.name}}</ion-label>
           </div>
+
+          <div class="moreInfo-icon">
+
+          </div>
         </div>
 
-        <div class="planDetail">
-          <!-- <ion-icon>INFO</ion-icon> -->
-        </div>
+       </div>
+        
+
       </div>
       
+      <div class="swipeInstructions">
+        <div class="iconLeft">
+
+        </div>
+        <p class="intructionsText"> <strong><<</strong> SIGUIENTE PLAN  --  ACEPTAR PLAN <strong>>></strong> </p>
+
+        <div class="iconRight">
+
+        </div>
+      </div>
+
     </div>
+
   </ion-content>
 
