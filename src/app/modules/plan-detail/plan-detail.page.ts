@@ -19,6 +19,7 @@ import { LocationService } from 'src/app/core/services/http/location.service';
 export class PlanDetailPage implements OnInit {
   layer;
   center: LatLng;
+  firstTitleWord: string;
   options: MapOptions = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -37,7 +38,11 @@ export class PlanDetailPage implements OnInit {
 
   ngOnInit() {
     this.plan = this._ac.snapshot.data?.plan;
-    console.log(this.plan)
+    this.firstTitleWord = this.plan.title.split(' ')[0];
+    this.plan = {
+      ...this.plan, 
+      title: this.plan.title.split(' ').slice(1).join(' ')
+    }
     this.updateCenter(this.plan);
   }
 

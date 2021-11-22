@@ -11,10 +11,7 @@
 </ion-header>
 <ion-content no-padding fullscreen>
   <div class="content-header h-96 p-10 flex flex-col justify-end">
-    <h1>{{plan.title}} a las {{ plan.when | date:'HH:mm' }}h</h1>
-    <div class="user w-16 h-16 bg-red-200 rounded-lg mt-4">
-      
-    </div>
+    <h1><span class="ibm-font">{{firstTitleWord}}<span>{{plan.title}} a las {{ plan.when | date:'HH:mm' }}h</h1>
   </div>
   <join-date-tag [date]="plan.when"></join-date-tag>
   <div
