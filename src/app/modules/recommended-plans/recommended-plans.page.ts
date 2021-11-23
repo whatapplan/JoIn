@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Gesture, GestureController, Platform } from '@ionic/angular';
 import { IUser, User } from 'src/app/core/models/usuario';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { Plan } from '../../core/models/plan';
 import { CrudService } from '../../core/services/http/crud-service.service';
 
@@ -21,14 +22,14 @@ export class RecommendedPlansPage implements AfterViewInit {
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
-  constructor(private crudService : CrudService, private gestureCtrl : GestureController, private platform: Platform) { 
-    
+  constructor(private crudService : CrudService, private gestureCtrl : GestureController, private platform: Platform, private auth: AuthService) { 
+    this.user = this.auth.loggedUser;
   }
   
   ngOnInit() {}
   //Implementa el gesto y recibe los planes Reocmendados
   async ngAfterViewInit(){
-    this.añadirUser();
+    //this.añadirUser();
     const planInfo = document.querySelector(".planInfo") as HTMLElement;
     const planTitle = document.querySelector(".planTitle") as HTMLElement;
     const planCreator = document.querySelector(".planCreator") as HTMLElement;

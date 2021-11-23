@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { Plan } from 'src/app/core/models/plan';
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -25,7 +25,8 @@ export class MyPlansPage implements OnInit {
   constructor(private auth: AuthService,
     private crud: CrudService,
     private alertController:AlertController,
-    private router : Router) { 
+    private router : Router,
+    private nav: NavController) { 
   this.user = this.auth.loggedUser;
   }
 
@@ -36,7 +37,7 @@ export class MyPlansPage implements OnInit {
     this.planes = await this.crud.getMyPlans(this.idsPlan);
     this.plans = this.planes;
     this.idCreados = this.user.createdPlans;
-    this.planesCreados = await this.crud.getMyPlans(this.idCreados);
+    this.planesCreados = await this.crud.getPlansCreatedBy(this.user.id);
     this.plansCreados = this.planesCreados;
  }
 
@@ -63,20 +64,15 @@ export class MyPlansPage implements OnInit {
     })
    }
  }
- async openPlan(){
-      if(this.plans.length!=0){
+ async openPlan({id}){
+      // if(this.plans.length!=0){
 
-        return this.router.navigate(['plan-detail'],{
-          queryParams:{list:JSON.stringify(this.plans)}});
-
-
-
-        }
-
-      }
-
- 
-
-  
+      //   return this.router.navigate(['plan-detail'],{
+      //     queryParams:{list:JSON.stringify(this.plans)}});
+      //   }
+        const route = `/plan/${id}`;
+        this.nav.navigateForward(route);
+      
+}
 
 }
