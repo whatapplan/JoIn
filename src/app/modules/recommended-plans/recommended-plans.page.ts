@@ -19,6 +19,8 @@ export class RecommendedPlansPage implements AfterViewInit {
   planNumber: number = 0;
   plan: Plan= new Plan();
   user: User= new User();
+  userPlanC: User[] =[];
+  userPlan: User;
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
@@ -133,9 +135,13 @@ export class RecommendedPlansPage implements AfterViewInit {
     planCreator.innerHTML = this.plan.createdBy;
     planLocation.innerHTML = this.plan.location.city;
   }
-  setPlan(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
+  async setPlan(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
    if(this.recommendedPlans.length > this.planNumber){
     this.plan = this.recommendedPlans[this.planNumber];
+    this.userPlanC = (await this.crudService.getUserById(this.plan.createdBy));
+    this.userPlan =  this.userPlanC[0];
+    this.plan.creationUser = this.userPlan;
+    console.log(this.userPlan);
     this.actualizarPlanInfo(planTitle,planLocation,planCreator,planDetail);
     this.planNumber++;
    } 

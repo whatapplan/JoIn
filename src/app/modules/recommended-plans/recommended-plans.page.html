@@ -13,7 +13,8 @@
         <h1 class="planTitle"></h1>
 
         <div class="creatorInfo">
-          <img class="planCreatorProfilePic"  src="" alt=""><p class="planCreatorExample">Únete a Javi</p>
+          <img class="w-12 h-12 mr-2 rounded-md"  *ngIf="plan.creationUser?.image"
+          [src]="plan.creationUser?.image"><p class="planCreatorExample">Únete a Javi</p>
           <p class="planCreator"></p>
           <div class="date"></div>
         </div>

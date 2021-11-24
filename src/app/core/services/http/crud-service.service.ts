@@ -61,7 +61,7 @@ export class CrudService {
     const plansRef = collection(this.ngFirestore.firestore, 'plans');
     const q = query(plansRef);
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(async(doc) => {
       // doc.data() is never undefined for query doc snapshots
       let plan = {
         id: doc.id,
@@ -273,5 +273,20 @@ export class CrudService {
       })
       .snapshotChanges();
 
+  }
+
+  async getUserById(id: string){
+    const usuarios: User[] = [];
+    const usuariosRef = this.ngFirestore.collection('usuario');
+    let users =  usuariosRef.doc(id).get();
+    await users.forEach(async (doc) => {
+      let user ={
+        id: doc.id,
+        ...(doc.data() as User)
+      }
+      console.log(user);
+      usuarios.push(user);
+    })
+    return usuarios;
   }
 }
