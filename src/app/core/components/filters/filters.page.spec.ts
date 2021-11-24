@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { CrudService } from '../../services/http/crud-service.service';
 
 import { FiltersPage } from './filters.page';
 

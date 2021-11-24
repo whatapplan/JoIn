@@ -23,7 +23,7 @@ export class ChatPage implements OnInit, AfterViewInit {
   user_id:string;
   msg_days :string[] = []
 
-  constructor(public cs :CrudService, private route : ActivatedRoute, private auth : AuthService) {}
+  constructor(private cs :CrudService, private route : ActivatedRoute, private auth : AuthService) {}
 
   
   ngOnInit() {
@@ -36,15 +36,18 @@ export class ChatPage implements OnInit, AfterViewInit {
       let msg = val.messages
       msg.forEach(el => {
         let date = new Date(el.createdAt)
-        console.log(date.toDateString())
+        if(!this.msg_days.includes(date.toDateString())){
+          this.msg_days.push(date.toDateString())
+        }
       });
       // let dates = msg.pipe(filter((w:any)=>w.createdAt))
       console.log(msg)
+      console.log(this.msg_days)
     })
   } 
   
   ngAfterViewInit(): void {
-    setTimeout(()=>{this.cont.scrollToBottom()},1000)
+    setTimeout(()=>{this.cont.scrollToBottom()},100)
   }
   
   isMyMsg(id){
