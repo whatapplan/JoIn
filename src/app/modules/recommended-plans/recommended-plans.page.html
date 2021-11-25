@@ -10,22 +10,25 @@
 
       <div class="planInfo">
     
-        <h1 class="planTitle"></h1>
+        <h1 class="planTitle">{{plan.title}}</h1>
 
         <div class="creatorInfo">
-          <img class="w-12 h-12 mr-2 rounded-md"  *ngIf="plan.creationUser?.image"
-          [src]="plan.creationUser?.image"><p class="planCreatorExample">Únete a Javi</p>
-          <p class="planCreator"></p>
-          <div class="date"></div>
+          <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngIf="plan.creationUser?.image"
+          [src]="plan.creationUser?.image">
+          <div class="creator-LocationContainer">
+            <p class="planCreator">!Únete a <strong>{{plan.createdBy}}</strong>!</p>
+            <p class="location">{{calle}}</p>
+          </div>
         </div>
-        
-        <div class="locationContainer">
-          <ion-icon name="location-outline"></ion-icon>
-          <h4 class="planLocation"></h4>
+
+        <div class="planDateContainer">
+          <p class="date">{{plan.time}}</p>
         </div>
 
         <div class="asistants">
-          <p class="assistantsLink">EJEMPLO: 10 asistentes mas</p>
+          <!-- <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngIf="plan.creationUser?.image"
+          [src]="plan.creationUser?.image"> -->
+          <p class="assistantsLink">EJEMPLO: <strong>{{assistantsNumber}}</strong> asistentes más</p>
         </div>
 
         <!-- <join-tag-list [tags]="plan.tags"></join-tag-list> -->
@@ -59,11 +62,12 @@
         <div class="iconLeft">
 
         </div>
-        <p class="intructionsText"> <strong><<</strong> SIGUIENTE PLAN  --  ACEPTAR PLAN <strong>>></strong> </p>
+        <p class="intructionsText"> <strong> << RECHAZAR PLAN  --  ACEPTAR PLAN >></strong> </p>
 
         <div class="iconRight">
 
         </div>
+
       </div>
 
     </div>
