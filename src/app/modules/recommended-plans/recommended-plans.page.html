@@ -29,24 +29,29 @@
         </div>
 
         <!-- <join-tag-list [tags]="plan.tags"></join-tag-list> -->
-       <div class="subCategoriesContainer">
+        <div class="subCategoriesContainer">
 
-        <div class="subCategories" *ngFor="let tag of plan.tags">
-          <!-- <div *ngIf="plan.tags[0]== tag" class="chip-category">
-            <ion-label>{{tag.category}}</ion-label>
-          </div> -->
+          <div class="subCategories" *ngFor="let tag of plan.tags">
+            <!-- <div *ngIf="plan.tags[0]== tag" class="chip-category">
+              <ion-label>{{tag.category}}</ion-label>
+            </div> -->
 
-          <div class="chip">
-            <ion-label>{{tag.name}}</ion-label>
+            <div class="chip">
+              <ion-label>{{tag.name}}</ion-label>
+            </div>
+
+            
           </div>
 
-          <div class="moreInfo-icon">
-
-          </div>
         </div>
 
-       </div>
-        
+      </div>
+
+      <div class="moreInfoContainer">
+
+        <div class="moreInfo-icon">
+
+        </div>
 
       </div>
       

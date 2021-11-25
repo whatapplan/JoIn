@@ -26,7 +26,7 @@
         // left: calc(50% - 32px);
         left:4%;
         .logo{
-            margin-top: 5%;
+            margin-top: 8%;
             width: 64px;
             height: 37px;
         }
@@ -62,10 +62,11 @@
             font-weight: 700;
             font-size: 42px;
             margin-bottom:20px;
+            height: 120px;
         }
 
         .creatorInfo{
-    
+            height: 100px;
             .planCreatorProfilePic{
                 
             }
@@ -86,6 +87,7 @@
             .planLocation{
                 margin-left:4px;
                 margin-bottom: 7px;
+                height: 40px;
             }
     
         }
@@ -93,6 +95,8 @@
         .assistants{
 
             .assistantsLink{
+
+                height:50px;
 
             }
 
@@ -116,43 +120,59 @@
                     background-color: #FF4193;
     
                 }
-    
+                
+            
+
                 .chip{
+
+                    margin-top:10px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 90px;
-                    height: auto;
-                    padding-left: 4px;
-                    padding-right: 4px;
-                    padding-bottom: 2px;
+                    width: auto;
+                    height: 30px;
+                    padding-left: 7px;
+                    padding-right: 7px;
+                    padding-bottom: 4px;
+                    padding-top: 2px;
                     color: black;
-                    border: 1px solid black;
-                    border-radius: 4px;
+                    border: 2px solid black;
+                    border-radius: 5px;
                     font-size: 14px;
                     // display: flex;
                     // justify-content: space-between;
     
                 }
     
-                .moreInfo-icon{
-    
-                }
+                
     
             }
 
         }
-
-        .subCategoriesContainer::after{
-
-            content: url('../../../assets/iconInfo.png');
-            margin-top: 4px;
-
-        }
-        
-        
         
     }
+
+    .moreInfoContainer{
+
+        position:absolute;
+        bottom: 10%;
+        left: calc(50% - 34px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .moreInfo-icon{
+    
+        }
+
+        .moreInfo-icon:after{
+
+            content: url('../../../assets/iconInfo.png');
+
+        }
+
+    }
+    
 
     .swipeInstructions{
         width: 100%;
