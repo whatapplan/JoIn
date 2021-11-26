@@ -16,8 +16,8 @@
           <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngIf="plan.creationUser?.image"
           [src]="plan.creationUser?.image">
           <div class="creator-LocationContainer">
-            <p class="planCreator">!Únete a <strong>{{plan.createdBy}}</strong>!</p>
-            <p class="location">{{calle}}</p>
+            <p class="planCreator">!Únete a <strong>{{planUserName}}</strong>!</p>
+            <p class="location"><strong>{{calle}}</strong></p>
           </div>
         </div>
 
@@ -25,22 +25,18 @@
           <p class="date">{{plan.time}}</p>
         </div>
 
-        <div class="asistants">
+        <div class="assistants">
           <!-- <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngIf="plan.creationUser?.image"
           [src]="plan.creationUser?.image"> -->
           <p class="assistantsLink">EJEMPLO: <strong>{{assistantsNumber}}</strong> asistentes más</p>
         </div>
 
-        <!-- <join-tag-list [tags]="plan.tags"></join-tag-list> -->
         <div class="subCategoriesContainer">
 
           <div class="subCategories" *ngFor="let tag of plan.tags">
-            <!-- <div *ngIf="plan.tags[0]== tag" class="chip-category">
-              <ion-label>{{tag.category}}</ion-label>
-            </div> -->
-
+          
             <div class="chip">
-              <ion-label>{{tag.name}}</ion-label>
+              <ion-label><strong>{{tag.name}}</strong></ion-label>
             </div>
 
             
