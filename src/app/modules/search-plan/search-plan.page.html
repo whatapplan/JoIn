@@ -52,7 +52,7 @@
           <ion-label class="block" color="warning"
             >{{plan.createdBy}}</ion-label
           >
-          <ion-label class="block" color="primary">{{plan.when}}</ion-label>
+          <ion-label class="block test_fecha" color="primary">{{plan.when | date :'medium'}}</ion-label>
         </ion-card-header>
         <br />
       </ion-card>

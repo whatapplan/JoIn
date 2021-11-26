@@ -39,6 +39,7 @@
       </ion-chip>
       <ion-list *ngIf="locationOptions?.length">
         <ion-item
+          class='test'
           (click)="selectLocation(loc)"
           *ngFor="let loc of locationOptions"
         >
@@ -113,7 +114,7 @@
           ></ion-icon>
         </ion-chip>
       </div>
-      <ion-button (click)="openTagsModal()" size="small" color="light">
+      <ion-button class='test_b' (click)="openTagsModal()" size="small" color="light">
         Añadir categoría
       </ion-button>
       <p class="font-bold">Personas*</p>

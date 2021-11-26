@@ -98,13 +98,39 @@ export class SearchPlanPage implements OnInit {
     }
     return this.planes.filter((plan) => {
       let dplan = new Date(plan.when);
+      console.log(dplan)
+      console.log(s_date)
       dplan.setHours(0, 0, 0, 0);
       return +dplan == +s_date;
     });
   }
   searchTime() {
+    let selected: string = this.filters.time;
+    let s_time_first = new Date();
+    let s_time_last = new Date();
+    if(selected.includes('Mañana')){
+      s_time_first.setHours(6,0,0)
+      s_time_last.setHours(14,0,0)
+    }else if(selected.includes('Tarde')){
+      s_time_first.setHours(14,0,0)
+      s_time_last.setHours(21,0,0)
+    }else{
+      s_time_first.setHours(21,0,0)
+      s_time_last.setHours(6,0,0)
+      s_time_last.setDate(s_time_last.getDate()+1)
+    }
     return this.planes.filter(
-      (plan) => plan.time == this.filters.time.toString()
+      (plan) => {
+        let dplan = new Date(plan.when);
+        let hh = dplan.getHours()
+        let mm = dplan.getMinutes()
+        let ftime = new Date()
+        ftime.setHours(hh,mm,0)
+        console.log(ftime)
+        console.log(s_time_first)
+        console.log(s_time_last)
+        return +ftime >= +s_time_first && +ftime <= +s_time_last
+      }
     );
   }
 

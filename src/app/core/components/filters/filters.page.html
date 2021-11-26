@@ -44,7 +44,7 @@
 
         <div class='intereses' style='background:#6370ffb8;'>
           <ion-chip #chips *ngFor='let cat of tagsSelected; index as i' (click)='select(i,cat, $event)'>
-            <ion-label >
+            <ion-label class='t-tags'>
               {{cat}}
             </ion-label>
           </ion-chip>
@@ -52,10 +52,10 @@
     <ion-item >
       <ion-list-header style='display: inherit;'>Día</ion-list-header>
       <ion-select #daySelected value='todos' interface="popover" (ionChange)='handleDay($event)'>
-        <ion-select-option value="todos">Todos</ion-select-option>
-        <ion-select-option value="Hoy">Hoy</ion-select-option>
-        <ion-select-option value="Mañana">Mañana</ion-select-option>
-        <ion-select-option  #dateText value="la-date"> {{chooseDate}}</ion-select-option>
+        <ion-select-option class='todos' value="todos">Todos</ion-select-option>
+        <ion-select-option class='Hoy' value="Hoy">Hoy</ion-select-option>
+        <ion-select-option class='Mañana' value="Mañana">Mañana</ion-select-option>
+        <ion-select-option class='elige' #dateText value="la-date"> {{chooseDate}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item  >
@@ -64,7 +64,7 @@
         <ion-select-option value="toeldia">Todo el día</ion-select-option>
         <ion-select-option value="Mañana (6h-14h)">Mañana (6h - 14h)</ion-select-option>
         <ion-select-option value="Tarde (14h-21h)">Tarde (14h - 21h)</ion-select-option>
-        <ion-select-option value="Noche (21h-6h)">Noche (21h - 6h)</ion-select-option>
+        <ion-select-option class='test_noche' value="Noche (21h-6h)">Noche (21h - 6h)</ion-select-option>
       </ion-select>
     </ion-item>
     <!-- OJOOO PONER min = {{minDate}} -->
