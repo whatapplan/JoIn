@@ -13,7 +13,9 @@ import { CrudService } from '../../core/services/http/crud-service.service';
 export class RecommendedPlansPage implements AfterViewInit {
   @ViewChild('door')
   private door: ElementRef;
-
+  assistantsNumber : number = 0;
+  calle:string = "";
+  ciudad:string = "";
   recommendedPlans : Plan[] = [];
   plans : Plan[] = [];
   planNumber: number = 0;
@@ -125,15 +127,13 @@ export class RecommendedPlansPage implements AfterViewInit {
     let respuesta = 0;
     if(cadena != ""){
     respuesta = parseInt(regex.exec(cadena)[1]);
-    console.log(respuesta);
+    // console.log(respuesta);
     }
     return respuesta;
   }
 
   actualizarPlanInfo(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement){
-    planTitle.innerHTML = this.plan.title;
-    planCreator.innerHTML = this.plan.createdBy;
-    planLocation.innerHTML = this.plan.location.city;
+    
   }
   async setPlan(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
    if(this.recommendedPlans.length > this.planNumber){
@@ -141,7 +141,21 @@ export class RecommendedPlansPage implements AfterViewInit {
     this.userPlanC = (await this.crudService.getUserById(this.plan.createdBy));
     this.userPlan =  this.userPlanC[0];
     this.plan.creationUser = this.userPlan;
-    console.log(this.userPlan);
+    var stringArray = this.plan.createdBy.split(/(\s+)/);
+    this.plan.createdBy = stringArray[0];
+    this.calle = this.plan.location.street;
+    this.ciudad = this.plan.location.city;
+    this.assistantsNumber = this.plan.participants.length;
+
+    // planTitle.innerHTML = this.plan.title;
+    // planCreator.innerHTML = this.plan.createdBy;
+    // planLocation.innerHTML = this.plan.location.city;
+
+    // console.log( this.plan.participants.length);
+    // console.log("hola212131")
+    // console.log(this.plan.time)
+    // console.log(this.plan.location.city);
+
     this.actualizarPlanInfo(planTitle,planLocation,planCreator,planDetail);
     this.planNumber++;
    } 
