@@ -1,8 +1,9 @@
 describe('Testing search page', () => {
+  
   before(()=>{
     cy.visit('/')
     cy.contains('edu@gmail.com').click();
-    cy.get('#tab-button-search-plan').click();
+    cy.visit('/home/search-plan')
   })
   beforeEach(()=>{
   })

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPlan, Plan } from 'src/app/core/models/plan';
 import { IUser, User } from 'src/app/core/models/usuario';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TagCategory } from '../../models/tag';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -32,7 +32,9 @@ export class CrudService {
   }
 
   getPlans() {
-    return this.ngFirestore.collection('plans').snapshotChanges();
+    return this.ngFirestore
+    .collection('plans', ref=>ref.orderBy('when','desc'))
+    .snapshotChanges();
   }
 
   getPlanById(id: string) {

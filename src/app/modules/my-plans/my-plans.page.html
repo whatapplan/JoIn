@@ -34,10 +34,10 @@
     <ion-label class="titulo1" position="stacked">Planes aceptados </ion-label> 
 
     <ion-slides [options]="slideOpt">
-      <ion-slide *ngFor="let plan of plans">
+      <ion-slide *ngFor="let plan of plans;trackBy:identify">
         <ion-card class="Latarjet" (click)="openPlan(plan)">
           <ion-img class="image" src="../../../assets/image3.png"></ion-img>
-          <ion-card-content>
+          <ion-card-content class='test_tit'>
             {{plan.title}}
           </ion-card-content>
        </ion-card>

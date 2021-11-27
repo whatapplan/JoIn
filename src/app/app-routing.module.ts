@@ -14,13 +14,6 @@ const routes: Routes = [
           import('./home/home.module').then((m) => m.HomePageModule),
       },
       {
-        path: 'plan-preview',
-        loadChildren: () =>
-          import('./core/components/plan-preview/plan-preview.module').then(
-            (m) => m.PlanPreviewPageModule
-          ),
-      },
-      {
         path: 'iniciar-sesion',
         loadChildren: () =>
           import('./modules/iniciar-sesion/iniciar-sesion.module').then(

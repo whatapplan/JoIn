@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {PlanPreviewPageModule} from '../../core/components/plan-preview/plan-preview.module'
 import { IonicModule } from '@ionic/angular';
 
 import { RecommendedPlansPageRoutingModule } from './recommended-plans-routing.module';
@@ -13,7 +12,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     SharedModule,
     RecommendedPlansPageRoutingModule,
-    PlanPreviewPageModule,
   ],
   declarations: [RecommendedPlansPage]
 })

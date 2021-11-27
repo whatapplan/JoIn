@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate {
     });
     modal.onWillDismiss().then(({ data }) => {
       if (data) {
-        this.auth.setLoggedUser(data);
+        // this.auth.setLoggedUser(data);
         this.router.navigate([this.url]);
       }
     });

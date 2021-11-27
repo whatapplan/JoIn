@@ -88,6 +88,7 @@ export class PlanDetailPage implements OnInit {
       participants,
     };
     const user = { ...this.user, acceptedPlans };
+    localStorage.setItem('loggedUser',JSON.stringify(user))
     forkJoin([
       this.crud.añadirUsuarioAPlan(plan),
       this.crud.añadirPlanAUsuario(user),

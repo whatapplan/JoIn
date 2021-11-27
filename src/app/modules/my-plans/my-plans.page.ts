@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { Plan } from 'src/app/core/models/plan';
 import { User } from 'src/app/core/models/usuario';
@@ -12,6 +12,7 @@ import { CrudService } from 'src/app/core/services/http/crud-service.service';
   styleUrls: ['./my-plans.page.scss'],
 })
 export class MyPlansPage implements OnInit {
+  user_id :string;
   user: User;
   idCreados: string[];
   planesCreados: Plan[];
@@ -26,8 +27,14 @@ export class MyPlansPage implements OnInit {
     private crud: CrudService,
     private alertController:AlertController,
     private router : Router,
-    private nav: NavController) { 
-  this.user = this.auth.loggedUser;
+    private nav: NavController,
+    private aroute : ActivatedRoute) { 
+      this.user_id = this.auth.loggedUser.id
+      aroute.params.subscribe(()=>{
+        console.log(`hola mano ${new Date().getTime()}`)
+        this.user = this.auth.loggedUser
+        this.ngOnInit()
+      })
   }
 
   async ngOnInit() {
@@ -35,11 +42,13 @@ export class MyPlansPage implements OnInit {
     this.idsPlan = this.user.acceptedPlans;
     console.log(this.idsPlan)
     this.planes = await this.crud.getMyPlans(this.idsPlan);
+    this.planes.reverse()
     this.plans = this.planes;
     this.idCreados = this.user.createdPlans;
     this.planesCreados = await this.crud.getPlansCreatedBy(this.user.id);
     this.plansCreados = this.planesCreados;
  }
+
 
  async showAlert(){
   const alert = await this.alertController.create({
@@ -64,6 +73,11 @@ export class MyPlansPage implements OnInit {
     })
    }
  }
+
+ identify(index, item){
+  return item.title; 
+}
+
  async openPlan({id}){
       // if(this.plans.length!=0){
 

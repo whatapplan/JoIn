@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { IUser } from '../../models/usuario';
 import { AuthService } from '../../services/auth.service';

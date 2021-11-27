@@ -102,7 +102,7 @@
       <p class="font-bold">Selecciona una categoría*</p>
       <div class="flex flex-wrap">
         <ion-chip
-          class="mr-2 mb-2 px-3 whitespace-nowrap"
+          class="mr-2 mb-2 px-3 whitespace-nowrap chip-t"
           *ngFor="let tag of selectedTags"
         >
           {{tag.name}}
@@ -119,7 +119,7 @@
       </ion-button>
       <p class="font-bold">Personas*</p>
       <div class="grid grid-cols-2 gap-6">
-        <div>
+        <div class='min'>
           <small>Mínimo</small>
           <div>
             <div class="grid grid-cols-1-3-1">
