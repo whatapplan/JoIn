@@ -23,6 +23,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   user: User= new User();
   userPlanC: User[] =[];
   userPlan: User;
+  planUserName:string = "";
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
@@ -141,8 +142,8 @@ export class RecommendedPlansPage implements AfterViewInit {
     this.userPlanC = (await this.crudService.getUserById(this.plan.createdBy));
     this.userPlan =  this.userPlanC[0];
     this.plan.creationUser = this.userPlan;
-    var stringArray = this.plan.createdBy.split(/(\s+)/);
-    this.plan.createdBy = stringArray[0];
+    var stringArray = this.plan.creationUser.name.split(/(\s+)/);
+    this.planUserName = stringArray[0];
     this.calle = this.plan.location.street;
     this.ciudad = this.plan.location.city;
     this.assistantsNumber = this.plan.participants.length;
