@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { combineLatest, Observable, of } from 'rxjs';
 import {arrayUnion} from 'firebase/firestore'
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -58,10 +59,11 @@ export class CrudService {
     return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
 
-  async getAllPlans() {
+  async getAllPlans(id: string) {
     const plans: Plan[] = [];
+    const plans2: Plan[] = [];
     const plansRef = collection(this.ngFirestore.firestore, 'plans');
-    const q = query(plansRef);
+    const q = query(plansRef, where("participants", 'array-contains', id));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async(doc) => {
       // doc.data() is never undefined for query doc snapshots
@@ -71,7 +73,35 @@ export class CrudService {
       };
       plans.push(plan);
     });
-    return plans;
+    const q2= query(plansRef);
+    const querySnapshot2 = await getDocs(q2);
+    querySnapshot2.forEach(async(doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let plan = {
+        id: doc.id,
+        ...(doc.data() as Plan),
+      };
+      plans2.push(plan);
+    }); 
+    //const result = plans2.filter(plan => plans.includes(plan));
+    const result= this.comprobarPlan(plans2, plans);
+    
+    return result;
+  }
+
+  comprobarPlan(plans : Plan[], plans2: Plan[]){
+    let bool= false;
+    let result: Plan[]=[];
+    for(let i=0; i < plans.length; i++ ){
+      bool= false;
+      for(let j=0; j < plans2.length; j++){
+        if(plans[i].id == plans2[j].id){
+          bool=true;
+        }
+      }
+      if(!bool){result.push(plans[i]);}
+    }
+    return result;
   }
 
   async getPlansCreatedBy(id : string){
