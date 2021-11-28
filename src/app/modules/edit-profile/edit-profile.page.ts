@@ -154,7 +154,7 @@ export class EditProfilePage implements OnInit {
 
   removeTag(tag: Tag) {
     this.selectedTags = this.selectedTags.filter((item) => item != tag);
-    this.usuario.favCategories = this.usuario.favCategories.filter(
+    this.user.favCategories = this.user.favCategories.filter(
       (item) => item != tag
     );
   }
@@ -172,32 +172,33 @@ export class EditProfilePage implements OnInit {
   }
 
   async actualizarUsuario() {
-    this.usuario.name = this.name;
-    this.usuario.lastName = this.lastName;
-    this.usuario.email = this.email;
-    this.usuario.dateBirth = this.dateBirth;
-    this.usuario.city = this.city;
-    this.usuario.password = this.password;
+    this.user.name = this.name;
+    this.user.lastName = this.lastName;
+    this.user.email = this.email;
+    this.user.dateBirth = this.dateBirth;
+    this.user.city = this.city;
+    this.user.password = this.password;
     this.selectedTags.forEach((tag) => {
       let existe: Boolean = false;
-      for (let i = 0; i < this.usuario.favCategories.length; i++) {
-        if (this.usuario.favCategories[i] == tag) {
+      for (let i = 0; i < this.user.favCategories.length; i++) {
+        if (this.user.favCategories[i] == tag) {
           existe = true;
         }
       }
       if (!existe) {
-        this.usuario.favCategories.push(tag);
+        this.user.favCategories.push(tag);
       }
     });
 
     if (
       this.checkData() &&
-      this.leterFormat(this.usuario.name) &&
-      this.leterFormat(this.usuario.lastName) &&
-      this.leterFormat(this.usuario.city) &&
-      this.emailFormat(this.usuario.email)
+      this.leterFormat(this.user.name) &&
+      this.leterFormat(this.user.lastName) &&
+      this.leterFormat(this.user.city) &&
+      this.emailFormat(this.user.email)
     ) {
-      this.crudService.upgradeUser(this.usuario);
+      this.crudService.upgradeUser(this.user);
+      this.auth.setLoggedUser(this.user);
       this.presentAlert('Su usuario ha sido actualizado', '');
     }
   }

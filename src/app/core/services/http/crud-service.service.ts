@@ -3,7 +3,7 @@ import { IPlan, Plan } from 'src/app/core/models/plan';
 import { IUser, User } from 'src/app/core/models/usuario';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { TagCategory } from '../../models/tag';
+import { Tag, TagCategory } from '../../models/tag';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -59,7 +59,7 @@ export class CrudService {
     return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
 
-  async getAllPlans(id: string) {
+  async getAllPlans(id: string, tags: Tag[]) {
     const plans: Plan[] = [];
     const plans2: Plan[] = [];
     const plansRef = collection(this.ngFirestore.firestore, 'plans');
@@ -73,7 +73,7 @@ export class CrudService {
       };
       plans.push(plan);
     });
-    const q2= query(plansRef);
+    const q2= query(plansRef, where("tags","array-contains-any",tags));
     const querySnapshot2 = await getDocs(q2);
     querySnapshot2.forEach(async(doc) => {
       // doc.data() is never undefined for query doc snapshots
