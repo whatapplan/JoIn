@@ -29,6 +29,7 @@ z-index: -1;
   border-bottom: thin;
   border-bottom-color: black;
   border-bottom-width: thin;
+ 
 
 }
 .nombrePerf{
@@ -49,6 +50,29 @@ z-index: -1;
        
          display: flex;
      
+         .sobreMi{
+            height: 50px;
+            z-index: 2;
+          color: #ff4193;
+           margin-top: 200px;
+          font-size: 15px;
+          vertical-align:inherit;
+          text-align: 20px;
+          
+        }
+        .descripcion{
+            height:fit-content;
+            z-index: 2;
+          color: black;
+           margin-top: 250px;
+          font-size: 15px;
+          vertical-align:inherit;
+          text-align: 20px;
+          margin-left: 5%;
+          margin-right: 5%;
+        width:90%;
+         
+        }
     
     
     }

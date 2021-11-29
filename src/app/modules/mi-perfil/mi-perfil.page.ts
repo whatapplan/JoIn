@@ -16,6 +16,7 @@ user : User;
   user_id: string;
   username: string;
   imagen : string;
+  descrip:string;
   constructor(private auth: AuthService,
     private crud: CrudService,
     private alertController:AlertController,
@@ -28,7 +29,7 @@ user : User;
   ngOnInit() {
 
   this.username = this.user.name;
-
+  this.descrip=this.user.aboutMe;
 
   }
  

@@ -19,6 +19,7 @@ export class User implements IUser {
   maxPlanAge: number;
   minPlanAge: number;
   createdPlans: string[];
+  aboutMe: string;
 }
 
 export interface IUser {
