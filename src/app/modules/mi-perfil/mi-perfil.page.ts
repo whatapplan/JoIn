@@ -17,6 +17,7 @@ user : User;
   username: string;
   imagen : string;
   descrip:string;
+  ciudad:string;
   constructor(private auth: AuthService,
     private crud: CrudService,
     private alertController:AlertController,
@@ -30,7 +31,7 @@ user : User;
 
   this.username = this.user.name;
   this.descrip=this.user.aboutMe;
-
+  this.ciudad = this.user.city;
   }
  
     

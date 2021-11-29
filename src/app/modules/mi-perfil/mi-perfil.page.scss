@@ -26,10 +26,9 @@ z-index: -1;
     display:flex;
    
     
-  border-bottom: thin;
-  border-bottom-color: black;
-  border-bottom-width: thin;
- 
+  
+  border-bottom: solid;
+  border-width: 0.5px;
 
 }
 .nombrePerf{
@@ -45,9 +44,11 @@ z-index: -1;
 
 .div2{
     z-index: 1;
-    
+    margin: auto;
+    border-style: solid;
+
         height: 170px;
-       
+      
          display: flex;
      
          .sobreMi{
@@ -57,23 +58,30 @@ z-index: -1;
            margin-top: 200px;
           font-size: 15px;
           vertical-align:inherit;
-          text-align: 20px;
-          
+          text-align:start;
+          margin-left: 5%;
         }
+       
+
+
+        
         .descripcion{
-            height:fit-content;
+            height:auto;
             z-index: 2;
           color: black;
-           margin-top: 250px;
-          font-size: 15px;
+           margin-top: 70px;
+          font-size: 12px;
           vertical-align:inherit;
-          text-align: 20px;
+        
           margin-left: 5%;
           margin-right: 5%;
-        width:90%;
+        
          
         }
-    
+        
+      
+        border-bottom: solid;
+        border-width: 0.5px;
     
     }
  .div3{
@@ -84,7 +92,16 @@ z-index: -1;
             height: 170px;
        
          
-        
+            border-bottom: solid;
+            border-width: 0.5px;
+            .infor{
+              margin-top: 5%;
+                color: #ff4193;
+                font-size: 15px;
+               margin-left: 5%;
+               font:bold 100% monospace;
+
+            }
         
     }
  .div4{
