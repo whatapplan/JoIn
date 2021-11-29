@@ -1,0 +1,77 @@
+@import "../../../global.scss";
+
+
+.verde{
+
+    clip-path: polygon(0 27%, 100% 14%, 100% 100%, 0% 100%);
+    background-color:#9fffb4 ;
+    width: 100%;
+    height: 100%;
+
+position: absolute;
+z-index: -1;
+}
+.tittle{
+
+ text-align: start;
+ color:#ff4193; 
+
+
+}
+.div1{
+   
+    z-index: 1;
+    flex-direction: column;
+    height: 170px;
+    display:flex;
+   
+    
+  border-bottom: thin;
+  border-bottom-color: black;
+  border-bottom-width: thin;
+
+}
+.nombrePerf{
+    height: 100px;
+    z-index: 2;
+  color: #ff4193;
+ margin-bottom: 15%;
+  font-size: 30px;
+  vertical-align: top;
+  
+}
+
+
+.div2{
+    z-index: 1;
+    
+        height: 170px;
+       
+         display: flex;
+     
+    
+    
+    }
+ .div3{
+
+    display: flex;
+        z-index: 1;
+        
+            height: 170px;
+       
+         
+        
+        
+    }
+ .div4{
+
+    display: flex;
+            z-index: 1;
+            
+                height: 170px;
+              
+               
+             
+            
+            
+      }

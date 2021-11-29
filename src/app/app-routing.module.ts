@@ -68,7 +68,11 @@ const routes: Routes = [
         redirectTo: 'home'
       }
     ],
+  },  {
+    path: 'mi-perfil',
+    loadChildren: () => import('./modules/mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
   },
+
 
 
 ];

@@ -21,8 +21,8 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'edit-profile',
-        loadChildren: () =>import('../modules/edit-profile/edit-profile.module').then((m) => m.EditProfilePageModule),
+        path: 'mi-perfil',
+        loadChildren: () =>import('../modules/mi-perfil/mi-perfil.module').then((m) => m.MiPerfilPageModule),
       },
       {
         path: 'search-plan',
