@@ -1,104 +1,275 @@
 @import "../../../global.scss";
 
-.image{
-    width: 150px;
-    height: 100px;
-    border-width: 2px;
-    border-color: black;
-    border-style: solid;
-}
-.titulo1{
-font-size: 120%;
-border-radius: 2px;
-margin-top: 0%;
-color: #ff4193;
-margin-left: 10%;
-margin-bottom:10%;
+//clases generales
 
-}
+ion-slides{
 
+    ion-slides::before{
 
-
-.titulo2{
-
- font-size: 120%;
-    color:#ff4193;
- margin-top: 100px;
-    margin-left: 10%;
-    z-index: 2;
-    background-color: #9fffb4;
-    
-}
-.div1{
-display: flexbox;
-flex-direction: column;
-background-color: white;
-margin-bottom: 15%;
-margin-top: 15%;
-
-
-}
-.div2{
-    margin-top: 30%;
-     background-color:#9fffb4;
-     
-     
-
-
-
-}
-.logoContainer{
-    position:absolute;
-    top: 2%;
-    left: 10%;
-    .logo{
-        margin-top: 10%;
-        width: 60px;
-        height: 32px;
+        content: url("../../../assets/icon/leftArrow.png");
+            
     }
+    
+    ion-slides::after{
+    
+        content: url("../../../assets/icon/rightArrow.png");
+            
+    }
+
 }
-.door{
-    z-index: o;
-     display: flexbox;
-     flex-direction: column;
-     width:100%;
-     height: 20%;
-     background-color: #9fffb4;
-     clip-path: polygon(0 0, 100% 0, 100% 60%, 0% 100%);
-   
- }
-.door2{
-   
+
+
+
+ion-card{
+
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+
+.ion-cardNegative{
+
+    background-color: #BDFFCC;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+
+ion-card-content{
+
+    font-family: Manrope;
+    color: #222623;
+    font-weight: 500;
+    font-size: 12px;
     width:100%;
-    height: 30%;
-background-color: #9fffb4;
-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0% 100%);
-   z-index: -3;
-   position: absolute;
-   bottom: 0px;
-}
-.LaTarjet2{
-
-z-index: 1;
-background-color: #9fffb4;
-
+    display: flex;
+    justify-content: center;
 
 }
-.header{
-    background-color: #9fffb4 ;
-}
+
 .tituloPlan{
 
     background-color: transparent;
+    margin-top: 5px;
     
 }
-.door3{
-   
-    width:100%;
-    height: 300%;
-background-color: #9fffb4;
-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0% 100%);
-   z-index: -3;
-   position: absolute;
-   bottom: 0px;
+
+.planContainer{
+
+    width: 100%;
+
 }
+
+.ion-img{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+
+}
+
+.prueba{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+//header con logo y chat 
+
+.header{
+
+    background-color: #BDFFCC;
+
+}
+
+.logoChatContainer{
+
+    display: flex;
+    justify-content: space-between;
+
+    .logoContainer{
+
+        margin-left: 25px;
+        margin-top: 45px;
+        .logo{
+    
+            width: 60px;
+            height: 32px;
+    
+        }
+    
+    }
+
+    .chatContainer{
+
+        margin-right: 25px;
+        margin-top: 50px;
+
+        .chat{
+
+            width: 31px;
+            height: 24px;
+
+        }
+
+    }
+
+}
+
+
+
+//titulo Mis planes
+
+.titleContainer{
+
+    margin-left:10%;
+    margin-bottom:5%;
+    display: flex;
+    justify-content: flex-start;
+
+}
+.tituloMis{
+
+    font-size: 30px;
+    color: #FF2D87;
+    font-weight: 300;
+
+}
+.tituloPlanes{
+
+    font-size: 30px;
+    color: #FF2D87;
+    font-weight: 425;
+    margin-left: 10px;
+}
+
+
+
+
+//planes a los que me he apuntado
+
+.div1{
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-bottom: 15%;
+    margin-top: 8%;
+
+}
+
+
+.LaTarjet2{
+
+    z-index: 1;
+    background-color: #BDFFCC;
+        
+}
+
+.door{
+
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: 8%;
+    background-color: #BDFFCC;
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
+    
+}
+
+.subCategories{
+
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width:80%;
+    margin-top: 5px;
+
+    .chip{
+    
+        font-family: MANROPE;
+        color:#222623;
+        background-color:#BDFFCC;
+        padding:3px;
+        font-size:9px;
+        font-weight: 400;
+        border-radius: 4px;
+        margin-left: 5px;
+
+    }
+
+    .chipNegative{
+
+        font-family: MANROPE;
+        color:#222623;
+        background-color:white;
+        padding:3px;
+        font-size:9px;
+        font-weight: 400;
+        border-radius: 4px;
+        margin-left: 5px;
+
+    }
+
+}
+
+//titulo planes creados por mi
+
+.titulo2{
+    
+    font-size: 120%;
+    color:#FF2D87;
+    margin-top: 100px;
+    margin-left: 10%;
+    z-index: 2;
+    background-color: #BDFFCC;
+    
+}
+
+
+
+// planes creados por mi
+
+.div2{
+
+    background-color:#BDFFCC;
+    height:35%;
+
+}
+
+.image{
+
+    width: 110px;
+    height: 100px;
+
+}
+
+
+
+.door2{
+
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: 8%;
+    background-color: #BDFFCC;
+    clip-path: polygon(0 0, 100% 70%, 100% 100%, 0 100%);
+        
+}
+
+
+
+
+

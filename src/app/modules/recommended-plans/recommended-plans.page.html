@@ -9,20 +9,17 @@
       </div>
 
       <div class="planInfo">
-    
-        <h1 class="planTitle">{{plan.title}}</h1>
+        <div class="titleContainer">
+          <p class="planTitleFirstWord"><strong>{{firstWordTitle}}</strong> {{title}}</p> 
+        </div>
+        
 
         <div class="creatorInfo">
           <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngIf="plan.creationUser?.image"
           [src]="plan.creationUser?.image">
-          <div class="creator-LocationContainer">
-            
-            <p class="location"><strong>{{calle}}</strong></p>
+          <div class="creatorContainer">
+            <p class="planCreator">!Únete a <strong>{{planUserName}}</strong>!</p>
           </div>
-        </div>
-
-        <div class="planDateContainer">
-          <p class="date">{{plan.time}}</p>
         </div>
 
         <div class="assistants">
@@ -31,6 +28,12 @@
           <p class="assistantsLink">EJEMPLO: <strong>{{assistantsNumber}}</strong> asistentes más</p>
         </div>
 
+
+        <div class="planDateLocationContainer">
+          <p class="date">{{plan.when}}</p>
+          <p class="location"><strong>{{calle}}</strong></p>
+        </div>
+        
         <div class="subCategoriesContainer">
 
           <div class="subCategories" *ngFor="let tag of plan.tags">
@@ -41,15 +44,7 @@
 
             
           </div>
-
-        </div>
-
-      </div>
-
-      <div class="moreInfoContainer">
-
-        <div class="moreInfo-icon">
-
+          
         </div>
 
       </div>

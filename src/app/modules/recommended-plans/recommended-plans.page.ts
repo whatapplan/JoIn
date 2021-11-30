@@ -24,6 +24,8 @@ export class RecommendedPlansPage implements AfterViewInit {
   userPlanC: User[] =[];
   userPlan: User;
   planUserName:string = "";
+  title:string= "";
+  firstWordTitle:string="";
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
@@ -147,15 +149,11 @@ export class RecommendedPlansPage implements AfterViewInit {
     this.calle = this.plan.location.street;
     this.ciudad = this.plan.location.city;
     this.assistantsNumber = this.plan.participants.length;
-
-    // planTitle.innerHTML = this.plan.title;
-    // planCreator.innerHTML = this.plan.createdBy;
-    // planLocation.innerHTML = this.plan.location.city;
-
-    // console.log( this.plan.participants.length);
-    // console.log("hola212131")
-    // console.log(this.plan.time)
-    // console.log(this.plan.location.city);
+    
+    stringArray = this.plan.title.split(" ");
+    this.firstWordTitle = stringArray[0];
+    this.title = this.plan.title;
+    this.title = this.title.replace(this.firstWordTitle,"");
 
     this.actualizarPlanInfo(planTitle,planLocation,planCreator,planDetail);
     this.planNumber++;
