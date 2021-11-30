@@ -36,7 +36,7 @@
 
     <ion-slides [options]="slideOpt">
 
-      <ion-slide *ngFor="let plan of plans;trackBy:identify">
+      <ion-slide *ngFor="let plan of plans;trackBy:identify; last as isLast">
 
         <ion-card class="Latarjet" (click)="openPlan(plan)">
 
@@ -75,6 +75,36 @@
 
       </ion-slide>
 
+      <ion-slide>
+        <ion-card class="ion-card-last-create" (click)="createPlan()" >
+
+          <div class="planContainer">
+
+            <div class="prueba">
+
+              <ion-img class="image" src="../../../assets/planIlustrations/addPlanIlustration.png"></ion-img>
+
+            </div>
+
+            <div class="prueba">
+
+              <div class="subCategories" >
+          
+                <div class="chip" >
+  
+                  <ion-label><strong>Crea tu propio plan</strong></ion-label>
+                
+                </div>
+                
+              </div>
+
+            </div>
+
+          </div>
+
+        </ion-card>
+      </ion-slide>
+
     </ion-slides>
 
   </div>
@@ -97,9 +127,9 @@
 
       <ion-slides [options]="slideOpt" class="Latarjet2">
 
-        <ion-slide *ngFor="let plan of plansCreados" >
+        <ion-slide *ngFor="let plan of plansCreados ; last as isLast" >
 
-          <ion-card class="ion-cardNegative" (click)="openPlan(plan)">
+          <ion-card class="ion-cardNegative" (click)="openPlan(plan)" >
 
             <div class="planContainer">
 
@@ -133,8 +163,41 @@
 
           </ion-card>
 
+
         </ion-slide>
 
+        <ion-slide class="extra-slide">
+            
+          <ion-card class="ion-card-last-create-negative" (click)="unetePlan()" >
+
+            <div class="planContainer">
+
+              <div class="prueba">
+
+                <ion-img class="image" src="../../../assets/planIlustrations/addPlanIlustrationNegative.png"></ion-img>
+
+              </div>
+
+              <div class="prueba">
+
+                <div class="subCategories" >
+            
+                  <div class="chipNegative" >
+    
+                    <ion-label><strong>Unete a un plan</strong></ion-label>
+                  
+                  </div>
+                  
+                </div>
+
+              </div>
+
+            </div>
+
+          </ion-card>
+
+        </ion-slide>
+        
       </ion-slides>
       
     </div>

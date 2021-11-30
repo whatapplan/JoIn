@@ -36,6 +36,10 @@ const routes: Routes = [
         path: 'my-plans',
         loadChildren: () => import('../modules/my-plans/my-plans.module').then( m => m.MyPlansPageModule)
       },
+      {
+        path: 'edit-profile',
+        loadChildren: () => import('../modules/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+      }
     ],
   },
 ];
