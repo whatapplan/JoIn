@@ -15,15 +15,15 @@ z-index: -1;
 
  text-align: start;
  color:#ff4193; 
-
+margin-left: 5%;
 
 }
 .div1{
    
     z-index: 1;
-    flex-direction: column;
+   
     height: 170px;
-    display:flex;
+    
    
     
   
@@ -31,14 +31,38 @@ z-index: -1;
   border-width: 0.5px;
 
 }
+
+.image{
+width: 75px;
+height: 80px;
+margin-top: 15%;
+margin-left: 15%;
+border-radius: 10px;
+border-color: black;
+border-width: 1px;
+
+
+}
 .nombrePerf{
     height: 100px;
     z-index: 2;
-  color: #ff4193;
- margin-bottom: 15%;
-  font-size: 30px;
+    color: #ff4193;
+   margin-bottom: 15%;
+  font-size: 20px;
   vertical-align: top;
-  
+   text-align: start;
+   margin-left: 30%;
+}
+.edad{
+   margin-top: 22%;
+  height: 50px;
+  z-index: 2;
+  color: black;
+   text-align: start;
+ font-size: 15px;
+  vertical-align: center;
+  margin-bottom: 10%;
+
 }
 
 
@@ -49,7 +73,7 @@ z-index: -1;
 
         height: 170px;
       
-         display: flex;
+         
      
          .sobreMi{
             height: 50px;
@@ -86,7 +110,6 @@ z-index: -1;
     }
  .div3{
 
-    display: flex;
         z-index: 1;
         
             height: 170px;
@@ -100,6 +123,23 @@ z-index: -1;
                 font-size: 15px;
                margin-left: 5%;
                font:bold 100% monospace;
+
+               .verif{
+                   color: black;
+                   width: 300px;
+                   .verif1{
+                         
+
+                  }
+                  .verif2{
+   
+   
+                  }
+                   
+
+
+               }
+               
 
             }
         
@@ -116,3 +156,42 @@ z-index: -1;
             
             
       }
+      .vivir{
+
+       margin-left: 5%;
+
+      }
+      .verif{
+        color: black;
+        width: 300px;
+        margin-left: 5%;
+        margin-top: 1%;
+        font-weight: bold;
+
+    }
+    .verif1{
+      color: black;
+      width: 300px;
+      margin-left: 5%;
+      margin-top: 1%;
+      font-weight: bold;
+
+
+   }
+   .verif2{
+    color: black;
+    width: 300px;
+    margin-left: 5%;
+    margin-top: 1%;
+    font-weight: bold;
+
+
+   }
+   .planespub{
+
+     margin-left: 5%;
+     margin-top: 5%;
+
+
+   }
+   

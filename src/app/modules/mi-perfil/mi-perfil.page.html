@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="tittle">Mi perfil</ion-title>
+    <ion-title class="tittle"> ⪡ Mi perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,8 +12,16 @@
   
   <div class="div1" >
    
+    <div style="width: 30%; float:left">
+      <ion-img class="image">{{imagen}}</ion-img>
+   </div>
+   <div style="width: 70%; float:right">
+    <ion-title class="nombrePerf" >{{username}}</ion-title>
+      <p class="edad">{{edadperf}}<strong>años</strong></p>
+
+ </div>
    
-      <ion-title class="nombrePerf" >{{username}}</ion-title>
+      
 
 
     </div>
@@ -32,6 +40,10 @@
     <div class="div3" >
 
       <p class="infor">Informción verificada</p>
+      <p class="verif">☑    Perfil</p>
+      <p class="verif1">☑    Correo electrónico</p>
+      <p class="verif2">☑    Número de teléfono</p>
+
 
 
 
@@ -40,7 +52,10 @@
     </div>
     <div class="div4" >
 
+        <p class="planespub">{{numplans}}  <strong>planes publicados</strong>
 
+
+        </p>
 
 
 
