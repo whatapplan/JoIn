@@ -13,6 +13,7 @@ import { CrudService } from '../../core/services/http/crud-service.service';
 export class RecommendedPlansPage implements AfterViewInit {
   @ViewChild('door')
   private door: ElementRef;
+
   assistantsNumber : number = 0;
   calle:string = "";
   ciudad:string = "";
@@ -23,6 +24,7 @@ export class RecommendedPlansPage implements AfterViewInit {
   user: User= new User();
   userPlanC: User[] =[];
   userPlan: User;
+  UsersPlan: string[] = [];
   planUserName:string = "";
   title:string= "";
   firstWordTitle:string="";
@@ -49,24 +51,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     //planTitle.innerHTML = this.plans[this.planNumber].title;
     this.useSwipe(planTitle,planCreator,planLocation,planDetail);
   }
-  async añadirUser() {
-    let usuarios: User[] = [];
-    (await this.crudService.getUser('juan@gmail.com')).subscribe((res) => {res.map((t)=>{
-      let user = {
-        id: t.payload.doc.id,
-        ...t.payload.doc.data() as User
-      }
-      usuarios.push(user);
-      if(usuarios.length > 0){
-        this.user= usuarios[0];
-      }
-    })});
-    
-  }
-
-
-
-
+  
   useSwipe(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
     const container = document.querySelector(".container");
     const door =  document.querySelector(".door") as HTMLElement;
@@ -138,9 +123,14 @@ export class RecommendedPlansPage implements AfterViewInit {
   actualizarPlanInfo(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement){
     
   }
-  async setPlan(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {
-   if(this.recommendedPlans.length > this.planNumber){
+  async setPlan(planTitle: HTMLElement,planLocation: HTMLElement,planCreator: HTMLElement,planDetail: HTMLElement) {let aux: string[] = [];
+    if(this.recommendedPlans.length > this.planNumber){
     this.plan = this.recommendedPlans[this.planNumber];
+    let list= this.plan.participants;
+    list.push(this.plan.createdBy);
+    aux = (await this.crudService.getImagesFromUsers(list));
+    aux.reverse();
+    this.UsersPlan = aux;
     this.userPlanC = (await this.crudService.getUserById(this.plan.createdBy));
     this.userPlan =  this.userPlanC[0];
     this.plan.creationUser = this.userPlan;

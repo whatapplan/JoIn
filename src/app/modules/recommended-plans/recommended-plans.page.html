@@ -22,12 +22,32 @@
           </div>
         </div>
 
-        <div class="assistants">
-          <!-- <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngIf="plan.creationUser?.image"
-          [src]="plan.creationUser?.image"> -->
+        <!-- <div class="assistants">
+          <img class="w-12 h-12 mr-2 rounded-md planCreatorProfilePic"  *ngFor="let image of UsersPlan"
+          [src]="image">
           <p class="assistantsLink">EJEMPLO: <strong>{{assistantsNumber}}</strong> asistentes más</p>
+        </div> -->
+        <div class="flex items-center pl-9">
+        <div *ngFor="let image of UsersPlan; index as i">
+          <ng-container>
+            <div class="-ml-8 first:-ml-0 relative h-10 w-9 rounded-md">
+              <ng-container *ngIf="image">
+                <img
+                  class="
+                    h-full
+                    w-full
+                    object-cover object-center
+                    rounded-md
+                    relative
+                  "
+                  [src]="image"
+                />
+              </ng-container>
+            </div>
+          </ng-container>
         </div>
-
+        <div class="ml-5 underline">{{plan.participants?.length}} asistentes más</div>
+      </div>
 
         <div class="planDateLocationContainer">
           <p class="date">{{plan.when}}</p>

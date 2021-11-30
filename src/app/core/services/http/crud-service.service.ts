@@ -16,6 +16,7 @@ import {arrayUnion} from 'firebase/firestore'
 })
 export class CrudService {
   
+  
   constructor(private ngFirestore: AngularFirestore, 
     private auth: AuthService, 
     private router : Router) {}
@@ -120,6 +121,19 @@ export class CrudService {
     return plans;   
   }
 
+  async getImagesFromUsers(participants: string[]){
+    const images : string[] = [];
+    for(let i=0;i<participants.length;i++){
+      if(participants[i] != ""){
+       await this.ngFirestore.collection('usuario').doc(participants[i]).get().forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        let s: User = doc.data() as User;
+        images.push(s.image);
+      });
+      }
+    }
+    return images;
+}
 
   async getMyPlans(idsPlan: string[]){
     const planes: Plan[] =[];

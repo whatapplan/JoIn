@@ -20,6 +20,7 @@ export class User implements IUser {
   minPlanAge: number;
   createdPlans: string[];
   aboutMe: string;
+  image: string;
 }
 
 export interface IUser {
@@ -35,4 +36,5 @@ export interface IUser {
   favCategories?: Tag[];
   rejectedPlans?: string[];
   createdPlans?: string[];
+  image?:string;
 }
