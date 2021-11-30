@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Gesture, GestureController, Platform } from '@ionic/angular';
+import { Gesture, GestureController, NavController, Platform } from '@ionic/angular';
 import { IUser, User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Plan } from '../../core/models/plan';
@@ -31,7 +31,7 @@ export class RecommendedPlansPage implements AfterViewInit {
 
   // actualRecommendedPlan: Plan;
   // firstPlan: Plan = this.plans[0];
-  constructor(private crudService : CrudService, private gestureCtrl : GestureController, private platform: Platform, private auth: AuthService) { 
+  constructor(private crudService : CrudService, private gestureCtrl : GestureController, private platform: Platform, private nav: NavController ,private auth: AuthService) { 
     this.user = this.auth.loggedUser;
   }
   
@@ -75,8 +75,10 @@ export class RecommendedPlansPage implements AfterViewInit {
         onEnd: ev => {
           if(ev.deltaX > 100 ){
             door.style.transform =  `rotateY(${180}deg)`;
-            this.añadirmeAPlan(this.plan.id);
-
+            //this.añadirmeAPlan(this.plan.id);
+            const route = `/plan/${this.plan.id}`;
+            this.nav.navigateForward(route);
+            
             setTimeout(() =>{
               door.style.transform =  `rotateY(${310}deg)`;
               this.setPlan(planTitle,planCreator,planLocation,planDetail);
