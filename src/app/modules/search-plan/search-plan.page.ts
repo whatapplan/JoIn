@@ -134,6 +134,12 @@ export class SearchPlanPage implements OnInit {
       }
     );
   }
+  toggle: boolean = true;
+  cambiarColor(tag: any){
+    this.toggle = !this.toggle;
+    console.log("funciona: ", tag);
+    //document.getElementById(tag).style.cssClass
+  }
 
   mergeResults(result, count) {
     let res: Plan[] = [];
