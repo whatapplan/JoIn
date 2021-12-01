@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <ion-content >
 
   <div class="logoChatContainer">
@@ -32,7 +26,7 @@
 
     <ion-slides [options]="slideOpt">
 
-      <ion-slide *ngFor="let plan of plans;trackBy:identify; last as isLast">
+      <ion-slide *ngFor="let plan of plansCreados ;trackBy:identify; last as isLast">
 
         <ion-card (click)="openPlan(plan)">
 
@@ -120,7 +114,7 @@
 
     
     <ion-slides [options]="slideOpt">
-      <ion-slide *ngFor="let plan of plansCreados" >
+      <ion-slide *ngFor="let plan of plans" >
         <ion-card class="ion-cardNegative" (click)="openPlan(plan)">
           <div class="planContainer">
             <div class="prueba">
@@ -142,6 +136,36 @@
 
             </ion-card-content>
           </div>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="ion-card-last-create-negative" (click)="unetePlan()" >
+
+          <div class="planContainer">
+
+            <div class="prueba">
+
+              <ion-img class="image" src="../../../assets/planIlustrations/addPlanIlustrationNegative.png"></ion-img>
+
+            </div>
+
+            <div class="prueba">
+
+              <div class="subCategories" >
+          
+                <div class="chip" >
+  
+                  <ion-label><strong>Unete a un plan</strong></ion-label>
+                
+                </div>
+                
+              </div>
+
+            </div>
+
+          </div>
+
         </ion-card>
       </ion-slide>
     </ion-slides>
