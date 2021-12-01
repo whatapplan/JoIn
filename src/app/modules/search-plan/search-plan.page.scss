@@ -1,80 +1,101 @@
-
-  
-.content{
-
+.content {
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
   display: block;
-  top:32px;
 
-  .navBar{
-    
-    position:relative;
-    top:-15px;
-    z-index: 100;
-    background-color: black;
-    
+  .logoContainer {
     
 
-    .searchBar{
-      display: flex;
-      justify-content: space-around;
-      margin-top: 15px;
+    .logo {
+      margin-top:6%;
+      margin-left: 6%;
+      width: 64px;
+      height: 37px;
+    }
+  }
+  .searchbar-filtros{
+    .searchbar{
+      background-color: inherit;
+      border: none;
+      border-bottom: 1px solid #222623;
+    }
+  }
+ 
+
+    .selectCategory {
+      border-radius: 10px;
+      height: 36px;
       margin-right: 10px;
-      align-items: center;
-      // border-radius: 50%;
-      ion-searchbar{
-        --placeholder-font-style: italic;
-        --background:#c2c2c2;
-      }
+      width: 97px;
     }
 
-      .selectCategory{
-        
-        border-radius: 10px;
-        height: 36px;
-        margin-right: 10px;
-        width: 97px;
-
-      }
-
-    .filterSelected{
-      // height:90px; /* 40px - more place for scrollbar, is hidden under parent box */
-      // padding:5px;
-      white-space:nowrap;
+    .filterSelected {
+      height: 90px; /* 40px - more place for scrollbar, is hidden under parent box */
+      padding: 5px;
+      white-space: nowrap;
       overflow-x: scroll;
       overflow-y: hide;
-    	-webkit-overflow-scrolling:touch;
+      -webkit-overflow-scrolling: touch;
       justify-content: space-around;
 
-      .filter{
+      .filter {
         padding: 6px;
         width: fit-content;
         background: cadetblue;
         white-space: break-spaces;
       }
       .filter + .filter {
-        margin-left:5px
+        margin-left: 5px;
+      }
     }
-
-    }
-      
-
   }
-  .filtersDateDuration{
-
-    
-    display:flex;
-
+  .filtersDateDuration {
+    display: flex;
   }
-  .body{
+  .body {
     position: relative;
-    top:90px;
+    
+    .card-container {
+      display: flex;
+      background-color: inherit;
+      padding: full;
+      box-shadow: none;
+      border-radius: none;
+      border-bottom: 0.3px solid lightgray;
+      .image {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        width: 110px;
+        height: 100px;
+      }
+
+      .title {
+        margin-top: 25px;
+      }
+
+      .subCategories {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        margin-top: 5px;
+
+        .chip {
+          font-family: MANROPE;
+          color: #222623;
+          background-color: #bdffcc;
+          padding: 3px;
+          font-size: 9px;
+          font-weight: 400;
+          border-radius: 4px;
+          margin-left: 5px;
+        }
+      }
+    }
   }
 
-  
-  
-  
-}
 
 // .scroll-hor{
 //     display: flex;
@@ -83,54 +104,49 @@
 //     // white-space: nowrap;
 // }
 
-// .scroll-hor > *{ 
+// .scroll-hor > *{
 //     // display: inline-block;
 //     flex:auto;
 // }
 
 ion-select {
-    justify-content: center;
-    --placeholder-color:red;
-  }
-  ion-select::part(placeholder) {
-    color: #000000;
-    opacity: 1;
-  }
-  /* Set the flex in order to size the text width to its content */
-  ion-select::part(placeholder),
-  ion-select::part(text) {
-    flex: 0 0 auto;
-  }
-  
-  
-  /* Set the text color */
-  ion-select::part(text) {
-    color:white;
-    background-color:gray;
-  }
-  
+  justify-content: center;
+  --placeholder-color: red;
+}
+ion-select::part(placeholder) {
+  color: #000000;
+  opacity: 1;
+}
+/* Set the flex in order to size the text width to its content */
+ion-select::part(placeholder),
+ion-select::part(text) {
+  flex: 0 0 auto;
+}
 
-
+/* Set the text color */
+ion-select::part(text) {
+  color: white;
+  background-color: gray;
+}
 
 .icon-defecto {
-    color: white;
-    background-color: gray;
-  
-  }
-  
+  color: white;
+  background-color: gray;
+}
+
 .icon-seleccion {
-    color: black;
-    background-color: white;
+  color: black;
+  background-color: white;
 }
 
 #outPopUp {
-    text-align: center;
-    position: relative;
-    z-index: 15;
-    top: 400px;
-    margin:50px;
-    background-color: red;
-  }
-  ion-card:hover{
-    cursor: pointer;
-  }
+  text-align: center;
+  position: relative;
+  z-index: 15;
+  top: 400px;
+  margin: 50px;
+  background-color: red;
+}
+ion-card:hover {
+  cursor: pointer;
+}
