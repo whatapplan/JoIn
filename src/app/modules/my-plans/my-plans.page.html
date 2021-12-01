@@ -1,34 +1,30 @@
 
-<ion-header class="header">
+
+
+
+
+
+<ion-content >
 
   <div class="logoChatContainer">
-
     <div class="logoContainer">
-
       <img class="logo" src="../../../assets/logo/logo.png" />
-
     </div>
-
     <div class="chatContainer">
-
       <img class="chat" src="../../../assets/icon/chatIcon.png"  (click)="goToMyChats()" />
       
     </div>
-
   </div>
 
-</ion-header>
-
-
-<ion-content no-padding fullscreen>
-
-  <div  class="door" >
+  <!-- <div  class="door" >
   
-  </div>
 
-  <div  class="div1">
+
+  </div> -->
+
+  <div  class="misPlanesContainer">
     
-    <div class="titleContainer">
+    <div class="titleContainerDiv1">
 
       <p class="tituloMis">Mis</p> <p class="tituloPlanes">  planes</p>
 
@@ -38,7 +34,7 @@
 
       <ion-slide *ngFor="let plan of plans;trackBy:identify; last as isLast">
 
-        <ion-card class="Latarjet" (click)="openPlan(plan)">
+        <ion-card (click)="openPlan(plan)">
 
           <div class="planContainer">
 
@@ -110,99 +106,51 @@
   </div>
 
 
-  <div class="door2">
 
-  </div>
 
+
+  
 
   <div class="div2">
 
-    <div class="titleContainer">
-
+    <div class="titleContainerDiv2">
       <p class="tituloMis">Planes</p> <p class="tituloPlanes">  añadidos</p>
-
     </div> 
 
-    <div>
 
-      <ion-slides [options]="slideOpt" class="Latarjet2">
-
-        <ion-slide *ngFor="let plan of plansCreados ; last as isLast" >
-
-          <ion-card class="ion-cardNegative" (click)="openPlan(plan)" >
-
-            <div class="planContainer">
-
-              <div class="prueba">
-
-                <ion-img class="image" src="../../../assets/planIlustrations/{{plan.tags[0].category}}Negative.png"></ion-img>
-
-              </div>
-
-              <div class="prueba">
-
-                <div class="subCategories" >
-            
-                  <div class="chipNegative" *ngFor="let tag of plan.tags">
     
-                    <ion-label><strong>{{tag.name}}</strong></ion-label>
-                  
-                  </div>
-                  
-                </div>
-
-              </div>
-
-              <ion-card-content class="tituloPlan">
-
-                {{plan.title}}
+    <ion-slides [options]="slideOpt">
+      <ion-slide *ngFor="let plan of plansCreados" >
+        <ion-card class="ion-cardNegative" (click)="openPlan(plan)">
+          <div class="planContainer">
+            <div class="prueba">
+              <ion-img class="image" src="../../../assets/planIlustrations/{{plan.tags[0].category}}Negative.png"></ion-img>
+            </div>
+            <div class="prueba">
+              <div class="subCategories" >
+          
+                <div class="chipNegative" *ngFor="let tag of plan.tags">
   
-              </ion-card-content>
-
-            </div>
-
-          </ion-card>
-
-
-        </ion-slide>
-
-        <ion-slide class="extra-slide">
-            
-          <ion-card class="ion-card-last-create-negative" (click)="unetePlan()" >
-
-            <div class="planContainer">
-
-              <div class="prueba">
-
-                <ion-img class="image" src="../../../assets/planIlustrations/addPlanIlustrationNegative.png"></ion-img>
-
-              </div>
-
-              <div class="prueba">
-
-                <div class="subCategories" >
-            
-                  <div class="chipNegative" >
-    
-                    <ion-label><strong>Unete a un plan</strong></ion-label>
-                  
-                  </div>
-                  
+                  <ion-label><strong>{{tag.name}}</strong></ion-label>
+                
                 </div>
-
+                
               </div>
-
             </div>
+            <ion-card-content class="tituloPlan">
+              {{plan.title}}
 
-          </ion-card>
-
-        </ion-slide>
-        
-      </ion-slides>
-      
-    </div>
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+    
+  
 
   </div>
+  
+ 
 
 
 </ion-content>

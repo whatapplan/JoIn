@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
@@ -16,7 +17,7 @@ export class MiPerfilPage implements OnInit {
 user : User;
   user_id: string;
   username: string;
-  imagen : string;
+  imagen: string;
   descrip:string;
   ciudad:string;
   numplans:number;
@@ -29,6 +30,7 @@ user : User;
     private nav: NavController,
     private aroute : ActivatedRoute) { 
       this.user = this.auth.loggedUser;
+      this.dateBirth = this.user.dateBirth;
   }
 
   ngOnInit() {
@@ -38,18 +40,32 @@ user : User;
   this.ciudad = this.user.city;
   this.numplans = this.user.createdPlans.length;
   this.edadperf = this.sacaredad();
-  this.imagen = "https://thispersondoesnotexist.com/image";
+  this.imagen = this.user.image;
   }
 
   sacaredad(){
    
     let dateToday = new Date() ;
-    let milisec = dateToday.getTime();
-    let dateTime = new Date(this.user.dateBirth);
-    let milisecBirth = dateTime.getTime();
-    let years = milisec - milisecBirth;
-    let date = new Date(years);  
-    return date.getFullYear()-1970;
+    let año = dateToday.getFullYear();
+    let mes = dateToday.getMonth();
+    let dia = dateToday.getDay();
+   console.log(año);
+   console.log(mes);
+   console.log(dia);
+  
+   
+   
+   let milisec = dateToday.getTime();
+   console.log(milisec);
+   let dateTime = new Date(this.user.dateBirth);
+   console.log(dateTime);
+   let milisecBirth = dateTime.getTime();
+   console.log(milisecBirth);
+   let years = milisec - milisecBirth;
+   console.log(years);
+   let date = new Date(years);
+   console.log(date);
+    return date.getFullYear();
     
   }
  
