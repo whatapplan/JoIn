@@ -18,6 +18,7 @@ export class SearchPlanPage implements OnInit {
   noResults = false;
   yesResults = true;
   content: string = '';
+  tagsArray: String[] = ["Deporte","Social","Vida en la ciudad","Música","Otros"];
   tags: TagCategory[] = [];
   filters = {
     tags: {

@@ -1,4 +1,46 @@
 <ion-content class="content">
+
+
+  <div class="logo-SearchBar-FilterContainer">
+
+    <div class="logoContainer">
+      <img class="logo" src="../../../assets/logo/logo.png" />
+    </div>
+
+    <p class="exploreLabel">
+      Explora cerca de ti
+    </p>
+
+    <div class="searchBar">
+      <ion-searchbar
+        #val
+        (ionInput)="handleInput($event)"
+        (search)="handleFilters()"
+        (ionClear)="handleFilters()"
+        placeholder="Buscar"
+        showCancelButton="never"
+        animated
+        mode="ios"
+      >
+      </ion-searchbar>
+    </div>
+
+    <div class="chipCategoriesContainer">
+      <div class="chip" *ngFor="let tag in tagsArray">
+        <ion-label>{{tag}}</ion-label>
+      </div>
+    </div>
+
+  </div>
+
+<div>
+
+  
+
+</div>
+
+
+
   <div class="navBar" slot="fixed">
     <div class="searchBar">
       <ion-searchbar

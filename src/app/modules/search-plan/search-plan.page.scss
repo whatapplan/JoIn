@@ -1,5 +1,58 @@
+*{
 
+  font-family: MANROPE;
+
+}
+
+
+
+.logo-SearchBar-FilterContainer{
+
+  .chipCategoriesContainer{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
   
+    .chip{
+  
+      border: 2px solid #FF4193;
+      padding: 3px;
+  
+      ion-label{
+  
+        color: #FF4193;
+        font-size: 11px;
+        font-weight: 500;
+  
+      }
+  
+      ion-label:focus{
+  
+        color: white;
+  
+      }
+  
+    }
+  
+    .chip:focus{
+  
+      background-color: #FF4193;
+  
+    }
+  
+  }
+  
+}
+
+
+
+
+
+
+
+
+
 .content{
 
   box-sizing: border-box;
