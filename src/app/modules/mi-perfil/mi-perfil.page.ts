@@ -16,7 +16,7 @@ export class MiPerfilPage implements OnInit {
 user : User;
   user_id: string;
   username: string;
-  imagen : string;
+  imagen: string;
   descrip:string;
   ciudad:string;
   numplans:number;
@@ -38,18 +38,31 @@ user : User;
   this.ciudad = this.user.city;
   this.numplans = this.user.createdPlans.length;
   this.edadperf = this.sacaredad();
-  this.imagen = "https://thispersondoesnotexist.com/image";
+  this.imagen = this.user.image;
   }
 
   sacaredad(){
    
     let dateToday = new Date() ;
-    let milisec = dateToday.getTime();
-    let dateTime = new Date(this.user.dateBirth);
-    let milisecBirth = dateTime.getTime();
-    let years = milisec - milisecBirth;
-    let date = new Date(years);  
-    return date.getFullYear()-1970;
+    let año = dateToday.getFullYear();
+    let mes = dateToday.getMonth();
+    let dia = dateToday.getDay();
+   console.log(año);
+   console.log(mes);
+   console.log(dia);
+   let dateB = new Date(this.user.dateBirth);
+   console.log(this.user.dateBirth);
+    console.log(dateB);
+    let añob = dateB.getFullYear();
+    let mesb = dateB.getMonth();
+    let diab = dateB.getDay();
+    console.log(añob);
+   console.log(mesb);
+   console.log(diab);
+   
+
+    
+    return (año-añob);
     
   }
  
