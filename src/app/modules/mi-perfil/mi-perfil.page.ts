@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
@@ -29,6 +30,7 @@ user : User;
     private nav: NavController,
     private aroute : ActivatedRoute) { 
       this.user = this.auth.loggedUser;
+      this.dateBirth = this.user.dateBirth;
   }
 
   ngOnInit() {
@@ -50,19 +52,20 @@ user : User;
    console.log(año);
    console.log(mes);
    console.log(dia);
-   let dateB = new Date(this.user.dateBirth);
-   console.log(this.user.dateBirth);
-    console.log(dateB);
-    let añob = dateB.getFullYear();
-    let mesb = dateB.getMonth();
-    let diab = dateB.getDay();
-    console.log(añob);
-   console.log(mesb);
-   console.log(diab);
+  
    
-
-    
-    return (año-añob);
+   
+   let milisec = dateToday.getTime();
+   console.log(milisec);
+   let dateTime = new Date(this.user.dateBirth);
+   console.log(dateTime);
+   let milisecBirth = dateTime.getTime();
+   console.log(milisecBirth);
+   let years = milisec - milisecBirth;
+   console.log(years);
+   let date = new Date(years);
+   console.log(date);
+    return date.getFullYear();
     
   }
  
