@@ -28,8 +28,8 @@ export class SearchPlanPage implements OnInit {
   tags: TagCategory[] = [];
   filters = {
     tags: {
-      indexes: [],
-      values: [],
+      //indexes: [],
+      //values: [],
       ptag: [],
     },
     day: '',
@@ -70,8 +70,12 @@ export class SearchPlanPage implements OnInit {
       console.log('clase: ' + chip.className);
       chip.className ='chip-selected ios ion-activatable hydrated ion-activated';
       console.log('funciona: ', tag);
+      this.filters.tags.ptag.push(tag);
+      //this.filters.tags.indexes.push(index);
+      this.handleFilters();
     }else{
-      chip.className ='chip ios ion-activatable hydrated ion-activated'
+      chip.className ='chip ios ion-activatable hydrated ion-activated';
+      this.removeFilter(tag);
     }
 
     //document.getElementById(tag).style.cssClass
@@ -97,9 +101,11 @@ export class SearchPlanPage implements OnInit {
   //CODIGO EDU
   searchTags() {
     let plans: Plan[] = [];
-    this.filters.tags.values.forEach((tag) => {
+    //this.filters.tags.values.forEach
+    this.filters.tags.ptag.forEach((tag) => {
       let auxxPlanes = this.planes.filter((plan) =>
-        plan.tags.map(({ name }) => name).includes(tag)
+      // plan.tags.map(({ name }) => name)
+        plan.tags.map(({ category }) => category).includes(tag)
       );
       plans = plans.concat(auxxPlanes);
     });
@@ -183,10 +189,12 @@ export class SearchPlanPage implements OnInit {
     }
     if (
       this.filters.tags != undefined &&
-      this.filters.tags.values.length != 0
+      //this.filters.tags.values.length != 0
+      this.filters.tags.ptag.length != 0
     ) {
       // if(this.h_tag != undefined && this.h_tag.length != 0){
-      this.filtersSelected.push(...this.filters.tags.values);
+        //this.filtersSelected.push(...this.filters.tags.values);
+      this.filtersSelected.push(...this.filters.tags.ptag);
       result = result.concat(this.searchTags());
       count++;
     }
@@ -236,10 +244,10 @@ export class SearchPlanPage implements OnInit {
   }
 
   removeFilter(filter: string) {
-    let index = this.filters.tags.values.indexOf(filter);
+    let index = this.filters.tags.ptag.indexOf(filter);
     if (index > -1) {
-      this.filters.tags.values.splice(index, 1);
-      this.filters.tags.indexes.splice(index, 1);
+      //this.filters.tags.values.splice(index, 1);
+      //this.filters.tags.indexes.splice(index, 1);
       this.filters.tags.ptag.splice(index, 1);
     } else if (this.filters.day == filter) {
       this.filters.day = 'todos';
