@@ -1,27 +1,42 @@
 <ion-content class="content">
-
-  <div class="logoContainer">
-    <img class="logo" src="../../../assets/logo/logo.png" />
-  </div>
-  
-  <div class="searchbar-filtros">
-    <div class="searchbar">
-      <ion-searchbar
-        #val
-        (ionInput)="handleInput($event)"
-        (search)="handleFilters()"
-        (ionClear)="handleFilters()"
-        placeholder="Buscar"
-        showCancelButton="never"
-        animated
-        mode="ios"
-      >
-      </ion-searchbar>
-      <!-- <ion-icon name="options" (click)="showFiltering()" size="large">
-      </ion-icon> -->
+  <div class="header">
+    <div class="logoContainer">
+      <img class="logo" src="../../../assets/logo/logo.png" />
+    </div>
+    <div class="titleContainerDiv1">
+      <p class="tituloMis">Explora</p>
+      <p class="tituloPlanes">cerca de ti</p>
     </div>
 
-    <!-- s -->
+    <div class="searchbar-filtros">
+      <div class="searchbar">
+        <ion-searchbar
+          #val
+          (ionInput)="handleInput($event)"
+          (search)="handleFilters()"
+          (ionClear)="handleFilters()"
+          placeholder="Buscar"
+          showCancelButton="never"
+          animated
+          mode="ios"
+        >
+        </ion-searchbar>
+        <!-- <ion-icon name="options" (click)="showFiltering()" size="large">
+        </ion-icon> -->
+      </div>
+      <div class="subCategories">
+        <!-- class="chip"  [ngClass]="{'chip': toggle , 'chipSelected': !toggle }"-->
+        <ion-chip class="chip" *ngFor="let tag of tagsArray" (click)="cambiarColor(tag)" id={{tag}}>
+          <ion-label> {{tag}} </ion-label>
+          <!-- <ion-icon name="close-circle" (click)="removeFilter(filter)"></ion-icon> -->
+        </ion-chip>
+      </div>
+      <!-- <div class="subCategories">
+        <div class="chip" *ngFor="let tag of tagsArray">
+          <ion-label (click)="cambiarColor(tag)" id={{tag}} ><strong>{{tag}}</strong></ion-label>
+        </div>
+      </div> -->
+    </div>
   </div>
   <div class="body">
     <ion-list class="lista-container" *ngIf="yesResults">

@@ -18,7 +18,13 @@ export class SearchPlanPage implements OnInit {
   noResults = false;
   yesResults = true;
   content: string = '';
-  tagsArray: String[] = ["Deporte","Social","Vida en la ciudad","Música","Otros"];
+  tagsArray: String[] = [
+    'Deporte',
+    'Social',
+    'Vida en la ciudad',
+    'Música',
+    'Otros',
+  ];
   tags: TagCategory[] = [];
   filters = {
     tags: {
@@ -54,6 +60,24 @@ export class SearchPlanPage implements OnInit {
 
   ngOnInit() {}
 
+  //CODIGO MARIO
+
+  toggle: boolean = true;
+  cambiarColor(tag: any) {
+    this.toggle = !this.toggle;
+    var chip = document.getElementById(tag);
+    if (chip.className == 'chip ios ion-activatable hydrated ion-activated') {
+      console.log('clase: ' + chip.className);
+      chip.className ='chip-selected ios ion-activatable hydrated ion-activated';
+      console.log('funciona: ', tag);
+    }else{
+      chip.className ='chip ios ion-activatable hydrated ion-activated'
+    }
+
+    //document.getElementById(tag).style.cssClass
+  }
+
+  //CODIGO USADO POR EDU Y MARIO
   handleInput(event) {
     const query = event.target.value.toLowerCase();
     this.content = query;
@@ -70,6 +94,7 @@ export class SearchPlanPage implements OnInit {
     this.nav.navigateForward(route);
   }
 
+  //CODIGO EDU
   searchTags() {
     let plans: Plan[] = [];
     this.filters.tags.values.forEach((tag) => {
@@ -99,8 +124,8 @@ export class SearchPlanPage implements OnInit {
     }
     return this.planes.filter((plan) => {
       let dplan = new Date(plan.when);
-      console.log(dplan)
-      console.log(s_date)
+      console.log(dplan);
+      console.log(s_date);
       dplan.setHours(0, 0, 0, 0);
       return +dplan == +s_date;
     });
@@ -109,36 +134,28 @@ export class SearchPlanPage implements OnInit {
     let selected: string = this.filters.time;
     let s_time_first = new Date();
     let s_time_last = new Date();
-    if(selected.includes('Mañana')){
-      s_time_first.setHours(6,0,0)
-      s_time_last.setHours(14,0,0)
-    }else if(selected.includes('Tarde')){
-      s_time_first.setHours(14,0,0)
-      s_time_last.setHours(21,0,0)
-    }else{
-      s_time_first.setHours(21,0,0)
-      s_time_last.setHours(6,0,0)
-      s_time_last.setDate(s_time_last.getDate()+1)
+    if (selected.includes('Mañana')) {
+      s_time_first.setHours(6, 0, 0);
+      s_time_last.setHours(14, 0, 0);
+    } else if (selected.includes('Tarde')) {
+      s_time_first.setHours(14, 0, 0);
+      s_time_last.setHours(21, 0, 0);
+    } else {
+      s_time_first.setHours(21, 0, 0);
+      s_time_last.setHours(6, 0, 0);
+      s_time_last.setDate(s_time_last.getDate() + 1);
     }
-    return this.planes.filter(
-      (plan) => {
-        let dplan = new Date(plan.when);
-        let hh = dplan.getHours()
-        let mm = dplan.getMinutes()
-        let ftime = new Date()
-        ftime.setHours(hh,mm,0)
-        console.log(ftime)
-        console.log(s_time_first)
-        console.log(s_time_last)
-        return +ftime >= +s_time_first && +ftime <= +s_time_last
-      }
-    );
-  }
-  toggle: boolean = true;
-  cambiarColor(tag: any){
-    this.toggle = !this.toggle;
-    console.log("funciona: ", tag);
-    //document.getElementById(tag).style.cssClass
+    return this.planes.filter((plan) => {
+      let dplan = new Date(plan.when);
+      let hh = dplan.getHours();
+      let mm = dplan.getMinutes();
+      let ftime = new Date();
+      ftime.setHours(hh, mm, 0);
+      console.log(ftime);
+      console.log(s_time_first);
+      console.log(s_time_last);
+      return +ftime >= +s_time_first && +ftime <= +s_time_last;
+    });
   }
 
   mergeResults(result, count) {

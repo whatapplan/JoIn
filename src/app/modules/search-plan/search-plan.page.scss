@@ -4,98 +4,154 @@
   box-sizing: border-box;
   display: block;
 
-  .logoContainer {
-    
+  .header {
+    display: flow-root;
+    justify-content: space-between;
+    height: 35%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 86%);
+    background-color: #bdffcc;
 
-    .logo {
-      margin-top:6%;
+    .logoContainer {
+      .logo {
+        margin-top: 12%;
+        margin-left: 6%;
+        width: 64px;
+        height: 37px;
+      }
+    }
+    .titleContainerDiv1 {
       margin-left: 6%;
-      width: 64px;
-      height: 37px;
-    }
-  }
-  .searchbar-filtros{
-    .searchbar{
-      background-color: inherit;
-      border: none;
-      border-bottom: 1px solid #222623;
-    }
-  }
- 
-
-    .selectCategory {
-      border-radius: 10px;
-      height: 36px;
-      margin-right: 10px;
-      width: 97px;
-    }
-
-    .filterSelected {
-      height: 90px; /* 40px - more place for scrollbar, is hidden under parent box */
-      padding: 5px;
-      white-space: nowrap;
-      overflow-x: scroll;
-      overflow-y: hide;
-      -webkit-overflow-scrolling: touch;
-      justify-content: space-around;
-
-      .filter {
-        padding: 6px;
-        width: fit-content;
-        background: cadetblue;
-        white-space: break-spaces;
-      }
-      .filter + .filter {
-        margin-left: 5px;
-      }
-    }
-  }
-  .filtersDateDuration {
-    display: flex;
-  }
-  .body {
-    position: relative;
-    
-    .card-container {
+      margin-top: 2%;
       display: flex;
-      background-color: inherit;
-      padding: full;
-      box-shadow: none;
-      border-radius: none;
-      border-bottom: 0.3px solid lightgray;
-      .image {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-        width: 110px;
-        height: 100px;
+      justify-content: left;
+    }
+    .tituloMis {
+      font-size: 25px;
+      color: #ff2d87;
+      font-weight: 300;
+    }
+    .tituloPlanes {
+      font-size: 25px;
+      color: #ff2d87;
+      font-weight: 425;
+      margin-left: 10px;
+    }
+    .searchbar-filtros {
+      .searchbar {
+        background-color: inherit;
+        border: none;
       }
-
-      .title {
-        margin-top: 25px;
-      }
-
       .subCategories {
         display: flex;
-        justify-content: center;
+        justify-content:center;
         align-items: center;
-        width: 80%;
+        width:100%;
         margin-top: 5px;
-
+        margin-right: 3px;
+        
         .chip {
           font-family: MANROPE;
-          color: #222623;
-          background-color: #bdffcc;
-          padding: 3px;
+          color: #ff4193;
+          background-color: inherit;
+          padding: 4px;
           font-size: 9px;
           font-weight: 400;
           border-radius: 4px;
-          margin-left: 5px;
+          margin-right: 6px;
+          border:1px solid #ff4193
+        }
+        .chip-selected{
+          font-family: MANROPE;
+          color: white;
+          background-color: #ff4193;
+          padding: 4px;
+          font-size: 9px;
+          font-weight: 400;
+          border-radius: 4px;
+          margin-right: 6px;
+          border:1px solid #ff4193
         }
       }
     }
   }
+  .selectCategory {
+    border-radius: 10px;
+    height: 36px;
+    margin-right: 10px;
+    width: 97px;
+  }
 
+  .filterSelected {
+    height: 90px; /* 40px - more place for scrollbar, is hidden under parent box */
+    padding: 5px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hide;
+    -webkit-overflow-scrolling: touch;
+    justify-content: space-around;
+
+    .filter + .filter {
+      margin-left: 5px;
+    }
+  }
+}
+
+.filtersDateDuration {
+  display: flex;
+}
+.body {
+  position: relative;
+
+  .card-container {
+    display: flex;
+    background-color: inherit;
+    padding: full;
+    box-shadow: none;
+    border-radius: none;
+    border-bottom: 0.3px solid lightgray;
+    .image {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 10px;
+      width: 110px;
+      height: 100px;
+    }
+
+    .title {
+      margin-top: 25px;
+    }
+
+    .subCategories {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      margin-top: 5px;
+
+      .chip {
+        font-family: MANROPE;
+        color: #222623;
+        background-color: #bdffcc;
+        padding: 3px;
+        font-size: 9px;
+        font-weight: 800;
+        border-radius: 4px;
+        margin-left: 5px;
+      }
+      .chip-selected{
+        font-family: MANROPE;
+        color: white;
+        background-color: #ff4193;
+        padding: 3px;
+        font-size: 9px;
+        font-weight: 800;
+        border-radius: 4px;
+        margin-right: 6px;
+        border:1px solid #ff4193
+      }
+    }
+  }
+}
 
 // .scroll-hor{
 //     display: flex;
@@ -150,3 +206,4 @@ ion-select::part(text) {
 ion-card:hover {
   cursor: pointer;
 }
+
