@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="tittle"> ⪡ Mi perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
   
@@ -11,13 +7,16 @@
   
   
   <div class="div1" >
+    <ion-toolbar>
+      <ion-title class="tittle"> ⪡ Mi perfil</ion-title>
+    </ion-toolbar>
    
     <div style="width: 30%; float:left">
       <ion-img class="image" [src]="imagen" ></ion-img>
    </div>
    <div style="width: 70%; float:right">
     <ion-title class="nombrePerf" >{{username}}</ion-title>
-      <p class="edad">{{edadperf}}<strong>años</strong></p>
+      <p class="edad">{{edadperf}}<em> años</em></p>
 
  </div>
    
@@ -32,7 +31,7 @@
       <p class="descripcion" >Soy una persona que le gusta 
         el futbol, salir con amigos a tomar unas cervezas y de vez en cuando jugar al ordenador
       .Mis planes ideales incluyen al deporte y a tomar algo.</p>
-      <p class="vivir">Vivo en <strong>{{ciudad}}</strong></p> 
+      <p class="vivir">Vivo en <em>{{ciudad}}</em></p> 
      
 
 
@@ -52,7 +51,12 @@
     </div>
     <div class="div4" >
 
-        <p class="planespub">{{numplans}}  <strong>planes publicados</strong>
+        <p class="planespub">{{numplans}}  <em>planes publicados</em>
+
+
+        </p>
+        <p class="usuaria">Usuaria desde junio de 2021
+            
 
 
         </p>

@@ -22,7 +22,7 @@ user : User;
   ciudad:string;
   numplans:number;
   edadperf:number;
-  dateBirth: Date;
+  dateBirth: Date = new Date();
   constructor(private auth: AuthService,
     private crud: CrudService,
     private alertController:AlertController,
@@ -39,7 +39,7 @@ user : User;
   this.descrip=this.user.aboutMe;
   this.ciudad = this.user.city;
   this.numplans = this.user.createdPlans.length;
-  this.edadperf = this.sacaredad();
+  this.edadperf = 27;
   this.imagen = this.user.image;
   }
 
@@ -57,14 +57,14 @@ user : User;
    
    let milisec = dateToday.getTime();
    console.log(milisec);
-   let dateTime = new Date(this.user.dateBirth);
+   let dateTime = new Date(this.dateBirth.getMilliseconds());
    console.log(dateTime);
    let milisecBirth = dateTime.getTime();
    console.log(milisecBirth);
    let years = milisec - milisecBirth;
    console.log(years);
    let date = new Date(years);
-   console.log(date);
+   console.log(date.getFullYear());
     return date.getFullYear();
     
   }
