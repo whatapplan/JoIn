@@ -214,7 +214,8 @@ export class SearchPlanPage implements OnInit {
     }
     if (count == 0) {
       this.planesResultado = this.planes;
-    } else this.planesResultado = this.mergeResults(result, count);
+    } else this.planesResultado = result;
+    //this.planesResultado = this.mergeResults(result, count)
     this.manageNoResults();
   }
 

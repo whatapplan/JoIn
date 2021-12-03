@@ -63,6 +63,9 @@ export class CrudService {
   async getAllPlans(id: string, tags: Tag[]) {
     const plans: Plan[] = [];
     const plans2: Plan[] = [];
+    if(tags.length > 10){
+    tags = tags.slice(0,9);}
+
     const plansRef = collection(this.ngFirestore.firestore, 'plans');
     const q = query(plansRef, where("participants", 'array-contains', id));
     const querySnapshot = await getDocs(q);
