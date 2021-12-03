@@ -96,7 +96,7 @@ top: 30px;
             z-index: 2;
           color: #ff4193;
            margin-top: 230px;
-          font-size: 14px;
+          font-size: 11px;
           vertical-align:inherit;
           text-align:start;
           margin-left: 49px;
@@ -134,32 +134,19 @@ top: 30px;
             border-bottom: solid;
             border-width: 0.5px;
             .infor{
-              margin-top: 5%;
+              margin-top: 3%;
                 color: #ff4193;
-                font-size: 15px;
+                font-size: 11px;
                 margin-left: 49px;
                font-style: normal;
-
-               .verif{
-                   color: black;
-                   width: 300px;
-                   .verif1{
-                         
-
-                  }
-                  .verif2{
-   
-   
-                  }
-                   
-
+               height: 30px;
 
                }
                
 
             }
         
-    }
+    
  .div4{
 
     display: flex;
@@ -175,33 +162,37 @@ top: 30px;
       .vivir{
 
         margin-left: 49px;
-
+        font-size: 14px;
       }
       .verif{
         color: black;
-        width: 300px;
+        width: 14px;
         margin-left: 49px;
         margin-top: 1%;
         font-weight: bold;
+       
 
     }
     .verif1{
       color: black;
-      width: 300px;
+      width: 14px;
       margin-left: 49px;
       margin-top: 1%;
       font-weight: bold;
+      font-size: 14px;
+     
 
 
    }
    .verif2{
     color: black;
-    width: 300px;
+    width: 14px;
     margin-left: 49px;
     margin-top: 1%;
     font-weight: bold;
-
-
+    font-size: 14px;
+   
+   
    }
    .planespub{
      position: absolute;
@@ -209,6 +200,7 @@ top: 30px;
      margin-top: 5%;
      width: 375px;
      height: 50%;
+     font-size: 14px;
 
    }
    
@@ -217,6 +209,7 @@ top: 30px;
     margin-left: 49px;
     margin-top: 15%;
     vertical-align: bottom;
+    font-size: 14px;
 
 
    }
@@ -226,4 +219,19 @@ top: 30px;
     position: relative;
     left: 270px;
    top: 15px;
+  }
+  .divperf{
+
+margin-bottom: 2%;    
+ 
+  }
+  .divcor{
+
+    margin-bottom: 2%; 
+    margin-top: 2%;
+
+  }
+  .divnum{
+    margin-top: 2%;
+
   }
