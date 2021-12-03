@@ -161,15 +161,24 @@ export class CrudService {
     return this.ngFirestore
       .collection<any>('plans')
       .doc(chatId).collection('chat').doc('0')
-      .snapshotChanges()
-      .pipe(
-        map(doc=>{
-          return {
-            id:doc.payload.id, ...doc.payload.data()
-          };
-        })
-      );
+      .valueChanges()
+    // return this.ngFirestore
+    // .collection('plans')
+    // .doc(chatId)
+    // .collection('chat')
+    // .doc('0')
+    // .get()
   }
+
+  getOnce(chatId){
+    return this.ngFirestore
+    .collection('plans')
+    .doc(chatId)
+    .collection('chat')
+    .doc('0')
+    .get()
+  }
+
   async create(planId){
     const { id } = await this.auth.loggedUser;
     const data = {
@@ -205,6 +214,7 @@ export class CrudService {
     return chat$.pipe(
       switchMap(c => {
         chat = c;
+        console.log(c)
         const uids = Array.from (new Set(c.messages.map(v=> v.id)));
         const userDocs = uids.map(u =>
           this.ngFirestore.doc(`usuario/${u}`).valueChanges()

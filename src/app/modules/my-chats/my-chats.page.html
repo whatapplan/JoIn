@@ -1,25 +1,87 @@
-<ion-header>
+<ion-header class="ion-no-border fixed top-0 left-0">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button
-        icon="caret-back-outline"
-        defaultHref="home"
-        text="Mis Planes"
-      ></ion-back-button>
-    </ion-buttons>
+    <button class='back-button' (click)='goBack()'>
+        <!-- <ion-icon size='large' name='chevron-back-outline'>
+        </ion-icon> -->
+        <p class='title-back'>
+          Mis planes
+        </p>
+    </button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div *ngFor='let chat of planes'>
-    <ion-item (click)='goToChat(chat.id)'> 
-      <h2>
-        {{chat.title}}
-      </h2>
-      <h2>
-        {{chat.when | date}}
-      </h2>
-    </ion-item>
+<div class='main-div'>
+  <div class='door'>
+    <div class='in-wrap'>
+      <ion-icon style='margin:auto' name='search-sharp'></ion-icon>
+      <input (input)='typing($event)' type="text" placeholder="Busca un plan" class='search'>
+    </div>
   </div>
-  
-</ion-content>
+  <div class='wrap'>
+    <div *ngIf="showAll">
+
+      <div *ngFor='let chat of planes;trackBy:identify;' class='cont' (click)='goToChat(chat.id)'>
+        <div class='image'>
+          <img class = 'h-full
+          w-full
+          object-cover object-center
+          rounded-md
+          relative'
+          src="https://thispersondoesnotexist.com/image"
+          decoding="sync"
+          importance="high"/>
+        </div>
+        <div class='txt'>
+          <p class='title'>{{chat.title}}</p>
+          <p class='last' [ngStyle]="{color: chat.last == 'Empieza a hablar' ? 'deeppink' : 'black'}"
+          >{{chat.last}}</p>
+          </div>
+          <div class="time">
+            <p>{{chat.lastTime | date:'shortTime'}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showNoResults">
+        <h1 style="color: var(--pink) !important;">
+          No se encontraron chats
+        </h1>
+      </div>
+        <div *ngIf="showResults">
+          
+      <div *ngFor='let chat of planesResult' class='cont' (click)='goToChat(chat.id)'>
+        <div class='image'>
+          <img class = 'h-full
+          w-full
+          object-cover object-center
+          rounded-md
+          relative'
+          src="https://thispersondoesnotexist.com/image"
+          decoding="sync"
+          importance="high"/>
+        </div>
+        <div class='txt'>
+          <p class='title'>{{chat.title}}</p>
+          <p class='last' [ngStyle]="{color: chat.last == 'Empieza a hablar' ? 'deeppink' : 'black'}">
+            {{chat.last}}</p>
+          </div>
+          <div class="time">
+            <p>{{chat.lastTime | date:'shortTime'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- <ul>
+        <li *ngFor='let chat of planes' class='flex'>
+          <div class="first:-ml-0 relative h-10 w-9 rounded-md">
+            <img class = 'h-full
+            w-full
+          object-cover object-center
+          rounded-md
+          relative'
+          src="../../../assets/logo/logo.png"/>
+        </div>
+        <p>{{chat.title}}</p>
+        <p>{{chat.when | date : 'shortTime'}}</p>
+      </li>
+    </ul> -->
+</div>

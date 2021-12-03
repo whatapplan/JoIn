@@ -22,6 +22,7 @@ export class ChatPage implements OnInit, AfterViewInit {
   chat_key :string;
   user_id:string;
   msg_days :string[] = []
+  chat_created :any
 
   constructor(private cs :CrudService, private route : ActivatedRoute, private auth : AuthService) {}
 
@@ -47,7 +48,7 @@ export class ChatPage implements OnInit, AfterViewInit {
   } 
   
   ngAfterViewInit(): void {
-    setTimeout(()=>{this.cont.scrollToBottom()},100)
+    setTimeout(()=>{this.cont.scrollToBottom()},500)
   }
   
   isMyMsg(id){

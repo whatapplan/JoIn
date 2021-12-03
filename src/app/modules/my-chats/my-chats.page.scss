@@ -1,0 +1,106 @@
+@import "../../../global.scss";
+
+:host::ng-deep {
+  --ion-toolbar-background:#BDFFCC ;
+  :root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+  .back-button {
+    color: var(--pink) !important;
+    margin-top: 30px;
+    margin-left: 10px;
+    font-size: 20px;
+  }
+  .door{
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: 21%;
+    background-color: #BDFFCC;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 90%);
+  }
+  .image{
+    margin-left: 5%;
+    width: 2.25rem;
+    height: 2.5rem;
+    position: relative;
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .image::after{
+    content: "";
+    clear: both;
+    
+  }
+  .cont{
+    display: inline-flex;
+    border-bottom-width: 4px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
+  .cont::after{
+    content: "";
+    clear: both;
+    // display: table;
+  }  
+  .txt {
+    padding: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width:65%;
+    text-align: initial;
+    color: blueviolet;
+  }
+  .title{
+    margin-top: auto;
+    margin-bottom: 0.1em;
+  }
+  .time {
+    margin-left: 1%;
+    margin-top:auto;
+    margin-bottom:auto;
+    font-size: smaller;
+    color: black;
+  }
+  .last{
+    margin: 0px;
+    font-size: smaller;
+    color:gray;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .wrap{
+    margin-top: -0.1em;
+    overflow: scroll;
+  }
+
+  .search {
+    padding: 5px;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .in-wrap{
+    width: 76%;
+    margin :auto;
+    border-bottom: 2px solid #000;
+    display: inline-flex;
+  }
+  .title-back::before{
+    content: url('../../../assets/icon/leftArrow.png');
+  }
+  .main-div{
+    overflow: scroll;
+    height: 100%;
+  }
+
+}

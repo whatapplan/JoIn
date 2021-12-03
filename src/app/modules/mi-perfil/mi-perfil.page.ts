@@ -4,6 +4,7 @@ import { AlertController, NavController } from '@ionic/angular';
 
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { UiHelper } from 'src/app/core/services/helpers/toast.service';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
 
 
@@ -14,7 +15,7 @@ import { CrudService } from 'src/app/core/services/http/crud-service.service';
 })
 export class MiPerfilPage implements OnInit {
  
-user : User;
+  user : User;
   user_id: string;
   username: string;
   imagen: string;
@@ -28,7 +29,8 @@ user : User;
     private alertController:AlertController,
     private router : Router,
     private nav: NavController,
-    private aroute : ActivatedRoute) { 
+    private aroute : ActivatedRoute,
+    private ui : UiHelper) { 
       this.user = this.auth.loggedUser;
       this.dateBirth = this.user.dateBirth;
   }
@@ -69,7 +71,14 @@ user : User;
     
   }
  
-    
+  closeSession() {
+    this.auth.eraseLoggedUser();
+    this.ui.presentLoading('reloading')
+    this.router.navigate(['/home']).finally(() => {
+      window.location.reload();
+      this.ui.dismissLoading('reloading');
+    });
+  }
   
 }
 
