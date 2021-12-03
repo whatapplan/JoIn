@@ -95,6 +95,17 @@ ion-card-content{
 .prueba{
 
     width: 100%;
+    height:85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.prueba2{
+
+    width: 100%;
+    // height:90px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,6 +248,7 @@ ion-card-content{
 
     }
 
+
 }
 
 //titulo planes creados por mi
@@ -275,7 +287,8 @@ ion-card-content{
 
 .image{
 
-    width: 110px;
-    height: 100px;
+    width: 90px;
+    height: 82px;
+    
 
 }
