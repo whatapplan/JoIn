@@ -12,16 +12,16 @@
     background-color: #bdffcc;
 
     .logoContainer {
+      margin-left: 25px;
+      margin-top: 45px;
       .logo {
-        margin-top: 12%;
-        margin-left: 6%;
-        width: 64px;
-        height: 37px;
+        width: 60px;
+        height: 32px;
       }
     }
     .titleContainerDiv1 {
       margin-left: 6%;
-      margin-top: 5%;
+      margin-top: 3%;
       display: flex;
       justify-content: left;
 
@@ -39,12 +39,12 @@
     }
 
     .searchbar-filtros {
-      margin-top: 3%;
+      margin-top: 2%;
       .search-bar-container {
-        width:100%;
+        width: 100%;
         display: flex;
         justify-content: center;
-        align-items:center;
+        align-items: center;
         .searchbar {
           --background: transparent;
           --icon-color: #222623;
@@ -60,11 +60,12 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        margin-top: 2%;
+        margin-top: 5%;
 
         .filtro {
           font-family: MANROPE;
           color: #ff4193;
+          height: 25px;
           background-color: inherit;
           padding-left: 1%;
           padding-right: 1%;
@@ -78,6 +79,7 @@
         .filtro-selected {
           font-family: MANROPE;
           color: white;
+          height: 25px;
           background-color: #ff4193;
           padding-left: 1%;
           padding-right: 1%;
@@ -101,45 +103,46 @@
       box-shadow: none;
       border-radius: none;
       border-bottom: 0.3px solid lightgray;
-      .image {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-        width: 85px;
-        height: 78px;
-      }
-
-      .title {
-        margin-top: 25px;
-      }
-
-      .subCategories {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
-        margin-top: 5px;
-
-        .chip {
-          font-family: MANROPE;
-          color: #222623;
-          background-color: #bdffcc;
-          padding: 3px;
-          font-size: 9px;
-          font-weight: 800;
-          border-radius: 4px;
-          margin-left: 5px;
+      .image-container {
+        margin: 15px;
+        .image {
+          margin-left: 10px;
+          margin-right: 10px;
+          margin-top: 10px;
+          width: 85px;
+          height: 78px;
         }
-        .chip-selected {
-          font-family: MANROPE;
-          color: white;
-          background-color: #ff4193;
-          padding: 3px;
-          font-size: 9px;
-          font-weight: 800;
-          border-radius: 4px;
-          margin-right: 6px;
-          border: 1px solid #ff4193;
+      }
+      .title-tag-container {
+        height: 100%;
+        width: 100%;
+        padding-bottom: 5%;
+
+        .title {
+          margin-top: 25px;
+        }
+
+        .subCategories {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          width: 100%;
+          margin-top: 5%;
+
+          .filtro {
+            font-family: MANROPE;
+            color: #ff4193;
+            height: 20px;
+            background-color: inherit;
+            padding-left: 1%;
+            padding-right: 1%;
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 4px;
+            margin-right: 1%;
+            margin-left: 1%;
+            border: 1px solid #ff4193;
+          }
         }
       }
     }

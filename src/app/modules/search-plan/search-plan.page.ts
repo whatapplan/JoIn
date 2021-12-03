@@ -19,7 +19,7 @@ export class SearchPlanPage implements OnInit {
   yesResults = true;
   content: string = '';
   tagsArray: String[] = [
-    'Deporte',
+    'Deportes',
     'Social',
     'Vida en la ciudad',
     'Cultura',
@@ -86,6 +86,7 @@ export class SearchPlanPage implements OnInit {
   handleInput(event) {
     const query = event.target.value.toLowerCase();
     this.content = query;
+    this.handleFilters();
   }
 
   searchTitle() {
