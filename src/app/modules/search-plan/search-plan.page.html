@@ -9,8 +9,9 @@
     </div>
 
     <div class="searchbar-filtros">
-      <div class="searchbar">
+      <div class="search-bar-container">
         <ion-searchbar
+          class="searchbar"
           #val
           (ionInput)="handleInput($event)"
           (search)="handleFilters()"
@@ -26,7 +27,7 @@
       </div>
       <div class="subCategories">
         <!-- class="chip"  [ngClass]="{'chip': toggle , 'chipSelected': !toggle }"-->
-        <ion-chip class="chip" *ngFor="let tag of tagsArray" (click)="cambiarColor(tag)" id={{tag}}>
+        <ion-chip class="filtro" *ngFor="let tag of tagsArray" (click)="cambiarColor(tag)" id={{tag}}>
           <ion-label> {{tag}} </ion-label>
           <!-- <ion-icon name="close-circle" (click)="removeFilter(filter)"></ion-icon> -->
         </ion-chip>
@@ -45,8 +46,8 @@
         class="card-container"
         *ngFor="let plan of planesResultado"
       >
-        <div class="image">
-          <ion-img
+        <div >
+          <ion-img class="image"
             src="../../../assets/planIlustrations/{{plan.tags[0].category}}.png"
           ></ion-img>
         </div>

@@ -22,6 +22,7 @@ export class SearchPlanPage implements OnInit {
     'Deporte',
     'Social',
     'Vida en la ciudad',
+    'Cultura',
     'Música',
     'Otros',
   ];
@@ -66,15 +67,15 @@ export class SearchPlanPage implements OnInit {
   cambiarColor(tag: any) {
     this.toggle = !this.toggle;
     var chip = document.getElementById(tag);
-    if (chip.className == 'chip ios ion-activatable hydrated ion-activated') {
+    if (chip.className == 'filtro ios ion-activatable hydrated ion-activated') {
       console.log('clase: ' + chip.className);
-      chip.className ='chip-selected ios ion-activatable hydrated ion-activated';
+      chip.className ='filtro-selected ios ion-activatable hydrated ion-activated';
       console.log('funciona: ', tag);
       this.filters.tags.ptag.push(tag);
       //this.filters.tags.indexes.push(index);
       this.handleFilters();
     }else{
-      chip.className ='chip ios ion-activatable hydrated ion-activated';
+      chip.className ='filtro ios ion-activatable hydrated ion-activated';
       this.removeFilter(tag);
     }
 
