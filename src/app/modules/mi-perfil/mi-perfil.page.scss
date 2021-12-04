@@ -47,6 +47,7 @@ background-size: cover;
 -webkit-background-size: cover;
 
 }
+
 .nombrePerf{
     height: 100px;
     z-index: 2;
@@ -73,9 +74,15 @@ background-size: cover;
   margin-left: 47px;
 
 }
+.nivel{
+
+vertical-align: bottom;
+height: 50px;
+}
 .level{
 z-index: 5;
 margin-left: 30px;
+
 
 top: 30px;
 
