@@ -26,7 +26,7 @@ export class MyChatsPage implements OnInit {
         let aux = this.route.snapshot.queryParamMap.get('list');
         this.planes = JSON.parse(aux)
         this.handleChats().then(() =>{
-          setTimeout(()=>{this.sortChats()},100)
+          setTimeout(()=>{this.sortChats()},50)
         })
       })
     }
@@ -65,7 +65,7 @@ export class MyChatsPage implements OnInit {
     return new Promise((res,rej)=>{
       this.planes.map(plan=>{
         this.cs.getOnce(plan.id).subscribe((val)=>{
-          res(this.planes)
+          setTimeout(()=>{res(this.planes)},100)
           let chat = val.data()
           if(chat === undefined || chat.messages.length == 0){
             if(chat!=undefined)this.$chats.push(chat)
