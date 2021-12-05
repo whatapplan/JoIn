@@ -182,7 +182,8 @@ export class CrudService {
     .get()
   }
 
-  async create(planId){
+  async create(idPlan : string){
+    let planId = idPlan.split('@')[0]
     const { id } = await this.auth.loggedUser;
     const data = {
       id,
@@ -192,7 +193,7 @@ export class CrudService {
       messages:[]
     };
     await this.ngFirestore.collection('plans').doc(planId).collection('chat').doc('0').set(data);
-    return this.router.navigate(['chat',planId]);
+    return this.router.navigate(['chat',idPlan]);
   }
   async sendMessage(chatId, content){
     const {id} = await this.auth.loggedUser;
@@ -217,7 +218,6 @@ export class CrudService {
     return chat$.pipe(
       switchMap(c => {
         chat = c;
-        console.log(c)
         const uids = Array.from (new Set(c.messages.map(v=> v.id)));
         const userDocs = uids.map(u =>
           this.ngFirestore.doc(`usuario/${u}`).valueChanges()

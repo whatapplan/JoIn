@@ -15,8 +15,11 @@ import { CrudService } from 'src/app/core/services/http/crud-service.service';
 })
 export class ChatPage implements OnInit, AfterViewInit {
   // Tasks : TODO[] = []
-  @ViewChild('contenedor') cont;
+  @ViewChild('cont') cont;
 
+  fWord:string
+  rWord:string
+  title:string
   chat$: Observable<any>;
   newMsg : string;
   chat_key :string;
@@ -28,7 +31,12 @@ export class ChatPage implements OnInit, AfterViewInit {
 
   
   ngOnInit() {
-    const chatId = this.route.snapshot.paramMap.get('id');
+    const chatRoute = this.route.snapshot.paramMap.get('id');
+    const chatId = chatRoute.split('@')[0]
+    this.title = chatRoute.split("@")[1]
+    let allWords = this.title.split(' ')
+    this.fWord = allWords.shift()
+    this.rWord = allWords.join(' ')
     this.chat_key = chatId;
     const source = this.cs.get(chatId);
     this.chat$ = this.cs.joinUsers(source);
@@ -48,7 +56,7 @@ export class ChatPage implements OnInit, AfterViewInit {
   } 
   
   ngAfterViewInit(): void {
-    setTimeout(()=>{this.cont.scrollToBottom()},500)
+    setTimeout(()=>{this.cont.scrollTop = this.cont.scrollHeight},500)
   }
   
   isMyMsg(id){
@@ -62,7 +70,7 @@ export class ChatPage implements OnInit, AfterViewInit {
     }
     this.cs.sendMessage(this.chat_key, this.newMsg);
     this.newMsg = '';
-    setTimeout(()=>{this.cont.scrollToBottom()},500)
+    setTimeout(()=>{this.cont.scrollTop = this.cont.scrollHeight},500)
   }
 
   trackByCreated (i,msg){

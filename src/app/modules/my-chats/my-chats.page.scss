@@ -10,7 +10,7 @@
     color: var(--pink) !important;
     margin-top: 30px;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 25px;
   }
   .door{
     position: relative;
@@ -95,8 +95,17 @@
     border-bottom: 2px solid #000;
     display: inline-flex;
   }
-  .title-back::before{
-    content: url('../../../assets/icon/leftArrow.png');
+  .title-mis{
+    margin-left: 6px;
+    font-weight: 300;
+    color:#FF2D87;
+  }
+  .title-back{
+    font-weight: 425;
+    color:#FF2D87;
+    &::before{
+      content: url('../../../assets/icon/leftArrow.png');
+    }
   }
   .main-div{
     overflow: scroll;

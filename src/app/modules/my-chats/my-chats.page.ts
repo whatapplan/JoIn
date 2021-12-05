@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Evented } from 'leaflet';
+import { pipe } from 'rxjs';
 import { Listener } from 'selenium-webdriver';
 import { Plan } from 'src/app/core/models/plan';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -21,16 +23,14 @@ export class MyChatsPage implements OnInit {
         this.$chats = []
         this.planes = []
         this.planesResult = []
-        this.ids = []
         let aux = this.route.snapshot.queryParamMap.get('list');
         this.planes = JSON.parse(aux)
-        this.planes.forEach((plan)=>{
-          this.ids.push(plan.id)
+        this.handleChats().then(() =>{
+          setTimeout(()=>{this.sortChats()},100)
         })
-        this.handleChats(this.ids)
       })
     }
-
+    
   planes : Plan[]
   planesResult : Plan[] = []
   ids : string[] = []
@@ -40,30 +40,49 @@ export class MyChatsPage implements OnInit {
   showNoResults = false
   $chats = []
 
+    
   ngOnInit() {
-   
+      
   }
 
-  handleChats(ids : any[]){
-    ids.forEach((elem, index) => {
-      this.cs.getOnce(elem).subscribe((val)=>{
-        let chat = val.data()
-        if(chat === undefined || chat.messages.length == 0){
-          this.planes[index]["last"] = 'Empieza a hablar'
-          this.planes[index]["lastTime"] = ""
-        }else{
-          this.$chats.push(chat)
-          let each = this.planes[index]
-          this.planes[index]["last"] = 
-          `${chat.messages[chat.messages.length - 1].name}: ${chat.messages[chat.messages.length - 1].content}`
-          this.planes[index]["lastBy"] = chat.messages[chat.messages.length - 1].id
-          this.planes[index]["lastTime"] = chat.messages[chat.messages.length - 1].createdAt
-          this.planes=this.planes.sort(function(x,y){
-            return x == each ? - 1 : y == each ? 1 : 0
-          })
-        }
+  sortChats(){
+    // este metodo ordena los chats por la hora en la q se recibio el ultimo msg
+    let withChat = this.planes.filter(plan => plan.last != 'Empieza a hablar')
+    withChat.sort((a,b)=>{
+      return a.lastTime - b.lastTime
+    }).forEach(plan=>{
+      let index = this.planes.indexOf(plan)
+      if(index > -1){
+        this.planes.splice(index,1)
+        this.planes.push(plan)
+      }
+    })
+    this.planes.reverse()
+  }
+
+    
+  handleChats() {
+    return new Promise((res,rej)=>{
+      this.planes.map(plan=>{
+        this.cs.getOnce(plan.id).subscribe((val)=>{
+          res(this.planes)
+          let chat = val.data()
+          if(chat === undefined || chat.messages.length == 0){
+            if(chat!=undefined)this.$chats.push(chat)
+            plan["last"] = 'Empieza a hablar'
+            plan["lastTime"] = "" 
+          }
+          else{
+            this.$chats.push(chat)
+            plan["last"] = 
+            `${chat.messages[chat.messages.length - 1].name}: ${chat.messages[chat.messages.length - 1].content}`
+            plan["lastBy"] = chat.messages[chat.messages.length - 1].id
+            plan["lastTime"] = chat.messages[chat.messages.length - 1].createdAt
+          }
+        })
+        return plan
       })
-    });
+    })
   }
 
   goBack(){
@@ -108,12 +127,13 @@ export class MyChatsPage implements OnInit {
     this.showNoResults = true;
   }
 
-  goToChat(id){
+  goToChat(id, title){
+    let idBuild = `${id}@${title}`
     if(this.$chats.find(xat=>xat.idSala == id)!=undefined){
-      return this.router.navigate(['chat',id])
+      return this.router.navigate(['chat',idBuild])
     }
     else{
-      return this.cs.create(id)
+      return this.cs.create(idBuild)
     }
   }
 }

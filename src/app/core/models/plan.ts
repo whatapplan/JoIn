@@ -37,4 +37,7 @@ export class Plan implements IPlan {
     creationUser: User;
     time?: string;
     participants: string[];
+    last?
+    lastTime?
+    lastBy?
 }

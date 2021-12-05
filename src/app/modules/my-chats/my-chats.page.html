@@ -4,7 +4,8 @@
         <!-- <ion-icon size='large' name='chevron-back-outline'>
         </ion-icon> -->
         <p class='title-back'>
-          Mis planes
+          <span class='title-mis'>Mis</span>
+          chats
         </p>
     </button>
   </ion-toolbar>
@@ -20,7 +21,7 @@
   <div class='wrap'>
     <div *ngIf="showAll">
 
-      <div *ngFor='let chat of planes;trackBy:identify;' class='cont' (click)='goToChat(chat.id)'>
+      <div *ngFor='let chat of planes;trackBy:identify;' class='cont' (click)='goToChat(chat.id, chat.title)'>
         <div class='image'>
           <img class = 'h-full
           w-full
@@ -48,7 +49,7 @@
       </div>
         <div *ngIf="showResults">
           
-      <div *ngFor='let chat of planesResult' class='cont' (click)='goToChat(chat.id)'>
+      <div *ngFor='let chat of planesResult' class='cont' (click)='goToChat(chat.id, chat.title)'>
         <div class='image'>
           <img class = 'h-full
           w-full

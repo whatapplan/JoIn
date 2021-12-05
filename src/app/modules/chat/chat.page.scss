@@ -2,6 +2,40 @@ ion-avatar{
     margin:10px;
 }
 
-.form{
+:root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+  .header{
+    position: relative;
+    z-index: 0;
+    display: flex;
+    width:100%;
+    height: 20%;
+    background-color: #BDFFCC;
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 0% 90%);
+  }
+  .txt{
+      width: 100%;
+      text-align: initial;
+  }
+  .title-back{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+.back-button {
+    color: var(--pink) !important;
+    margin-left: 5%;
+    font-size: 25px;
+  }
+  .title-back::before{
+    content: url('../../../assets/icon/leftArrow.png');
+  }
+  .form{
     background-color: aqua;
 }
+.main-div{
+    overflow: scroll;
+    height: 100%;
+  }
