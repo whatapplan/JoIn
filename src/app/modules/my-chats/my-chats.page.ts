@@ -38,8 +38,7 @@ export class MyChatsPage implements OnInit {
   showAll = true
   showResults = false
   showNoResults = false
-  $chats = []
-
+  $chats = []    
     
   ngOnInit() {
       
@@ -65,7 +64,7 @@ export class MyChatsPage implements OnInit {
     return new Promise((res,rej)=>{
       this.planes.map(plan=>{
         this.cs.getOnce(plan.id).subscribe((val)=>{
-          setTimeout(()=>{res(this.planes)},100)
+          setTimeout(()=>{res(this.planes)},500)
           let chat = val.data()
           if(chat === undefined || chat.messages.length == 0){
             if(chat!=undefined)this.$chats.push(chat)

@@ -1,18 +1,19 @@
-<!-- <ion-header class="ion-no-border fixed top-0 left-0">
-  <ion-toolbar>
-    <button class='back-button' onclick="window.history.go(-1); return false;">
-        <p class='title-back'>
-          Mis chats
-        </p>
-    </button>
-  </ion-toolbar>
-</ion-header> -->
 
 <div class='header' slot='fixed'>
   <button class='back-button' onclick="window.history.go(-1); return false;">
     <div class="txt">  
+      <div class='image'>
+        <img style='margin-left:9px' class = 'h-full
+        w-full
+        object-cover object-center
+        rounded-md
+        relative'
+        src="https://thispersondoesnotexist.com/image"
+        decoding="sync"
+        importance="high"/>
+      </div>
       <p class='title-back'>
-        <span style="color:blueviolet">{{fWord}}</span>
+        <span class="title-mis">{{fWord}}</span>
         {{rWord}}
       </p>
     </div>
@@ -20,34 +21,24 @@
 </div>
 
 <div #cont class="main-div">
-  <ng-container *ngIf='chat$ | async as chat'>
 
-    <div class = 'chat'>
-      <ion-list>
-        <ion-item *ngFor='let msg of chat.messages; trackBy: trackByCreated' 
-        [ngStyle]="{'direction':isMyMsg(msg.id)}">
-          <ion-avatar slot="start">
-            <img src="../../../assets/logo/logo.png">
-          </ion-avatar>
-          <ion-label>
-            <h2>{{msg.name}}</h2>
-            <h3>{{msg.content}}</h3>
-            <p>{{msg.createdAt | date :'shortTime'}}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-      
+
+  <div *ngFor="let date of dates;index as index">
+    <p class="dateBox">{{date}}</p>
+    <div class = 'mn'>
+      <ul>
+        <li *ngFor="let message of msgByDate[index];trackBy: trackByCreated">
+          <div class="message" [ngClass]="message.id == userId ? 'mine' : 'others'">
+            <p>{{ message.name}}: {{ message.content }}</p>
+            <div class='time'>{{message.createdAt | date:'shortTime'}}</div>
+          </div>
+        </li>
+      </ul>
     </div>
-
-  </ng-container>
+  </div>
 </div>
-  <!-- <ion-item class='form' slot="fixed">
-    <ion-input [(ngModel)]='newMsg' (keydown.enter) = 'submit()' placeholder="escribe un mensaje">
-    </ion-input>
-    <ion-button (click)='submit()'>Enviar</ion-button>  
-  </ion-item> -->
 
-<div class='form' slot="fixed">
-  <input [(ngModel)]='newMsg' (keydown.enter) = 'submit()' placeholder="escribe un mensaje">
-  <button (click)="submit()">Enviar</button>
-</div>  
+<div class='send'>
+  <input [(ngModel)]='newMsg' (keydown.enter) = 'submit()' placeholder="Envia un mensaje">
+  <button class='sendButton' (click)="submit()"></button>
+</div>
