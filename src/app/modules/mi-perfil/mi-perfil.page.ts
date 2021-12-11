@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { Timestamp } from 'firebase/firestore';
 
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -23,7 +24,7 @@ export class MiPerfilPage implements OnInit {
   ciudad:string;
   numplans:number;
   edadperf:number;
-  dateBirth: Date = new Date();
+  dateBirth : any;
   constructor(private auth: AuthService,
     private crud: CrudService,
     private alertController:AlertController,
@@ -32,7 +33,10 @@ export class MiPerfilPage implements OnInit {
     private aroute : ActivatedRoute,
     private ui : UiHelper) { 
       this.user = this.auth.loggedUser;
-      this.dateBirth = this.user.dateBirth;
+      let time= this.user.dateBirth as unknown as Timestamp;
+      this.dateBirth = new Date(time.seconds*1000);
+      this.edadperf = this.sacaredad();
+      console.log(this.edadperf);
   }
 
   ngOnInit() {
@@ -41,33 +45,13 @@ export class MiPerfilPage implements OnInit {
   this.descrip=this.user.aboutMe;
   this.ciudad = this.user.city;
   this.numplans = this.user.createdPlans.length;
-  this.edadperf = 27;
+  // this.edadperf = 27;
   this.imagen = this.user.image;
   }
 
   sacaredad(){
-   
-    let dateToday = new Date() ;
-    let año = dateToday.getFullYear();
-    let mes = dateToday.getMonth();
-    let dia = dateToday.getDay();
-   console.log(año);
-   console.log(mes);
-   console.log(dia);
-  
-   
-   
-   let milisec = dateToday.getTime();
-   console.log(milisec);
-   let dateTime = new Date(this.dateBirth.getMilliseconds());
-   console.log(dateTime);
-   let milisecBirth = dateTime.getTime();
-   console.log(milisecBirth);
-   let years = milisec - milisecBirth;
-   console.log(years);
-   let date = new Date(years);
-   console.log(date.getFullYear());
-    return date.getFullYear();
+    let timeDiff = Math.abs(Date.now() - <any>this.dateBirth);
+        return Math.ceil((timeDiff / (1000 * 3600 * 24)) / 365);
     
   }
  
