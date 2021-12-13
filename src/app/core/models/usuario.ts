@@ -21,6 +21,7 @@ export class User implements IUser {
   createdPlans: string[];
   aboutMe: string;
   image: string;
+  userFrom: Date;
 }
 
 export interface IUser {
@@ -37,4 +38,5 @@ export interface IUser {
   rejectedPlans?: string[];
   createdPlans?: string[];
   image?:string;
+  userFrom?: Date;
 }

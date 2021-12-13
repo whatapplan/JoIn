@@ -54,6 +54,12 @@ export class MiPerfilPage implements OnInit {
         return Math.ceil((timeDiff / (1000 * 3600 * 24)) / 365);
     
   }
+  usuarioDesde(){
+
+  let tiempo = this.user.userFrom;
+ 
+
+  }
  
   closeSession() {
     this.auth.eraseLoggedUser();
