@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
-import { NgLetDirective } from './core/directives/ng-let.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localeEs, 'es')
 
@@ -21,6 +21,7 @@ registerLocaleData(localeEs, 'es')
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

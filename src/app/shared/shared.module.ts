@@ -13,6 +13,13 @@ import { NgLetDirective } from '../core/directives/ng-let.directive';
 import { CountryPipe } from '../core/pipes/country.pipe';
 import { SafePipe } from '../core/pipes/safe.pipe';
 import { UserRetrievingPipe } from '../core/pipes/user-retrieving.pipe';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ListboxModule } from 'primeng/listbox';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { GMapModule } from 'primeng/gmap';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,7 @@ import { UserRetrievingPipe } from '../core/pipes/user-retrieving.pipe';
     MapModalComponent,
     SafePipe,
     UserRetrievingPipe,
-    NgLetDirective
+    NgLetDirective,
   ],
   imports: [
     CommonModule,
@@ -32,6 +39,13 @@ import { UserRetrievingPipe } from '../core/pipes/user-retrieving.pipe';
     ReactiveFormsModule,
     FormsModule,
     LeafletModule,
+    MatInputModule,
+    MatFormFieldModule,
+    CalendarModule,
+    InputNumberModule,
+    ListboxModule,
+    InputTextareaModule,
+    GMapModule
   ],
   exports: [
     CommonModule,
@@ -45,7 +59,14 @@ import { UserRetrievingPipe } from '../core/pipes/user-retrieving.pipe';
     CountryPipe,
     SafePipe,
     UserRetrievingPipe,
-    NgLetDirective
+    NgLetDirective,
+    MatInputModule,
+    MatFormFieldModule,
+    CalendarModule,
+    InputNumberModule,
+    ListboxModule,
+    InputTextareaModule,
+    GMapModule
   ],
   providers: [ImagePicker],
 })

@@ -7,10 +7,10 @@
   .header {
     display: flow-root;
     justify-content: space-between;
-    height: 38%;
+    min-height: 38%;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 90%);
     background-color: #bdffcc;
-
+    padding-bottom: 10%;
     .logoContainer {
       margin-left: 25px;
       margin-top: 45px;

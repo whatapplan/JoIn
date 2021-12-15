@@ -26,6 +26,7 @@ export class CrudService {
   }
 
   uploadNewPlan(plan) {
+    console.warn(plan)
     return this.ngFirestore.collection('plans').add(plan);
   }
 
@@ -60,10 +61,10 @@ export class CrudService {
     return this.ngFirestore.collection('tagCategory').snapshotChanges();
   }
 
-  async getAllPlans(id: string, tags: Tag[]) {
+  async getAllPlans(id: string, tags: Tag[] = []) {
     const plans: Plan[] = [];
     const plans2: Plan[] = [];
-    if(tags.length > 10){
+    if(tags?.length > 10){
     tags = tags.slice(0,9);}
 
     const plansRef = collection(this.ngFirestore.firestore, 'plans');

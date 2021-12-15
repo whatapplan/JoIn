@@ -64,7 +64,6 @@
     *ngIf="center"
     [leafletOptions]="options"
     [leafletCenter]="center"
-    (leafletMapReady)="onMapReady($event)"
   >
     <div class="w-full h-full" *ngIf="layer" [leafletLayer]="layer"></div>
   </div>

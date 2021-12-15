@@ -1,27 +1,105 @@
 @import "../../../global.scss";
 
 :host::ng-deep {
+  ion-slides {
+    --bullet-background: var(--pink-clear);
+    --bullet-background-active: var(--green);
+  }
+  ion-item,
+  ion-list {
+    --ion-item-background: transparent;
+  }
+  .p-calendar {
+    width: 100%;
+    .p-datepicker {
+      border: none;
+    }
+    .p-datepicker-header {
+      background: transparent;
+    }
+    .p-datepicker table td > span.p-highlight {
+      background: var(--pink);
+      color: var(--white);
+    }
+  }
+
+  .p-inputnumberm p-inputnumber {
+    width: 100%;
+  }
+
+  .p-button.p-button-danger,
+  .p-buttonset.p-button-danger > .p-button,
+  .p-splitbutton.p-button-danger > .p-button {
+    background: var(--pink);
+    border: var(--pink);
+  }
+
+  .p-button.p-button-success,
+  .p-buttonset.p-button-success > .p-button,
+  .p-splitbutton.p-button-success > .p-button,
+  .p-button.p-button-danger,
+  .p-buttonset.p-button-danger > .p-button,
+  .p-splitbutton.p-button-danger > .p-button,
+  .p-button.p-button-success:enabled:hover, .p-buttonset.p-button-success > .p-button:enabled:hover, .p-splitbutton.p-button-success > .p-button:enabled:hover, 
+  .p-button.p-button-danger:enabled:hover, .p-buttonset.p-button-dangers > .p-button:enabled:hover, .p-splitbutton.p-button-danger > .p-button:enabled:hover {
+    background: var(--pink);
+    border: var(--pink);
+  }
+
+  .p-listbox .p-listbox-list .p-listbox-item.p-highlight{
+    background: var(--pink);
+    color: white;
+  }
+  .p-listbox .p-listbox-list .p-listbox-item:focus{
+    box-shadow: inset 0 0 0 0.15rem var(--pink);
+  }
+
+  .p-listbox {
+    width: 100% !important;
+  }
+
+  .hide-list::ng-deep {
+    .p-listbox-list-wrapper {
+      display: none !important;
+    }
+  }
+
+  p-inputnumber, .p-inputnumber{
+    width: 100%;
+  }
   ion-input,
   ion-input[type="number"],
   ion-textarea,
   ion-datetime {
-    background-color: rgba(231, 231, 231, 0.1);
-    border-radius: 8px;
-    color: white;
-    --placeholder-color: white;
+    background-color: transparent;
+    --placeholder-color: rgba(155, 155, 155, 0.5);
     --placeholder-opacity: 1;
-    --placeholder-font-weight: bold;
+    --highlight-color-focused: none;
+    --background: transparent;
   }
 
-  .textArea{color:black}
-  .grid-cols-1-3-1{ 
+  ion-range {
+    --bar-background: var(--pink);
+    --bar-background-active: var(--pink);
+    --knob-background: var(--pink);
+    --pin-background: var(--gray-clear);
+    --pin-color: var(--pink);
+
+    --background: none;
+    background-color: transparent !important;
+  }
+
+  .textArea {
+    color: black;
+  }
+  .grid-cols-1-3-1 {
     grid-template-columns: 1fr 3fr 1fr;
 
-    .minPeople{
-      color:black;
+    .minPeople {
+      color: black;
     }
-    .maxPeople{
-      color:black;
+    .maxPeople {
+      color: black;
     }
   }
   .icon-wrapper {

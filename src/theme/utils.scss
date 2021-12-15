@@ -1,0 +1,14 @@
+.borded {
+    border-width: 1px;
+    font-size: 14px;
+    padding: 3px 4px 3px 4px;
+    white-space: nowrap;
+    border-radius: 3px;
+    border-color: var(--dark);
+    color: var(--dark);
+  
+    &--white{
+      border-color: var(--white);
+      color: var(--white);
+    }
+  }

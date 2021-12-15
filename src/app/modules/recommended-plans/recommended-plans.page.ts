@@ -45,7 +45,7 @@ export class RecommendedPlansPage implements AfterViewInit {
     const planLocation = document.querySelector(".planLocation") as HTMLElement;
     const planDetail = document.querySelector(".planDetail") as HTMLElement;
 
-    this.plans=(await this.crudService.getAllPlans(this.user.id,this.user.favCategories));
+    this.plans=(await this.crudService.getAllPlans(this.user.id,this.user.favCategories ?? []));
     this.recommendedPlans= this.plans;
     this.setPlan(planTitle,planCreator,planLocation,planDetail);
     //planTitle.innerHTML = this.plans[this.planNumber].title;

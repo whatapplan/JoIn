@@ -1,22 +1,19 @@
 import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
+  Component, OnInit,
+  ViewChild
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { marker, latLng, MapOptions, tileLayer, Map, icon } from 'leaflet';
+import { icon, latLng, Map, MapOptions, marker, tileLayer } from 'leaflet';
 import { forkJoin } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
 import { LatLng } from 'src/app/core/models/location';
 import { Plan } from 'src/app/core/models/plan';
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UiHelper } from 'src/app/core/services/helpers/toast.service';
 import { CrudService } from 'src/app/core/services/http/crud-service.service';
-import { LocationService } from 'src/app/core/services/http/location.service';
+import { IonSlides } from '@ionic/angular'; 
+
 
 @Component({
   selector: 'app-plan-detail',
@@ -24,6 +21,9 @@ import { LocationService } from 'src/app/core/services/http/location.service';
   styleUrls: ['./plan-detail.page.scss'],
 })
 export class PlanDetailPage implements OnInit {
+
+
+  
   layer;
   center: LatLng;
   firstTitleWord: string;
@@ -37,7 +37,7 @@ export class PlanDetailPage implements OnInit {
     maxZoom: 18,
   };
 
-  plan: Plan;
+  plan: Plan; 
   user: User;
   constructor(
     private _ac: ActivatedRoute,
