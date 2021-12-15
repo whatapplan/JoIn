@@ -196,9 +196,9 @@ export class CrudService {
     await this.ngFirestore.collection('plans').doc(planId).collection('chat').doc('0').set(data);
     return this.router.navigate(['chat',idPlan]);
   }
-  async sendMessage(chatId, content){
-    const {id} = await this.auth.loggedUser;
-    const {name} = await this.auth.loggedUser;
+  sendMessage(chatId, content){
+    const {id} = this.auth.loggedUser;
+    const {name} = this.auth.loggedUser;
     const data = {
       id,
       name,
@@ -208,7 +208,8 @@ export class CrudService {
 
     if(id){
       const ref = this.ngFirestore.collection('plans').doc(chatId).collection('chat').doc('0');
-      return ref.update({messages:arrayUnion(data)})
+      ref.update({messages:arrayUnion(data)})
+      return data
     }
     //  FieldValue.arrayUnion(data)
   }

@@ -1,6 +1,6 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit, ViewChild, AfterViewInit,QueryList,ElementRef } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, from} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -16,7 +16,7 @@ import { CrudService } from 'src/app/core/services/http/crud-service.service';
 export class ChatPage implements OnInit, AfterViewInit {
   // Tasks : TODO[] = []
   @ViewChild('cont') cont;
-
+  userId : string;
   fWord:string
   rWord:string
   title:string
@@ -24,13 +24,17 @@ export class ChatPage implements OnInit, AfterViewInit {
   newMsg : string;
   chat_key :string;
   user_id:string;
-  msg_days :string[] = []
   chat_created :any
+  dates = []
+  msgByDate = []
+  lastMsg : any
 
-  constructor(private cs :CrudService, private route : ActivatedRoute, private auth : AuthService) {}
+  constructor(private cs :CrudService, private route : ActivatedRoute,
+    private auth : AuthService, private router : Router) {}
 
   
   ngOnInit() {
+    this.userId = this.auth.loggedUser.id
     const chatRoute = this.route.snapshot.paramMap.get('id');
     const chatId = chatRoute.split('@')[0]
     this.title = chatRoute.split("@")[1]
@@ -41,50 +45,72 @@ export class ChatPage implements OnInit, AfterViewInit {
     const source = this.cs.get(chatId);
     this.chat$ = this.cs.joinUsers(source);
     this.user_id = this.auth.loggedUser.id
-    this.chat$.subscribe(val =>{
-      let msg = val.messages
-      msg.forEach(el => {
-        let date = new Date(el.createdAt)
-        if(!this.msg_days.includes(date.toDateString())){
-          this.msg_days.push(date.toDateString())
+    this.getDatesMsg()
+    console.log(this.dates)
+    console.log(this.msgByDate)
+
+    
+
+  } 
+
+
+  getDatesMsg(){
+    let msgs : any
+    this.chat$.subscribe(xat =>{
+      msgs = xat.messages;
+      msgs.forEach((msg) => {
+        let date = new Date(msg.createdAt);
+        let strDate = date.toLocaleDateString();
+        if (this.dates.indexOf(strDate) < 0) {
+          this.dates.push(strDate);
+          this.msgByDate.push(
+            msgs.filter(msg=>{
+                let day = new Date(msg.createdAt)
+                let strDay = day.toLocaleDateString();
+                return strDate == strDay})) 
         }
       });
-      // let dates = msg.pipe(filter((w:any)=>w.createdAt))
-      console.log(msg)
-      console.log(this.msg_days)
     })
-  } 
+  }
   
   ngAfterViewInit(): void {
-    setTimeout(()=>{this.cont.scrollTop = this.cont.scrollHeight},500)
+    setTimeout(()=>{
+      this.lastMsg = document.querySelectorAll('.message')
+      let msgLast = this.lastMsg[this.lastMsg.length-1]
+      msgLast.scrollIntoView()
+    },500)
   }
   
-  isMyMsg(id){
-    if(id == this.user_id)return 'rtl'
-    return 'ltr'
-  }
-
   submit(){
     if(!this.newMsg){
       return alert('you need to enter something');
     }
-    this.cs.sendMessage(this.chat_key, this.newMsg);
+    let lastMsg = this.cs.sendMessage(this.chat_key, this.newMsg);
     this.newMsg = '';
-    setTimeout(()=>{this.cont.scrollTop = this.cont.scrollHeight},500)
+    this.checkLastMessage(lastMsg)
+  }
+
+  checkLastMessage(msg){
+    let date = new Date(msg.createdAt)
+    let strDate = date.toLocaleDateString()
+    let index = this.dates.indexOf(strDate)
+    console.log(' mera cabron ',index)
+    console.log(' mera cabron ',this.msgByDate[index])
+    if (index < 0) {
+      this.dates.push(strDate);
+      this.msgByDate.push([msg])
+    }else{
+      this.msgByDate[index].push(msg)
+    }
+    setTimeout(()=>{
+      this.lastMsg = document.querySelectorAll('.message')
+      let msgLast = this.lastMsg[this.lastMsg.length-1]
+      msgLast.scrollIntoView()
+    },100)
   }
 
   trackByCreated (i,msg){
     return msg.createdAt;
-  }
-  
-  show(){
-    // let mivar = {
-    //   $key:'',
-    //   title: this.mensaje.value, 
-    //   description : 'Esto es una simple descripcion'
-    // }
-    // this.Tasks = [];
-    // this.crud.create(mivar)
   }
 
 }

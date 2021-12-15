@@ -12,27 +12,25 @@
     </ion-toolbar>
    
     <div style="width: 30%; float:left">
-      <ion-img class="image" [src]="imagen" ></ion-img>
+      <img class="image" [src]="imagen" >
    </div>
-   <div style="width: 70%; float:right">
+   <div style="width: 70%; height:50%;float:right">
     <ion-title class="nombrePerf" >{{username}}</ion-title>
       <p class="edad">{{edadperf}}<em> años</em></p>
-    
+      <div style="width: 100%" class="nivel" >
+        <img class="level" src="../../../assets/Group176.png" align="left" >Nivel joiner : Medio
+             
+       </div>
 
  </div>
- <div style="width: 70%;" class="nivel">
- <img class="level" src="../../../assets/Group176.png" align="left" >Nivel joiner : Medio
-      
-</div>
+ 
 
     </div>
     <div class="div2" >
 
       <ion-title class="sobreMi" >Sobre mi</ion-title>
    
-      <p class="descripcion" >Soy una persona que le gusta 
-        el futbol, salir con amigos a tomar unas cervezas y de vez en cuando jugar al ordenador
-      .Mis planes ideales incluyen al deporte y a tomar algo.</p>
+      <p class="descripcion" >{{descrip}}</p>
       <p class="vivir">Vivo en <em>{{ciudad}}</em></p> 
      
 
@@ -63,7 +61,7 @@
 
 
         </p>
-        <p class="usuaria">Usuaria desde junio de 2021
+        <p class="usuaria">{{usuariaDesde}}
             
 
 

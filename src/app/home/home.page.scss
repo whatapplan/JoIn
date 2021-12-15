@@ -19,8 +19,17 @@ ion-tabs{
 ion-tab-bar, ion-tab-button{
     background-color: #FFFFFF;
     height:70px;
+    color: #222623;
    }
 
 .mapa-icon{
     background-color: white;;
 }   
+
+.tab-selected{
+     color: #FF2D87;
+}
+
+ion-tab-button:hover{
+    --color-selected: color
+}

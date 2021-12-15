@@ -55,11 +55,13 @@
     margin-bottom: auto;
     width:65%;
     text-align: initial;
-    color: blueviolet;
   }
   .title{
+    font: size 15px;
+    font-weight: 700;
     margin-top: auto;
     margin-bottom: 0.1em;
+    color:#FF2D87;
   }
   .time {
     margin-left: 1%;
@@ -85,11 +87,16 @@
     padding: 5px;
     width: 100%;
     background-color: transparent;
+    color: black;
     border: 0;
     outline: none;
     box-sizing: border-box;
+    &:focus-visible{
+      border:0;
+    }
   }
   .in-wrap{
+    padding-top: 23px;
     width: 76%;
     margin :auto;
     border-bottom: 2px solid #000;
