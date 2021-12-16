@@ -16,7 +16,6 @@ export class PlanResolver implements Resolve<any> {
     private ui: UiHelper
   ) {}
   resolve(route: ActivatedRouteSnapshot) {
-    let plan: Plan;
     const id = route.paramMap.get('id');
     this.ui.presentLoading(id);
     return this.crud.getPlanById(id).pipe(
@@ -25,7 +24,7 @@ export class PlanResolver implements Resolve<any> {
           map((res) => ({ ...plan, creationUser: res })),
           finalize(() => this.ui.dismissLoading(id))
         )
-      )
+      ),
     );
   }
 }

@@ -4,9 +4,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { icon, latLng, Map, MapOptions, marker, tileLayer } from 'leaflet';
+import { icon, latLng, Map, MapOptions, marker, LatLng, tileLayer } from 'leaflet';
 import { forkJoin } from 'rxjs';
-import { LatLng } from 'src/app/core/models/location';
 import { Plan } from 'src/app/core/models/plan';
 import { User } from 'src/app/core/models/usuario';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -39,23 +38,31 @@ export class PlanDetailPage implements OnInit {
 
   plan: Plan; 
   user: User;
+  buttonText: string;
+
   constructor(
     private _ac: ActivatedRoute,
     private crud: CrudService,
     private _auth: AuthService,
     private nav: NavController,
     private ui: UiHelper
-  ) {}
+  ) {
+    this.user = this._auth.loggedUser;
+  }
+
+  hasUserAlreadyAcceptedPlan(user, plan) {
+    return user?.acceptedPlans?.includes(plan.id)
+  }
 
   ngOnInit() {
     this.plan = this._ac.snapshot.data?.plan;
+    this.buttonText = !this.hasUserAlreadyAcceptedPlan(this.user, this.plan) ? 'Unirme' : 'Ya estas unido a este plan!'
     this.firstTitleWord = this.plan.title.split(' ')[0];
     this.plan = {
       ...this.plan,
       title: this.plan.title.split(' ').slice(1).join(' '),
     };
     this.updateCenter(this.plan);
-    this.user = this._auth.loggedUser;
   }
 
   updateCenter({ location: { coordinates } }: Plan) {
@@ -68,6 +75,8 @@ export class PlanDetailPage implements OnInit {
     this.options = { ...this.options, center: this.center };
     this.layer = marker([coordinates[0], coordinates[1]], { icon: greenIcon });
   }
+
+
   onMapReady(map: Map) {
     setTimeout(() => {
       map.invalidateSize();
@@ -75,6 +84,7 @@ export class PlanDetailPage implements OnInit {
   }
 
   joinPlan() {
+    if(this.hasUserAlreadyAcceptedPlan(this.user,this.plan)) return
     const participants = this.plan.participants
       ? [...this.plan.participants, this.user.id]
       : [this.user.id];
