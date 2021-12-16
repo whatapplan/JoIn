@@ -126,7 +126,7 @@ export class PlanCreationPage implements OnInit {
           tags: this.selectedTags,
           when: date.toISOString()
         })
-        .then(async () => {
+        .then(async (res) => {
           await this.ui
             .presentToast('Anuncio creado satisfactoriamente! :D')
             .then(() => this.router.navigate(['plan', res.id]));

@@ -55,7 +55,7 @@ export class MiPerfilPage implements OnInit {
   this.numplans = this.user.createdPlans.length;
   // this.edadperf = 27;
   this.imagen = this.user.image;
- this.usuariaDesde = "Usuaria desde" + " " + this.sacarMes() + " "+ "de" + " " + this.userFrom.getFullYear();
+ this.usuariaDesde = "Usuario desde" + " " + this.sacarMes() + " "+ "de" + " " + this.userFrom.getFullYear();
   
   }
 

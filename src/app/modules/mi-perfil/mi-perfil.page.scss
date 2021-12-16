@@ -1,244 +1,393 @@
 @import "../../../global.scss";
 
+//globales
+p{
 
-.verde{
 
-    clip-path: polygon(0 18%, 100% 11%, 100% 100%, 0% 100%);
-    background-color:#9fffb4 ;
-    width: 100%;
-    height: 100%;
-
-position: absolute;
-z-index: -1;
-}
-.tittle{
-
- text-align: start;
- color:#ff4193; 
-margin-left: 5%;
-font-style: normal;
-
-}
-.div1{
-   
-    z-index: 1;
-   
-    height: 230px;
-    
-   
-    
-  
-  border-bottom: solid;
-  border-width: 0.5px;
 
 }
 
-.image{
- 
-width: 96px;
-height: 113px;
-
-margin-left: 49px;
-border-radius: 15px;
 
 
-margin-top: 30px;
-background-size: cover;
--webkit-background-size: cover;
+//container verde
 
-}
-
-.nombrePerf{
-    height: 100px;
-    z-index: 2;
-    color: #ff4193;
+.verde {
+  clip-path: polygon(0 18%, 100% 11%, 100% 100%, 0% 100%);
+  background-color: #BDFFCC;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  font-size: 20px;
-  vertical-align: top;
-   text-align: start;
-   margin-left: 159px;
-   text-align: start;
-   margin-top: 70px;
-   font-style: normal;
-}
-.edad{
-  
-   margin-top: 35%;
-  height: 30px;
-  z-index: 2;
-  color: black;
-   text-align: start;
- font-size: 15px;
-  vertical-align: center;
-  margin-bottom: 10%;
-  margin-left: 47px;
-
-}
-.nivel{
-
-
-height:auto;
-}
-.level{
-z-index: 5;
-margin-left: 80px;
-
-
-top: 30px;
-
+  z-index: -1;
 }
 
 
-.div2{
-    z-index: 1;
-    margin: auto;
-    border-style: solid;
-
-        height: 170px;
-      
-         
-     
-         .sobreMi{
-            height: 50px;
-            z-index: 2;
-          color: #ff4193;
-           margin-top: 230px;
-          font-size: 11px;
-          vertical-align:inherit;
-          text-align:start;
-          margin-left: 49px;
-        }
-       
 
 
-        
-        .descripcion{
-            height:auto;
-            z-index: 2;
-          color: black;
-           margin-top: 50px;
-          font-size: 14px;
-          vertical-align:inherit;
-        
-          margin-left: 49px;
-          margin-right: 5%;
-        
-         
-        }
-        
-      
-        border-bottom: solid;
-        border-width: 0.5px;
-    
-    }
- .div3{
 
-        z-index: 1;
-        
-            height: 170px;
-       
-         
-            border-bottom: solid;
-            border-width: 0.5px;
-            .infor{
-              margin-top: 3%;
-                color: #ff4193;
-                font-size: 11px;
-                margin-left: 49px;
-               font-style: normal;
-               height: 30px;
 
-               }
-               
+//
+.container{
 
-            }
-        
-    
- .div4{
+  width:100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.div1 {
+  z-index: 1;
+  height: 32%;
+  border-bottom: 0.3px solid lightgray;
+
+  //titulo mi perfil
+  .titleContainer{
 
     display: flex;
-            z-index: 1;
-            
-                height: 100px;
-              
-               
-             
-            
-            
-      }
-      .vivir{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    
+    .planTitleFirstWord{
 
-        margin-left: 49px;
-        font-size: 14px;
+      margin-left: 11%;
+      color: #FF2D87;
+      margin-bottom: 5px;
+      font-family: MANROPE;
+      font-weight: 550;
+      font-size: 25px;
+      margin-bottom:5px;
+      height: auto;
+      color: #FF2D87;
+        
+      strong{
+          font-weight: 300;
+          font-size: 25px;
       }
-      .verif{
-        color: black;
-        width: 14px;
-        margin-left: 49px;
-        margin-top: 1%;
-        font-weight: bold;
-       
 
     }
-    .verif1{
-      color: black;
-      width: 14px;
-      margin-left: 49px;
-      margin-top: 1%;
-      font-weight: bold;
+    
+  }
+
+  //nombre y edad
+
+  .nombreEdad-Container{
+
+    display: flex;
+
+    //imagen
+    .image-Container{
+
+      .image {
+        width: 96px;
+        height: 105px;
+        margin-left: 50px;
+        border-radius: 15px;
+        margin-top: 1%;
+        background-size: cover;
+        -webkit-background-size: cover;
+      }
+
+    }
+
+    //nombre
+    .nombrePersona-Container{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left:3%;
+      height:auto;
+
+      .nombrePerf {
+        z-index: 2;
+        color: #FF2D87;
+        font-size: 25px;
+        text-align: start;
+        font-style: normal;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .edad {
+        height: 30px;
+        z-index: 2;
+        color: black;
+        text-align: start;
+        font-size: 12px;
+        font-family: MANROPE;
+        font-weight:500;
+      }
+
+    }
+  
+  }
+
+  .nivelJoiner{
+
+    margin-top:5%;
+    margin-bottom:2%;
+    display: flex;
+    margin-left:50px;
+
+    .img{
+
+      margin-right: 6%;
+
+    }
+    
+    .textNivelJoiner{
+
       font-size: 14px;
-     
+      font-weight: 600;
+      font-family: MANROPE;
+
+    }
+  }
+  
+}
 
 
-   }
-   .verif2{
+//info div 2
+
+
+.div2 {
+  z-index: 1;
+  border-style: solid;
+  height: 20%;
+  border-bottom: 0.3px solid lightgray;
+
+  .sobreMi {
+    margin-top: 3%;
+    margin-bottom:4%;
+    margin-left: 50px;
+    z-index: 2;
+    color: #FF2D87;
+    font-size: 11px;
+    font-weight: 300;
+    font-family: MANROPE;
+  }
+
+
+  .descripcionContainer{
+
+    width: 100%;
+    height: auto ;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+
+    .descripcion {
+      width:75%;
+      font-family: MANROPE;
+      margin-bottom: 6%;
+      margin-left: 50px;
+      height: auto;
+      z-index: 2;
+      color: black;
+      font-size: 12px;
+      font-weight:500;
+    }
+
+  }
+  
+
+  .vivir{
+
+    font-family: MANROPE;
+    margin-bottom: 3%;
+    margin-left: 50px;
+    height: auto;
+    z-index: 2;
     color: black;
-    width: 14px;
-    margin-left: 49px;
-    margin-top: 1%;
-    font-weight: bold;
-    font-size: 14px;
-   
-   
-   }
-   .planespub{
-     position: absolute;
-     margin-left: 49px;
-     margin-top: 5%;
-     width: 375px;
-     height: 50%;
-     font-size: 14px;
-
-   }
-   
-  .usuaria{
-
-    margin-left: 49px;
-    margin-top: 15%;
-    vertical-align: bottom;
-    font-size: 14px;
-
-
-   }
-   
-  .salir{
-    text-align: end;
-    position: relative;
-    left: 270px;
-   top: 15px;
-  }
-  .divperf{
-
-margin-bottom: 2%;    
- 
-  }
-  .divcor{
-
-    margin-bottom: 2%; 
-    margin-top: 2%;
+    font-size: 12px;
+    font-weight:500;
+    
 
   }
-  .divnum{
-    margin-top: 2%;
+
+  
+}
+
+
+//info div3
+
+.div3 {
+
+  z-index: 1;
+  height: 20%;
+  border-bottom: 0.3px solid lightgray;
+
+  .infor {
+
+    margin-top: 3%;
+    margin-bottom:3.5%;
+    margin-left: 50px;
+    z-index: 2;
+    color: #FF2D87;
+    font-size: 11px;
+    font-weight: 300;
+    font-family: MANROPE;
 
   }
+
+  .textPerfil{
+
+    font-family: MANROPE;
+    margin-bottom: 2%;
+    margin-left: 50px;
+    height: auto;
+    z-index: 2;
+    color: black;
+    font-size: 12px;
+    font-weight:500;
+
+  }
+
+  .textPerfil::before{
+
+    content: url(../../../assets/Vector.png);
+    margin-right: 13px;
+
+  }
+
+  .textCorreoElectronico{
+
+    font-family: MANROPE;
+    margin-bottom: 2%;
+    margin-left: 50px;
+    height: auto;
+    z-index: 2;
+    color: black;
+    font-size: 12px;
+    font-weight:500;
+
+  }
+
+  .textCorreoElectronico::before{
+
+    content: url(../../../assets/Vector.png);
+    margin-right: 13px;
+
+  }
+
+  .textNTelefono{
+
+    font-family: MANROPE;
+    margin-bottom: 2%;
+    margin-left: 50px;
+    height: auto;
+    z-index: 2;
+    color: black;
+    font-size: 12px;
+    font-weight:500;
+
+  }
+
+  .textNTelefono::before{
+
+    content: url(../../../assets/Vector.png);
+    margin-right: 13px;
+
+  }
+
+}
+
+.div4 {
+
+  z-index: 1;
+  height: 18%;
+
+  .planespub {
+    
+    margin-top: 3%;
+    font-family: MANROPE;
+    margin-bottom: 6%;
+    margin-left: 50px;
+    height: auto;
+    z-index: 2;
+    color: black;
+    font-size: 12px;
+    font-weight:500;
+
+  }
+  
+  .usuario {
+    
+    font-family: MANROPE;
+    margin-bottom: 6%;
+    margin-left: 50px;
+    height: auto;
+    z-index: 2;
+    color: black;
+    font-size: 12px;
+    font-weight:500;
+
+  }
+
+}
+
+.div5{
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  
+  height:10%;
+
+  .button-55 {
+
+    margin-left: 50px;
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: #FF4193;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Neucha, sans-serif;
+    font-size: 1rem;
+    line-height: 23px;
+    outline: none;
+    padding: .75rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-55:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+  }
+  
+  .button-55:focus {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

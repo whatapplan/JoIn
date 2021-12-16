@@ -1,81 +1,68 @@
-
-
 <ion-content>
-  
-  <div class="verde" ></div>
-   
-  
-  
-  <div class="div1" >
-    <ion-toolbar>
-      <ion-title class="tittle"> ⪡ Mi perfil</ion-title>
-    </ion-toolbar>
-   
-    <div style="width: 30%; float:left">
-      <img class="image" [src]="imagen" >
-   </div>
-   <div style="width: 70%; height:50%;float:right">
-    <ion-title class="nombrePerf" >{{username}}</ion-title>
-      <p class="edad">{{edadperf}}<em> años</em></p>
-      <div style="width: 100%" class="nivel" >
-        <img class="level" src="../../../assets/Group176.png" align="left" >Nivel joiner : Medio
-             
-       </div>
 
- </div>
- 
+  <div class="verde">
 
-    </div>
-    <div class="div2" >
-
-      <ion-title class="sobreMi" >Sobre mi</ion-title>
-   
-      <p class="descripcion" >{{descrip}}</p>
-      <p class="vivir">Vivo en <em>{{ciudad}}</em></p> 
-     
-
-
-    </div>
-    <div class="div3" >
-     
-      
-      <p class="infor">Informción verificada</p>
-      <div class="divperf">
-      <img src="../../../assets/Vector.png" align="left" class="verif">  Perfil
-    </div>
-    <div class="divcor">
-      <img src="../../../assets/Vector.png" align="left"  class="verif1">  Correo electrónico
-    </div>
-    <div class="divnum">
-      <img src="../../../assets/Vector.png" align="left" class="verif2">  Número de teléfono
-
-
-   
   </div>
 
+  <div class="container">
+    <div class="div1">
+
+      <div class="titleContainer">
+        <p class="planTitleFirstWord"> <strong>Mi</strong>  perfil</p> 
+      </div>
+
+
+      <div class="nombreEdad-Container"> 
+
+        <div class="image-Container">
+          <img class="image" [src]="imagen" />
+        </div>
+
+        <div class="nombrePersona-Container">
+          <p class="nombrePerf">{{username}}</p>
+          <p class="edad">{{edadperf}} años</p>
+        </div>
+
+      </div>
+
+      <div class="nivelJoiner">
+        <img class="img" src="../../../assets/Group176.png" />
+        <p class="textNivelJoiner">Nivel joiner : Medio</p>
+      </div>
+     
+    </div>
+
+    <div class="div2">
+      <p class="sobreMi">Sobre mi</p>
+
+      <div class="descripcionContainer">
+        <p class="descripcion">{{descrip}}</p>
+      </div>
+      
+      <p class="vivir">Vivo en {{ciudad}}</p>
+    </div>
+
+    <div class="div3">
+
+      <p class="infor">Informción verificada</p>
+      <p class="textPerfil">Perfil</p> 
+      <p class="textCorreoElectronico">Correo electrónico</p>
+      <p class="textNTelefono">Número de teléfono</p>
 
     </div>
-    <div class="div4" >
 
-        <p class="planespub">{{numplans}}  <em>planes publicados</em>
+    <div class="div4">
 
-
-        </p>
-        <p class="usuaria">{{usuariaDesde}}
-            
-
-
-        </p>
-
-
+      <p class="planespub">{{numplans}} planes publicados</p>
+      <p class="usuario">{{usuariaDesde}}</p>
 
     </div>
-
-
 
 
     <div class="div5">
-      <button (click)='closeSession()' class="salir" expand>LOG OUT</button>
+      <button (click)="closeSession()" class="button-55" roll="button" expand>LOG OUT</button>
     </div>
+  </div>
 
+  
 </ion-content>
