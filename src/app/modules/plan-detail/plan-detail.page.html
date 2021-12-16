@@ -11,7 +11,15 @@
 </ion-header>
 <ion-content class="bg-white">
   <div
-    class="content-header h-96 pb-22 p-10 flex flex-col justify-end bg-green-clear"
+    class="
+      content-header
+      h-96
+      pb-22
+      p-10
+      flex flex-col
+      justify-end
+      bg-green-clear
+    "
   >
     <h1 class="mb-6 title_test">
       <span class="ibm-font">{{firstTitleWord | titlecase}} </span
@@ -30,33 +38,46 @@
     </div>
   </div>
   <div class="p-4 px-10">
-  <div class="grid gap-8">
-    <p>{{plan.description}}</p>
-    <div class="flex items-center pl-9">
-      <div *ngFor="let participant of plan.participants; index as i">
-        <ng-container *ngLet="participant | userRetrieving | async as user">
-          <div class="-ml-8 first:-ml-0 relative h-10 w-9 rounded-md">
-            <ng-container *ngIf="user">
-              <img
-                class="
-                  h-full
-                  w-full
-                  object-cover object-center
-                  rounded-md
-                  relative
-                "
-                [src]="user.image + '?a' + ('&i').repeat(i)"
-                [alt]="user.name"
-              />
+    <div class="grid gap-8">
+      <p>{{plan.description}}</p>
+      <div class="flex items-center pl-9">
+        <ng-container *ngIf="plan.participants?.length">
+          <div *ngFor="let participant of plan.participants; index as i">
+            <ng-container *ngLet="participant | userRetrieving | async as user">
+              <div class="-ml-8 first:-ml-0 relative h-10 w-9 rounded-md">
+                <ng-container *ngIf="user">
+                  <img
+                    class="
+                      h-full
+                      w-full
+                      object-cover object-center
+                      rounded-md
+                      relative
+                    "
+                    [src]="user.image + '?a' + ('&i').repeat(i)"
+                    [alt]="user.name"
+                  />
+                </ng-container>
+              </div>
             </ng-container>
           </div>
         </ng-container>
+        <div *ngIf="plan.participants?.length" class="ml-5 underline">
+          {{plan.participants?.length}} asistentes más
+        </div>
+        <div *ngIf="!plan.participants?.length" class="ml-5 underline">
+          Se el primero en asistir!
+        </div>
       </div>
-      <div class="ml-5 underline">{{plan.participants?.length}} asistentes más</div>
+      <join-tag-list [tags]="plan.tags"></join-tag-list>
+      <p class="text-pink flex">
+        <img class="mr-4" src="../../../../assets/icon/ubi.svg" />
+        <span *ngIf="plan.location.city">{{plan.location.city}},&nbsp;</span>
+        <span *ngIf="plan.location.country">
+          {{plan.location.country | country: 'es' }}</span
+        >
+      </p>
     </div>
-    <join-tag-list [tags]="plan.tags"></join-tag-list>
-    <p class="text-pink flex"><img class="mr-4" src="../../../../assets/icon/ubi.svg"> <span *ngIf="plan.location.city">{{plan.location.city}},&nbsp;</span> <span *ngIf="plan.location.country"> {{plan.location.country | country: 'es' }}</span></p>
-  </div>
   </div>
   <div
     class="map h-96 mt-2 w-full relative"
@@ -64,11 +85,20 @@
     *ngIf="center"
     [leafletOptions]="options"
     [leafletCenter]="center"
+    (leafletMapReady)="onMapReady($event)"
   >
     <div class="w-full h-full" *ngIf="layer" [leafletLayer]="layer"></div>
   </div>
-  <button class="join w-full" (click)="joinPlan()">
-  <h2 class="py-2 flex items-center justify-center ibm-font text-white bg-pink">Unirme</h2>
-  <ion-ripple-effect></ion-ripple-effect>
+  <button
+    class="join w-full"
+    *ngIf="user?.id !== plan?.createdBy"
+    (click)="joinPlan()"
+  >
+    <h2
+      class="py-2 flex items-center justify-center ibm-font text-white bg-pink"
+    >
+      {{buttonText}}
+    </h2>
+    <ion-ripple-effect></ion-ripple-effect>
   </button>
 </ion-content>

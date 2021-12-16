@@ -89,7 +89,7 @@ export class PlanCreationPage implements OnInit {
 
   onMapReady(map: Map) {
     setTimeout(() => {
-      map.invalidateSize();
+      map?.invalidateSize();
     }, 0);
   }
 
@@ -113,7 +113,8 @@ export class PlanCreationPage implements OnInit {
   }
 
   async sendForm() {
-    this.ui.dismissLoading('plan-creation')
+    this.ui.presentLoading('plan-creation')
+    const date = this.planForm.getRawValue()['when'] as Date;
     if (this.planForm.invalid || !this.selectedTags.length) {
       this.ui.presentToast(
         'Por favor rellene todos los campos correctamente'
@@ -123,11 +124,12 @@ export class PlanCreationPage implements OnInit {
         .uploadNewPlan({
           ...this.planForm.getRawValue(),
           tags: this.selectedTags,
+          when: date.toISOString()
         })
         .then(async () => {
           await this.ui
             .presentToast('Anuncio creado satisfactoriamente! :D')
-            .then(() => this.router.navigate(['home/recommended-plans']));
+            .then(() => this.router.navigate(['plan', res.id]));
         })
         .catch(async () => {
           await this.ui.presentToast(
@@ -146,6 +148,7 @@ export class PlanCreationPage implements OnInit {
       return {
         category,
         name,
+        emoji: ''
       };
     });
   }

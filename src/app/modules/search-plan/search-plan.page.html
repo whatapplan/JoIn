@@ -47,7 +47,7 @@
         class="card-container"
         *ngFor="let plan of planesResultado"
       >
-        <div class="image-container">
+        <div class="image-container" *ngIf="plan.tags.length">
           <ion-img class="image"
             src="../../../assets/planIlustrations/{{plan.tags[0].category}}.png"
           ></ion-img>
