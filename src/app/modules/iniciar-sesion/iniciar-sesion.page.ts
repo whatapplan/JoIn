@@ -43,7 +43,7 @@ export class IniciarSesionPage implements OnInit {
   ngOnInit() {}
 
   async presentAlert(message: string, titulo: string) {
-    const alert = await this.alertController.create({
+    let alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
       subHeader: titulo,
